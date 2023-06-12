@@ -1,0 +1,11 @@
+.home {
+  display: flex;
+}
+.posts {
+  padding-top: 25px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.sidebar {
+  flex: 3;
+}
