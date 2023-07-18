@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Context } from '../../context/Context';
-import './topbar.css';
+import './topbar.scss';
 
 export default function Topbar() {
   const { user, dispatch } = useContext(Context);
@@ -56,7 +56,7 @@ export default function Topbar() {
             </li>
           </ul>
         )}
-        <i className='topSearchIcon fas fa-search'></i>
+        {/* <i className='topSearchIcon fas fa-search'></i> */}
       </div>
     </div>
   );

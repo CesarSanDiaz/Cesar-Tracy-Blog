@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from '../../components/header/Header';
 import Posts from '../../components/posts/Posts';
-import Sidebar from '../../components/sidebar/Sidebar';
-import './home.css';
+// import Sidebar from '../../components/sidebar/Sidebar';
+import './home.scss';
 
 export default function Home() {
   const { search } = useLocation();
@@ -32,14 +32,14 @@ export default function Home() {
 
   return (
     <>
-      <Header />
       <div className='home'>
+        <Header />
         <div className='posts'>
           <Posts posts={posts} />
         </div>
-        <div className='sidebar'>
+        {/* <div className='sidebar'>
           <Sidebar />
-        </div>
+        </div> */}
       </div>
     </>
   );
