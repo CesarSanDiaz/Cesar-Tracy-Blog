@@ -1,27 +1,5 @@
-@import '../../styles/responsive.scss';
-
 .home {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-
-  .posts {
-    // padding-top: 25px;
-    display: grid;
-    grid-template-columns: repeat(4, auto);
-    // grid-auto-rows: auto auto;
-    // grid-template-columns: repeat(4, 1fr);
-
-    // @include sm {
-    //   grid-template-columns: repeat(1, 1fr);
-    //   width: max-content;
-    // }
-    // @include md {
-    //   grid-template-columns: repeat(2, 1fr);
-    //   width: max-content;
-    // }
-    // @include xxl {
-    //   grid-template-columns: repeat(3, 1fr);
-    // }
-  }
 }

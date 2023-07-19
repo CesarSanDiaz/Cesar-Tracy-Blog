@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import './post.css';
+import './post.scss';
 
 export default function Post({ post }) {
   const PF = 'http://localhost:5000/images/';
