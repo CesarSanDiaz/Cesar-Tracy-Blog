@@ -1,0 +1,50 @@
+@import '../../styles/responsive.scss';
+
+.footerContainer {
+  background-color: #181c2c;
+  height: 45px;
+  padding: 5px;
+  color: #d1d5db;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Josefin Sans', sans-serif;
+
+  .bottomLeft {
+    display: flex;
+
+    .fa-facebook-square,
+    .fa-instagram-square,
+    .fa-twitter-square,
+    .fa-pinterest-square {
+      margin-left: 10px;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    .fa-facebook-square:hover {
+      background-color: white;
+      color: #3b5998;
+    }
+    .fa-instagram-square:hover {
+      background-color: white;
+      color: #e4405f;
+    }
+    .fa-twitter-square:hover {
+      background-color: white;
+      color: #1da1f2;
+    }
+    .fa-pinterest-square:hover {
+      background-color: white;
+      color: #e60023;
+    }
+  }
+
+  .bottomCenter {
+    display: flex;
+  }
+
+  .bottomRight {
+    display: flex;
+  }
+}
