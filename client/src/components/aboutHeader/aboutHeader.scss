@@ -1,0 +1,24 @@
+.aboutHeaderTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Lora', serif;
+  color: #181c2c;
+}
+
+.aboutHeaderTitleLG {
+  //   padding-top: 100px;
+  position: absolute;
+  top: 15%;
+  font-size: 100px;
+  text-transform: capitalize;
+}
+
+.aboutHeaderImg {
+  background-image: url(../../assets/GrandTeton.jpg);
+  width: 100%;
+  background-size: cover;
+  object-fit: cover;
+  background-position: center;
+  height: 100vh;
+}

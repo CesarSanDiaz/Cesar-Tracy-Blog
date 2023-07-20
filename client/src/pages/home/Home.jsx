@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import Header from '../../components/header/Header';
 import Posts from '../../components/posts/Posts';
 // import Sidebar from '../../components/sidebar/Sidebar';
-import Footer from '../../components/footer/Footer';
+// import Footer from '../../components/footer/Footer';
 import './home.scss';
 
 export default function Home() {
@@ -41,9 +41,9 @@ export default function Home() {
         {/* <div className='sidebar'>
           <Sidebar />
         </div> */}
-        <div className='footer'>
+        {/* <div className='footer'>
           <Footer />
-        </div>
+        </div> */}
       </div>
     </>
   );
