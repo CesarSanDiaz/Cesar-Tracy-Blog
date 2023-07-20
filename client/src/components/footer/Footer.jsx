@@ -11,7 +11,7 @@ export default function Footer() {
         <i className='topIcon fab fa-pinterest-square'></i>
       </div>
       <div className='bottomCenter'>
-        &copy; CesarTracy.blog | All Rights Reserved
+        &copy;CesarTracy.blog | All Rights Reserved
       </div>
       <div className='bottomRight'>Private Policy | Terms of Service</div>
     </div>

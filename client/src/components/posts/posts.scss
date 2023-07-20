@@ -3,6 +3,8 @@
 .posts1 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  margin: 20px;
 
   @include xxl {
     grid-template-columns: repeat(3, auto);

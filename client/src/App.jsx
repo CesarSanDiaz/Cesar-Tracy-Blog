@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import About from './components/about/About';
 import SinglePost from './components/singlePost/SinglePost';
 import TopBar from './components/topbar/Topbar';
 import { Context } from './context/Context';
@@ -17,6 +18,7 @@ function App() {
       <TopBar />
       <Routes>
         <Route exact path='/' element={<Home />}></Route>
+        <Route path='/about' element={<About />}></Route>
         <Route path='/login' element={user ? <Home /> : <Login />}></Route>
         <Route path='/write' element={user ? <Write /> : <Register />}></Route>
         <Route path='/singlePost' element={<SinglePost />}></Route>

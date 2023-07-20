@@ -2,16 +2,23 @@
 
 .footerContainer {
   background-color: #181c2c;
-  height: 45px;
-  padding: 5px;
+  padding: 20px;
   color: #d1d5db;
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-family: 'Josefin Sans', sans-serif;
 
+  @include md {
+    flex-direction: column;
+  }
+
   .bottomLeft {
     display: flex;
+
+    @include md {
+      padding: 5px;
+    }
 
     .fa-facebook-square,
     .fa-instagram-square,
@@ -42,9 +49,17 @@
 
   .bottomCenter {
     display: flex;
+
+    @include md {
+      padding: 5px;
+    }
   }
 
   .bottomRight {
     display: flex;
+
+    @include md {
+      padding: 5px;
+    }
   }
 }

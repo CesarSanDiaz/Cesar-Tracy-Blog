@@ -1,23 +1,26 @@
 @import '../../styles/responsive.scss';
 
 .top {
+  overflow: hidden;
   width: 100%;
   height: 50px;
+  // padding: 0 20px;
   background-color: #181c2c;
   color: #d1d5db;
   position: sticky;
   top: 0;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   z-index: 999;
   font-family: 'Josefin Sans', sans-serif;
 }
 
 .topLeft {
-  flex: 3;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-left: 20px;
 
   @include md {
     display: none;
@@ -49,7 +52,6 @@
 }
 
 .topRight {
-  flex: 3;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -57,28 +59,36 @@
   @include sm {
     display: none;
   }
+  @include md {
+    display: none;
+  }
 }
 
 .topCenter {
-  flex: 6;
+  @include md {
+    margin: auto;
+  }
 }
 
-.topList {
+.topList,
+.topRightList {
   display: flex;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
+  justify-content: space-between;
+  // margin: 0;
+  // padding: 0;
   list-style: none;
 }
 
-.topListItem {
+.topListItem,
+.topRightListItem {
   margin-right: 20px;
   font-size: 18px;
   font-weight: 300;
   cursor: pointer;
 }
 
-.topListItem:hover {
+.topListItem:hover,
+.topRightListItem:hover {
   color: gray;
 }
 

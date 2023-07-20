@@ -25,7 +25,11 @@ export default function Topbar() {
               HOME
             </Link>
           </li>
-          <li className='topListItem'>ABOUT</li>
+          <li className='topListItem'>
+            <Link className='link' to='/about'>
+              ABOUT
+            </Link>
+          </li>
           <li className='topListItem'>CONTACT</li>
           <li className='topListItem'>
             <Link className='link' to='/write'>
@@ -43,13 +47,13 @@ export default function Topbar() {
             <img className='topImg' src={PF + user.profilePic} alt='Avatar' />
           </Link>
         ) : (
-          <ul className='topList'>
-            <li className='topListItem'>
+          <ul className='topRightList'>
+            <li className='topRightListItem'>
               <Link className='link' to='/login'>
                 LOGIN
               </Link>
             </li>
-            <li className='topListItem'>
+            <li className='topRightListItem'>
               <Link className='link' to='/register'>
                 REGISTER
               </Link>

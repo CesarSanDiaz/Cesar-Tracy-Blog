@@ -1,12 +1,11 @@
 .post {
   /* width: 20%; */
-  margin: 20px;
+  padding-bottom: 20px;
   flex-direction: column;
   display: flex;
 }
 
 .postImg {
-  aspect-ratio: 4 / 3;
   width: 100%;
   height: 350px;
   object-fit: cover;
@@ -55,8 +54,9 @@
   color: #444444;
   margin-top: 15px;
   overflow: hidden;
+  text-align: center;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
