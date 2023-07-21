@@ -5,7 +5,7 @@ export default function AboutHeader() {
     <>
       <div className='aboutHeaderContainer'>
         <div className='aboutHeaderTitle'>
-          <span className='aboutHeaderTitleLG'>about us</span>
+          <span className='aboutHeaderTitleLG'>hello!</span>
         </div>
         <img className='aboutHeaderImg' src='' alt='' />
       </div>

@@ -17,4 +17,17 @@
   @include sm {
     grid-template-columns: repeat(1, auto);
   }
+
+  :hover {
+    transform: scale(1.005);
+    transition: all 0.5s ease;
+  }
+}
+
+.recentPosts {
+  text-align: center;
+  font-size: 35px;
+  text-transform: capitalize;
+  font-family: 'Pacifico', cursive;
+  margin: 5px;
 }
