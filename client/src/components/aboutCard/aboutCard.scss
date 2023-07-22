@@ -1,9 +1,5 @@
-.test {
-  width: 60%;
-  margin: auto;
-  padding: 0;
-  background: transparent;
-}
+@import '../../styles/responsive.scss';
+
 .aboutSectionTitle {
   margin: 10px;
   text-align: center;
@@ -11,10 +7,25 @@
   font-family: 'Pacifico', cursive;
 }
 .container {
+  // for responsive container, use a vw that is about 75 and go bigger every break point.
   display: flex;
+  width: 75vw;
   margin: auto;
+  padding: 0;
+  background: transparent;
+  box-shadow: 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.2) 0 2.25rem 1.75rem -0.4375rem,
+    rgba(0, 0, 0, 0.2) 0 1.0625rem 1.0625rem -0.4375rem;
+  margin: 20px auto;
 
-  //@include... md display block
+  @include md {
+    display: block;
+    width: 80vw;
+  }
+  @include sm {
+    display: block;
+    width: 95vw;
+  }
 
   .aboutSectionText {
     text-align: center;
@@ -22,5 +33,22 @@
     font-size: 16px;
     font-family: 'Lora', serif;
     line-height: 35px;
+    display: flex;
+    align-items: center;
+  }
+
+  img {
+    // for responsive image, use a vw that is about 45 and go bigger every break point. zooming in.
+    object-fit: cover;
+    display: block;
+    width: 45%;
+    @include md {
+      margin: auto;
+      width: 90%;
+    }
+    @include sm {
+      margin: auto;
+      width: 100%;
+    }
   }
 }

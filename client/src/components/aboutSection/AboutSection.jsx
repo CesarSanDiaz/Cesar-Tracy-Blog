@@ -4,7 +4,7 @@ import aboutCards from '../../data/AboutDataCards';
 export default function AboutSection({ cards }) {
   return (
     <>
-      <div className=''>
+      <div className='aboutCard'>
         {aboutCards.map((card) => {
           return (
             <div key={card.id}>
