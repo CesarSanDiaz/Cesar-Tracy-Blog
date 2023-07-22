@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/Cesar-Tracy-Blog/static/css/main.290e5385.css",
+    "main.js": "/Cesar-Tracy-Blog/static/js/main.710dde05.js",
+    "static/media/GrandTeton.jpg": "/Cesar-Tracy-Blog/static/media/GrandTeton.dc2cc048d04b2218c9ce.jpg",
+    "static/media/Bridge.JPG": "/Cesar-Tracy-Blog/static/media/Bridge.3da62cdeac3e1dbaa273.JPG",
+    "static/media/Bridge2.JPG": "/Cesar-Tracy-Blog/static/media/Bridge2.c2d641ae435bed3122c8.JPG",
+    "index.html": "/Cesar-Tracy-Blog/index.html",
+    "main.290e5385.css.map": "/Cesar-Tracy-Blog/static/css/main.290e5385.css.map",
+    "main.710dde05.js.map": "/Cesar-Tracy-Blog/static/js/main.710dde05.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.290e5385.css",
+    "static/js/main.710dde05.js"
+  ]
+}
