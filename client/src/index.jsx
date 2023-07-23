@@ -1,3 +1,4 @@
+import { MantineProvider } from '@mantine/core';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
@@ -8,8 +9,10 @@ const root = ReactDOM.createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <ContextProvider>
-      <App />
-    </ContextProvider>
+    <MantineProvider>
+      <ContextProvider>
+        <App />
+      </ContextProvider>
+    </MantineProvider>
   </React.StrictMode>
 );

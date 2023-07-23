@@ -1,9 +1,21 @@
+// import { Burger } from '@mantine/core';
+// import { useDisclosure } from '@mantine/hooks';
+import {
+  IconBrandInstagram,
+  IconBrandPinterest,
+  IconBrandTwitter,
+  IconBrandYoutube,
+} from '@tabler/icons-react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Context } from '../../context/Context';
+import MenuNavbar from '../menuNavbar/MenuNavbar';
 import './topbar.scss';
 
 export default function Topbar() {
+  // const [opened, { toggle }] = useDisclosure(false);
+  // const label = opened ? 'Close navigation' : 'Open navigation';
+
   const { user, dispatch } = useContext(Context);
   const PF = 'http://localhost:5000/images/';
 
@@ -13,10 +25,10 @@ export default function Topbar() {
   return (
     <div className='top'>
       <div className='topLeft'>
-        <i className='topIcon fab fa-facebook-square'></i>
-        <i className='topIcon fab fa-instagram-square'></i>
-        <i className='topIcon fab fa-twitter-square'></i>
-        <i className='topIcon fab fa-pinterest-square'></i>
+        <IconBrandYoutube className='topIcon youtube' size={28} />
+        <IconBrandInstagram className='topIcon instagram' size={28} />
+        <IconBrandTwitter className='topIcon twitter' size={28} />
+        <IconBrandPinterest className='topIcon pinterest' size={28} />
       </div>
       <div className='topCenter'>
         <ul className='topList'>
@@ -45,6 +57,7 @@ export default function Topbar() {
           </li>
         </ul>
       </div>
+      <MenuNavbar />
       <div className='topRight'>
         {user ? (
           <Link className='link' to='/settings'>
@@ -64,7 +77,12 @@ export default function Topbar() {
             </li>
           </ul>
         )}
-        {/* <i className='topSearchIcon fas fa-search'></i> */}
+        {/* <Burger
+          color='#fff'
+          opened={opened}
+          onClick={toggle}
+          aria-label={label}
+        /> */}
       </div>
     </div>
   );

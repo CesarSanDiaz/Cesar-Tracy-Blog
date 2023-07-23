@@ -1,7 +1,7 @@
 @import '../../styles/responsive.scss';
 
 .top {
-  overflow: hidden;
+  // overflow: hidden;
   width: 100%;
   height: 50px;
   // padding: 0 20px;
@@ -33,20 +33,16 @@
     cursor: pointer;
   }
 
-  .fa-facebook-square:hover {
-    background-color: white;
-    color: #3b5998;
+  .youtube:hover {
+    color: #ff0000;
   }
-  .fa-instagram-square:hover {
-    background-color: white;
-    color: #e4405f;
+  .instagram:hover {
+    color: #e1306c;
   }
-  .fa-twitter-square:hover {
-    background-color: white;
+  .twitter:hover {
     color: #1da1f2;
   }
-  .fa-pinterest-square:hover {
-    background-color: white;
+  .pinterest:hover {
     color: #e60023;
   }
 }
@@ -68,6 +64,9 @@
   @include md {
     margin: auto;
   }
+  @include sm {
+    display: none;
+  }
 }
 
 .topList,
@@ -83,7 +82,7 @@
 .topRightListItem {
   margin-right: 20px;
   font-size: 18px;
-  font-weight: 300;
+  font-weight: 400;
   cursor: pointer;
 }
 

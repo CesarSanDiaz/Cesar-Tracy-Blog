@@ -1,0 +1,42 @@
+@import '../../styles/global.scss';
+@import '../../styles/responsive.scss';
+// .navbar {
+//   width: 30%;
+//   height: 700px;
+//   padding-bottom: 1.8rem;
+//   margin-bottom: calc(1.8rem * 1.5);
+//   border-bottom: 1rem solid black;
+//   color: white;
+//   .link {
+//     display: flex;
+//     align-items: center;
+//     text-decoration: none;
+//     font-size: 0.75rem;
+//     color: black;
+//     padding: 1rem 1.2rem;
+//     border-radius: 5px;
+//     font-weight: 500;
+//     .linkIcon {
+//       color: black;
+//       margin-right: 1rem;
+//     }
+//   }
+// }
+
+.nav {
+  background-color: $main-bg;
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  top: 55px;
+  right: 0;
+}
+.burger {
+  @include lg {
+    display: none;
+  }
+  @include sm {
+    display: block;
+    margin-left: auto;
+  }
+}

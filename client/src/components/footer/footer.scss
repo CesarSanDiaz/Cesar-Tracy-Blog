@@ -20,29 +20,25 @@
       padding: 5px;
     }
 
-    .fa-facebook-square,
-    .fa-instagram-square,
-    .fa-twitter-square,
-    .fa-pinterest-square {
+    .youtube,
+    .instagram,
+    .twitter,
+    .pinterest {
       margin-right: 10px;
       cursor: pointer;
       font-size: 20px;
     }
 
-    .fa-facebook-square:hover {
-      background-color: white;
-      color: #3b5998;
+    .youtube:hover {
+      color: #ff0000;
     }
-    .fa-instagram-square:hover {
-      background-color: white;
-      color: #e4405f;
+    .instagram:hover {
+      color: #e1306c;
     }
-    .fa-twitter-square:hover {
-      background-color: white;
+    .twitter:hover {
       color: #1da1f2;
     }
-    .fa-pinterest-square:hover {
-      background-color: white;
+    .pinterest:hover {
       color: #e60023;
     }
   }
