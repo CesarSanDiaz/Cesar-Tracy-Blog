@@ -9,6 +9,7 @@ import {
   IconMail,
   IconUsers,
 } from '@tabler/icons-react';
+import { Link } from 'react-router-dom';
 import './menuNavbar.scss';
 
 export default function MenuNavbar() {
@@ -34,18 +35,18 @@ export default function MenuNavbar() {
             </Text>
           </Navbar.Section>
           <Navbar.Section className='navLinkSection'>
-            <a href='www.google.com' className='link'>
+            <Link className='link' to='/' onClick={toggle}>
               <IconHome className='linkIcon' size={26} />
               <span>Home</span>
-            </a>
-            <a href='www.google.com' className='link'>
+            </Link>
+            <Link className='link' to='/about' onClick={toggle}>
               <IconUsers className='linkIcon' size={26} />
               <span>About</span>
-            </a>
-            <a href='www.google.com' className='link'>
+            </Link>
+            <Link className='link' to='/contact' onClick={toggle}>
               <IconMail className='linkIcon' size={26} />
               <span>Contact</span>
-            </a>
+            </Link>
           </Navbar.Section>
           <Navbar.Section className='navIconSection'>
             <Group position='left'>

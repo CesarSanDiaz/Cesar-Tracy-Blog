@@ -12,7 +12,7 @@ import './topbar.scss';
 
 export default function Topbar() {
   const { user, dispatch } = useContext(Context);
-  const PF = 'http://localhost:5000/images/';
+  // const PF = 'http://localhost:5000/images/';
 
   const handleLogout = () => {
     dispatch({ type: 'LOGOUT' });
@@ -29,31 +29,34 @@ export default function Topbar() {
         <ul className='topList'>
           <li className='topListItem'>
             <Link className='link' to='/'>
-              HOME
+              Home
             </Link>
           </li>
           <li className='topListItem'>
             <Link className='link' to='/about'>
-              ABOUT
+              About
             </Link>
           </li>
           <li className='topListItem'>
             <Link className='link' to='/contact'>
-              CONTACT
+              Contact
             </Link>
           </li>
           <li className='topListItem'>
             <Link className='link' to='/write'>
-              WRITE
+              Write
             </Link>
           </li>
-          <li className='topListItem' onClick={handleLogout}>
+          <li className='topListItem test' onClick={handleLogout}>
             {user && 'LOGOUT'}
           </li>
         </ul>
       </div>
       <MenuNavbar />
-      <div className='topRight'>
+      <div className='logo'>
+        CesarTracy<span>.</span>Blog
+      </div>
+      {/* <div className='topRight'>
         {user ? (
           <Link className='link' to='/settings'>
             <img className='topImg' src={PF + user.profilePic} alt='Avatar' />
@@ -62,17 +65,17 @@ export default function Topbar() {
           <ul className='topRightList'>
             <li className='topRightListItem'>
               <Link className='link' to='/login'>
-                LOGIN
+                Login
               </Link>
             </li>
             <li className='topRightListItem'>
               <Link className='link' to='/register'>
-                REGISTER
+                Register
               </Link>
             </li>
           </ul>
         )}
-      </div>
+      </div> */}
     </div>
   );
 }

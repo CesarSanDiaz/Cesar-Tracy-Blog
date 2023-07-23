@@ -4,10 +4,15 @@ import {
   IconBrandTwitter,
   IconBrandYoutube,
 } from '@tabler/icons-react';
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { Context } from '../../context/Context';
 import './footer.scss';
 
 export default function Footer() {
+  const { user } = useContext(Context);
+  const PF = 'http://localhost:5000/images/';
+
   return (
     <div className='footerContainer'>
       <div className='bottomLeft'>
@@ -17,9 +22,30 @@ export default function Footer() {
         <IconBrandPinterest className='topIcon pinterest' size={28} />
       </div>
       <div className='bottomCenter'>
-        &copy;CesarTracy.blog | All Rights Reserved
+        CesarTracy.blog | &copy; All Rights Reserved
       </div>
-      <div className='bottomRight'>Private Policy | Terms of Service</div>
+      <div className='bottomLinks'>
+        {user ? (
+          <Link className='link' to='/settings'>
+            <img className='topImg' src={PF + user.profilePic} alt='Avatar' />
+          </Link>
+        ) : (
+          <ul className='bottomList'>
+            <li className='bottomListItem'>
+              <Link className='link' to='/login'>
+                Login
+              </Link>
+            </li>
+            &nbsp;|&nbsp;
+            <li className='bottomListItem'>
+              <Link className='link' to='/register'>
+                Register
+              </Link>
+            </li>
+          </ul>
+        )}
+      </div>
+      {/* <div className='bottomRight'>Private Policy | Terms of Service</div> */}
     </div>
   );
 }
