@@ -1,5 +1,3 @@
-// import { Burger } from '@mantine/core';
-// import { useDisclosure } from '@mantine/hooks';
 import {
   IconBrandInstagram,
   IconBrandPinterest,
@@ -13,9 +11,6 @@ import MenuNavbar from '../menuNavbar/MenuNavbar';
 import './topbar.scss';
 
 export default function Topbar() {
-  // const [opened, { toggle }] = useDisclosure(false);
-  // const label = opened ? 'Close navigation' : 'Open navigation';
-
   const { user, dispatch } = useContext(Context);
   const PF = 'http://localhost:5000/images/';
 
@@ -77,12 +72,6 @@ export default function Topbar() {
             </li>
           </ul>
         )}
-        {/* <Burger
-          color='#fff'
-          opened={opened}
-          onClick={toggle}
-          aria-label={label}
-        /> */}
       </div>
     </div>
   );
