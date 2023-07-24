@@ -1,10 +1,11 @@
 @import '../../styles/responsive.scss';
+@import '../../styles/variables.scss';
 
 .aboutSectionTitle {
   margin: 10px;
   text-align: center;
-  font-size: 35px;
-  font-family: 'Pacifico', cursive;
+  font-size: 25px;
+  font-family: $secondary-font;
 }
 .container {
   // for responsive container, use a vw that is about 75 and go bigger every break point.
@@ -13,9 +14,9 @@
   margin: auto;
   padding: 0;
   background: transparent;
-  box-shadow: 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.2),
-    rgba(0, 0, 0, 0.2) 0 2.25rem 1.75rem -0.4375rem,
-    rgba(0, 0, 0, 0.2) 0 1.0625rem 1.0625rem -0.4375rem;
+  box-shadow: 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.01) 0 2.25rem 1.75rem -0.4375rem,
+    rgba(0, 0, 0, 0.01) 0 1.0625rem 1.0625rem -0.4375rem;
   margin: 20px auto;
 
   @include md {
@@ -30,8 +31,7 @@
   .aboutSectionText {
     text-align: center;
     margin: 10px;
-    font-size: 16px;
-    font-family: 'Lora', serif;
+    font-family: $secondary-font;
     line-height: 35px;
     display: flex;
     align-items: center;

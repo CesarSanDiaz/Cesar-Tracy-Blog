@@ -1,12 +1,14 @@
+@import '../../styles/variables.scss';
+
 .aboutHeaderTitle {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Lora', serif;
+  font-family: $main-font;
   color: #181c2c;
-  box-shadow: 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.2),
-    rgba(0, 0, 0, 0.2) 0 2.25rem 1.75rem -0.4375rem,
-    rgba(0, 0, 0, 0.2) 0 1.0625rem 1.0625rem -0.4375rem;
+  box-shadow: 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.01) 0 2.25rem 1.75rem -0.4375rem,
+    rgba(0, 0, 0, 0.1) 0 1.0625rem 1.0625rem -0.4375rem;
 
   .aboutHeaderTitleLG {
     position: absolute;

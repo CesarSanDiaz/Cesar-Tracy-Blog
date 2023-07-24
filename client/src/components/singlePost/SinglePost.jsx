@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Context } from '../../context/Context';
-import './singlePost.css';
+import './singlePost.scss';
 
 export default function SinglePost() {
   const location = useLocation();
@@ -63,7 +63,7 @@ export default function SinglePost() {
   };
 
   return (
-    <div className='singlePost'>
+    <>
       <div className='singlePostWrapper'>
         {post.photo && (
           <img className='singlePostImg' src={PF + post.photo} alt='' />
@@ -117,6 +117,6 @@ export default function SinglePost() {
           </button>
         )}
       </div>
-    </div>
+    </>
   );
 }

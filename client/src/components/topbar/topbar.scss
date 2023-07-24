@@ -15,6 +15,7 @@
   justify-content: space-between;
   z-index: 999;
   font-family: $main-font;
+  text-transform: uppercase;
   @include sm {
     padding: 0px 0px 0px 20px;
     justify-content: space-between;
@@ -93,6 +94,8 @@
 
   .logo {
     font-family: $tertiary-font;
+    text-transform: capitalize;
+    font-size: 18px;
     span {
       color: red;
     }
