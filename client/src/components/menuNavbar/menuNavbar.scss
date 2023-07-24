@@ -1,15 +1,15 @@
 @import '../../styles/global.scss';
 @import '../../styles/responsive.scss';
 
-.burger {
-  @include lg {
-    display: none;
-  }
-  @include sm {
-    display: block;
-    margin-left: auto;
-  }
-}
+// .burger {
+//   @include lg {
+//     display: none;
+//   }
+//   @include sm {
+//     display: block;
+//     margin-left: auto;
+//   }
+// }
 
 .nav {
   height: fit-content;

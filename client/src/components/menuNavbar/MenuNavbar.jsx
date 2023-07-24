@@ -1,4 +1,4 @@
-import { Burger, Group, Navbar, Paper, Text } from '@mantine/core';
+import { Burger, Group, MediaQuery, Navbar, Paper, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import {
   IconBrandInstagram,
@@ -18,15 +18,18 @@ export default function MenuNavbar() {
 
   return (
     <>
-      <Burger
-        opened={opened}
-        onClick={toggle}
-        aria-label={label}
-        size='sm'
-        color='#fff'
-        mr='xl'
-        className='burger'
-      />
+      <MediaQuery largerThan='sm' styles={{ display: 'none' }}>
+        <Burger
+          styles={{ display: 'none' }}
+          opened={opened}
+          onClick={toggle}
+          aria-label={label}
+          size='sm'
+          color='#fff'
+          mr='xl'
+          className='burger'
+        />
+      </MediaQuery>
       <Paper>
         <Navbar className='nav' hidden={!opened} p='sm'>
           <Navbar.Section className='navTopSection' fw={300}>
@@ -37,15 +40,15 @@ export default function MenuNavbar() {
           <Navbar.Section className='navLinkSection'>
             <Link className='link' to='/' onClick={toggle}>
               <IconHome className='linkIcon' size={26} />
-              <span>Home</span>
+              <Text>Home</Text>
             </Link>
             <Link className='link' to='/about' onClick={toggle}>
               <IconUsers className='linkIcon' size={26} />
-              <span>About</span>
+              <Text>About</Text>
             </Link>
             <Link className='link' to='/contact' onClick={toggle}>
               <IconMail className='linkIcon' size={26} />
-              <span>Contact</span>
+              <Text>Contact</Text>
             </Link>
           </Navbar.Section>
           <Navbar.Section className='navIconSection'>

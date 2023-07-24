@@ -1,3 +1,6 @@
+// import { MediaQuery } from '@mantine/core';
+// import { MediaQuery } from '@mantine/core';
+import { MediaQuery } from '@mantine/core';
 import {
   IconBrandInstagram,
   IconBrandPinterest,
@@ -14,16 +17,27 @@ export default function Topbar() {
   const { user, dispatch } = useContext(Context);
   // const PF = 'http://localhost:5000/images/';
 
+  if (user) return;
+
   const handleLogout = () => {
     dispatch({ type: 'LOGOUT' });
   };
   return (
     <div className='top'>
       <div className='topLeft'>
-        <IconBrandYoutube className='topIcon youtube' size={28} />
-        <IconBrandInstagram className='topIcon instagram' size={28} />
-        <IconBrandTwitter className='topIcon twitter' size={28} />
-        <IconBrandPinterest className='topIcon pinterest' size={28} />
+        {/* using a media query to display none of the icons when screen size gets past 40em. Have to individually wrap each component :/ */}
+        <MediaQuery query='(max-width:40em)' styles={{ display: 'none' }}>
+          <IconBrandYoutube className='topIcon youtube' size={28} />
+        </MediaQuery>
+        <MediaQuery query='(max-width:40em)' styles={{ display: 'none' }}>
+          <IconBrandInstagram className='topIcon instagram' size={28} />
+        </MediaQuery>
+        <MediaQuery query='(max-width:40em)' styles={{ display: 'none' }}>
+          <IconBrandTwitter className='topIcon twitter' size={28} />
+        </MediaQuery>
+        <MediaQuery query='(max-width:40em)' styles={{ display: 'none' }}>
+          <IconBrandPinterest className='topIcon pinterest' size={28} />
+        </MediaQuery>
       </div>
       <div className='topCenter'>
         <ul className='topList'>
@@ -42,17 +56,26 @@ export default function Topbar() {
               Contact
             </Link>
           </li>
-          <li className='topListItem'>
+          <li
+            style={user ? { display: 'block' } : { display: 'none' }}
+            className='topListItem'
+          >
             <Link className='link' to='/write'>
               Write
             </Link>
           </li>
-          <li className='topListItem test' onClick={handleLogout}>
+          <li
+            style={user ? { display: 'block' } : { display: 'none' }}
+            className='topListItem test'
+            onClick={handleLogout}
+          >
             {user && 'LOGOUT'}
           </li>
         </ul>
       </div>
-      <MenuNavbar />
+      <div className='navMenu'>
+        <MenuNavbar />
+      </div>
       <div className='logo'>
         CesarTracy<span>.</span>Blog
       </div>

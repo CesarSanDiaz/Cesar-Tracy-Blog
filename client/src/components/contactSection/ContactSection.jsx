@@ -6,7 +6,6 @@ import {
   Textarea,
   Title,
 } from '@mantine/core';
-
 import './contactSection.scss';
 
 export default function ContactSection() {
@@ -25,11 +24,13 @@ export default function ContactSection() {
             label='Name'
             placeholder='Your name'
             name='name'
+            size='xs'
             variant='filled'
           />
           <TextInput
             label='Email'
             placeholder='Your email'
+            size='xs'
             name='email'
             variant='filled'
           />
@@ -39,6 +40,7 @@ export default function ContactSection() {
           placeholder='Subject'
           mt='md'
           name='subject'
+          size='xs'
           variant='filled'
         />
         <Textarea
