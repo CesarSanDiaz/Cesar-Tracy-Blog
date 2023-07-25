@@ -1,14 +1,25 @@
-import { Card } from '@mantine/core';
-
+import { Card, Image, Text, Title } from '@mantine/core';
 import './aboutCard.scss';
 
 export default function AboutSection({ card }) {
   return (
     <>
-      <div className='aboutSectionTitle'>{card.title}</div>
-      <Card className='container' radius='lg' withBorder style={card.style}>
+      <Title order={2} align='center' transform='capitalize' p='sm'>
+        {card.title}
+      </Title>
+      <Card
+        className='container'
+        shadow='md'
+        radius='lg'
+        withBorder
+        style={card.style}
+        m='auto'
+        padding={0}
+      >
         <img classNames='aboutSectionImg' src={card.img} alt='img' />
-        <div className='aboutSectionText'>{card.text}</div>
+        <Text className='aboutSectionText' align='center' p='sm'>
+          {card.text}
+        </Text>
       </Card>
     </>
   );

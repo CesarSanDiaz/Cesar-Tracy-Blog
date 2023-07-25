@@ -1,10 +1,11 @@
+import { Paper } from '@mantine/core';
 import AboutCard from '../../components/aboutCard/AboutCard';
 import aboutCards from '../../data/AboutDataCards';
 
 export default function AboutSection({ cards }) {
   return (
     <>
-      <div className='aboutCard'>
+      <Paper radius={0} pb='sm'>
         {aboutCards.map((card) => {
           return (
             <div key={card.id}>
@@ -12,7 +13,7 @@ export default function AboutSection({ cards }) {
             </div>
           );
         })}
-      </div>
+      </Paper>
     </>
   );
 }

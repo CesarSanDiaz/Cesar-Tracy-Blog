@@ -1,4 +1,5 @@
-import { useContext } from 'react';
+import { ColorSchemeProvider, MantineProvider } from '@mantine/core';
+import { useContext, useState } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Footer from './components/footer/Footer';
 import SinglePost from './components/singlePost/SinglePost';
@@ -13,8 +14,6 @@ import Settings from './pages/settings/Settings';
 import Single from './pages/single/Single';
 import Write from './pages/write/Write';
 import './styles/global.scss';
-import { ColorSchemeProvider, MantineProvider } from '@mantine/core';
-import { useState } from 'react';
 
 function App() {
   const { user } = useContext(Context);
@@ -29,8 +28,15 @@ function App() {
     >
       <MantineProvider
         withGlobalStyles
-        withNormalizeCSS
-        theme={{ colorScheme }}
+        theme={{
+          colorScheme,
+          // Fonts for the title, not sub headings
+          headings: {
+            fontFamily: 'Varela Round, Roboto, sans-serif',
+          },
+          // Fonts for everything but the <Title></Title> tag
+          fontFamily: 'Lora, Pacifico',
+        }}
       >
         <Router>
           <div className='main'>

@@ -1,6 +1,7 @@
 import {
   Button,
   Group,
+  Paper,
   SimpleGrid,
   TextInput,
   Textarea,
@@ -10,8 +11,13 @@ import './contactSection.scss';
 
 export default function ContactSection() {
   return (
-    <>
-      <Title className='contactSectionFormTitle' order={2}>
+    <Paper p='sm' radius={0}>
+      <Title
+        className='contactSectionFormTitle'
+        order={2}
+        align='center'
+        pb='sm'
+      >
         Get in Touch
       </Title>
       <form className='contactSectionForm'>
@@ -59,6 +65,6 @@ export default function ContactSection() {
           </Button>
         </Group>
       </form>
-    </>
+    </Paper>
   );
 }

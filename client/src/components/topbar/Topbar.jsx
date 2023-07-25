@@ -8,8 +8,7 @@ import {
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Context } from '../../context/Context';
-// import CustomColorScheme from '../colorSchemes/CustomColorScheme';
-import LightDark from '../colorSchemes/LightDark';
+import LightDark from '../lightDarkMode/LightDark';
 import MenuNavbar from '../menuNavbar/MenuNavbar';
 import './topbar.scss';
 
