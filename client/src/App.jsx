@@ -13,43 +13,62 @@ import Settings from './pages/settings/Settings';
 import Single from './pages/single/Single';
 import Write from './pages/write/Write';
 import './styles/global.scss';
+import { ColorSchemeProvider, MantineProvider } from '@mantine/core';
+import { useState } from 'react';
 
 function App() {
   const { user } = useContext(Context);
+  const [colorScheme, setColorScheme] = useState('light');
+  const toggleColorScheme = () =>
+    setColorScheme(colorScheme === 'dark' ? 'light' : 'dark');
+
   return (
-    // app.scss file?
-    <Router>
-      <div className='main'>
-        <div className='topbar'>
-          <TopBar />
-        </div>
-        <div>
-          <Routes>
-            <Route exact path='/' element={<Home />}></Route>
-            <Route path='/about' element={<About />}></Route>
-            <Route path='/contact' element={<Contact />}></Route>
-            <Route path='/login' element={user ? <Home /> : <Login />}></Route>
-            <Route
-              path='/write'
-              element={user ? <Write /> : <Register />}
-            ></Route>
-            <Route path='/singlePost' element={<SinglePost />}></Route>
-            <Route
-              path='/register'
-              element={user ? <Home /> : <Register />}
-            ></Route>
-            <Route path='/post/:postId' element={<Single />}></Route>
-            <Route
-              path='/settings'
-              element={user ? <Settings /> : <Register />}
-            ></Route>
-          </Routes>
-        </div>
-        <div>
-          <Footer className='footer1' />
-        </div>
-      </div>
-    </Router>
+    <ColorSchemeProvider
+      colorScheme={colorScheme}
+      toggleColorScheme={toggleColorScheme}
+    >
+      <MantineProvider
+        withGlobalStyles
+        withNormalizeCSS
+        theme={{ colorScheme }}
+      >
+        <Router>
+          <div className='main'>
+            <div className='topbar'>
+              <TopBar />
+            </div>
+            <div>
+              <Routes>
+                <Route exact path='/' element={<Home />}></Route>
+                <Route path='/about' element={<About />}></Route>
+                <Route path='/contact' element={<Contact />}></Route>
+                <Route
+                  path='/login'
+                  element={user ? <Home /> : <Login />}
+                ></Route>
+                <Route
+                  path='/write'
+                  element={user ? <Write /> : <Register />}
+                ></Route>
+                <Route path='/singlePost' element={<SinglePost />}></Route>
+                <Route
+                  path='/register'
+                  element={user ? <Home /> : <Register />}
+                ></Route>
+                <Route path='/post/:postId' element={<Single />}></Route>
+                <Route
+                  path='/settings'
+                  element={user ? <Settings /> : <Register />}
+                ></Route>
+              </Routes>
+            </div>
+            <div>
+              <Footer className='footer1' />
+            </div>
+          </div>
+        </Router>
+      </MantineProvider>
+    </ColorSchemeProvider>
   );
 }
 
