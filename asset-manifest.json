@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Cesar-Tracy-blog/static/css/main.56b56bf8.css",
-    "main.js": "/Cesar-Tracy-blog/static/js/main.d03a45ee.js",
+    "main.css": "/Cesar-Tracy-blog/static/css/main.22841be3.css",
+    "main.js": "/Cesar-Tracy-blog/static/js/main.c757e7a7.js",
     "static/media/GrandTeton.jpg": "/Cesar-Tracy-blog/static/media/GrandTeton.dc2cc048d04b2218c9ce.jpg",
     "static/media/Bridge.JPG": "/Cesar-Tracy-blog/static/media/Bridge.3da62cdeac3e1dbaa273.JPG",
     "static/media/Bridge2.JPG": "/Cesar-Tracy-blog/static/media/Bridge2.c2d641ae435bed3122c8.JPG",
     "index.html": "/Cesar-Tracy-blog/index.html",
-    "main.56b56bf8.css.map": "/Cesar-Tracy-blog/static/css/main.56b56bf8.css.map",
-    "main.d03a45ee.js.map": "/Cesar-Tracy-blog/static/js/main.d03a45ee.js.map"
+    "main.22841be3.css.map": "/Cesar-Tracy-blog/static/css/main.22841be3.css.map",
+    "main.c757e7a7.js.map": "/Cesar-Tracy-blog/static/js/main.c757e7a7.js.map"
   },
   "entrypoints": [
-    "static/css/main.56b56bf8.css",
-    "static/js/main.d03a45ee.js"
+    "static/css/main.22841be3.css",
+    "static/js/main.c757e7a7.js"
   ]
 }
