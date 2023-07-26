@@ -93,14 +93,15 @@
   }
 
   .logo {
+    display: flex;
     font-family: $tertiary-font;
     text-transform: capitalize;
     font-size: 18px;
+    div {
+      padding-left: 15px;
+    }
     span {
       color: red;
-    }
-    @include sm {
-      display: block;
     }
   }
 }

@@ -43,12 +43,4 @@
     color: #999999;
     margin-top: 15px;
   }
-
-  .postDesc {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-  }
 }

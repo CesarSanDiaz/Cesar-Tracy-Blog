@@ -77,9 +77,11 @@ export default function Topbar() {
           <MenuNavbar />
         </div>
         <div className='logo'>
-          CesarTracy<span>.</span>Blog
+          <LightDark />
+          <div>
+            CesarTracy<span>.</span>Blog
+          </div>
         </div>
-        <LightDark />
       </div>
     </>
   );

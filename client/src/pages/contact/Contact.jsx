@@ -1,18 +1,19 @@
-import ContactHeader from '../../components/contactHeader/ContactHeader';
+// import ContactHeader from '../../components/contactHeader/ContactHeader';
+import { Paper } from '@mantine/core';
 import ContactSection from '../../components/contactSection/ContactSection';
 import './contact.scss';
 
 export default function Contact() {
   return (
     <>
-      <div className='contactContainerPage'>
-        <div className='contactHeader'>
+      <Paper h='100vh' radius={0} className='contactContainerPage'>
+        {/* <div className='contactHeader'>
           <ContactHeader />
-        </div>
+        </div> */}
         <div className='contactContent'>
           <ContactSection />
         </div>
-      </div>
+      </Paper>
     </>
   );
 }

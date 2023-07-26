@@ -1,4 +1,4 @@
-import { Badge, Card, Image, Paper, Text, Title } from '@mantine/core';
+import { Badge, Card, Image, Text, Title } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import './post.scss';
 
@@ -31,10 +31,10 @@ export default function Post({ post }) {
             <Title order={3}>{post.title}</Title>
           </Link>
           <hr />
-          <Badge italic fz='xs' m='xs' color='dark.8' variant='filled'>
+          <Badge italic fz='xs' m='xs' color='blue' variant='filled'>
             {new Date(post.createdAt).toDateString()}
           </Badge>
-          <Text align='center' className='postDesc'>
+          <Text align='center' lineClamp={1}>
             {post.desc}
           </Text>
         </div>

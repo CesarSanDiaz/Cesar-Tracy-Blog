@@ -1,4 +1,4 @@
-import PIC from '../../assets/Bridge.JPG';
+// import PIC from '../../assets/Bridge.JPG';
 import './header.scss';
 
 export default function Header() {
