@@ -18,9 +18,4 @@
   @include sm {
     grid-template-columns: repeat(1, auto);
   }
-
-  :hover {
-    transform: scale(1.005);
-    transition: all 0.5s ease;
-  }
 }

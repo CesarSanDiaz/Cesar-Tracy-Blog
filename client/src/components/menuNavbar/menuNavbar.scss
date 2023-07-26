@@ -1,44 +1,26 @@
 @import '../../styles/global.scss';
 @import '../../styles/responsive.scss';
 
-// .burger {
-//   @include lg {
-//     display: none;
-//   }
-//   @include sm {
-//     display: block;
-//     margin-left: auto;
-//   }
-// }
-
 .nav {
   height: fit-content;
-  background-color: $main-bg;
-  font-family: $main-font;
+  // background-color: $main-bg;
+  // font-family: $main-font;
   position: absolute;
   top: 50px;
   left: 0;
   display: flex;
   justify-content: space-between;
 
-  .navTopSection {
-    padding: 0px 18px 10px 18px;
-
-    .topText {
-      font-family: $tertiary-font;
-    }
-  }
-
   .navLinkSection {
-    border-top: 1px solid $main-color;
+    // border-top: 1px solid $main-color;
     .link {
       display: flex;
       align-items: center;
-      text-decoration: none;
-      padding: 1rem 1.2rem;
+      // text-decoration: none;
+      padding: 12px 12px;
       border-radius: 5px;
-      font-weight: 600;
-      color: $main-color;
+      // font-weight: 600;
+      // color: $main-color;
 
       &:hover {
         color: $main-bg;
@@ -52,8 +34,8 @@
   }
 
   .navIconSection {
-    padding: 10px 18px 0px 18px;
-    border-top: 1px solid $main-color;
+    padding: 10px 18px 0px 12px;
+    // border-top: 1px solid $main-color;
 
     .youtube:hover {
       fill: #ff0000;

@@ -76,10 +76,10 @@ export default function Topbar() {
         <div className='navMenu'>
           <MenuNavbar />
         </div>
-        <LightDark />
         <div className='logo'>
           CesarTracy<span>.</span>Blog
         </div>
+        <LightDark />
       </div>
     </>
   );
