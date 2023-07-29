@@ -31,7 +31,7 @@ export default function Post({ post }) {
             <Title order={3}>{post.title}</Title>
           </Link>
           <hr />
-          <Badge italic fz='xs' m='xs' color='blue' variant='filled'>
+          <Badge fz='xs' m='xs' color='blue' variant='filled'>
             {new Date(post.createdAt).toDateString()}
           </Badge>
           <Text align='center' lineClamp={1}>

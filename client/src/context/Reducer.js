@@ -16,7 +16,7 @@ const Reducer = (state, action) => {
       return {
         user: null,
         isFetching: false,
-        error: true,
+        error: action.payload,
       };
     case 'UPDATE_START':
       return {

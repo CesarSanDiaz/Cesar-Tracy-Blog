@@ -1,4 +1,4 @@
-import { Tooltip } from '@mantine/core';
+import { Button, FileButton, TextInput, Tooltip } from '@mantine/core';
 import axios from 'axios';
 import { useContext, useState } from 'react';
 import { Context } from '../../context/Context';
@@ -7,15 +7,18 @@ import './write.css';
 export default function Write() {
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
+  const [cat, setCat] = useState('');
   const [file, setFile] = useState(null);
   const { user } = useContext(Context);
 
   const handleSubmit = async (e) => {
+    console.log(file);
     e.preventDefault();
     const newPost = {
       username: user.username,
       title,
       desc,
+      cat,
     };
     if (file) {
       const data = new FormData();
@@ -53,12 +56,9 @@ export default function Write() {
               <i className='writeIcon fas fa-plus'></i>
             </label>
           </Tooltip>
-          <input
-            id='fileInput'
-            type='file'
-            style={{ display: 'none' }}
-            onChange={(e) => setFile(e.target.files[0])}
-          />
+          <FileButton onChange={setFile}>
+            {(props) => <Button {...props}>Upload</Button>}
+          </FileButton>
           <input
             className='writeInput'
             placeholder='Title'
@@ -76,6 +76,12 @@ export default function Write() {
             onChange={(e) => setDesc(e.target.value)}
           />
         </div>
+        <TextInput
+          placeholder='Enter post category'
+          label='Category'
+          variant='filled'
+          onChange={(e) => setCat(e.target.value)}
+        />
         <button className='writeSubmit' type='submit'>
           Publish
         </button>

@@ -9,10 +9,7 @@
   flex-direction: row-reverse;
   align-items: center;
   justify-content: space-between;
-  font-family: $main-font;
-  position: relative;
-  bottom: 0;
-  width: 100%;
+  font-family: $secondary-font;
 
   @include md {
     flex-direction: column;

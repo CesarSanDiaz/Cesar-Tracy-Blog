@@ -1,3 +1,4 @@
+import { Button } from '@mantine/core';
 import {
   IconBrandInstagram,
   IconBrandPinterest,
@@ -10,8 +11,13 @@ import { Context } from '../../context/Context';
 import './footer.scss';
 
 export default function Footer() {
-  const { user } = useContext(Context);
+  const { user, dispatch } = useContext(Context);
   const PF = 'http://localhost:5000/images/';
+
+  const handleLogout = () => {
+    dispatch({ type: 'LOGOUT' });
+    window.location.reload();
+  };
 
   return (
     <div className='footerContainer'>
@@ -26,9 +32,14 @@ export default function Footer() {
       </div>
       <div className='bottomLinks'>
         {user ? (
-          <Link className='link' to='/settings'>
-            <img className='topImg' src={PF + user.profilePic} alt='Avatar' />
-          </Link>
+          <div className='options'>
+            <Link className='link' to='/settings'>
+              <img className='topImg' src={PF + user.profilePic} alt='Avatar' />
+            </Link>
+            <Button size='xs' onClick={handleLogout}>
+              Logout
+            </Button>
+          </div>
         ) : (
           <ul className='bottomList'>
             <li className='bottomListItem'>

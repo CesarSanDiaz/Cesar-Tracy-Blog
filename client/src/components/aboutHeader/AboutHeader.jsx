@@ -1,4 +1,3 @@
-import { Paper } from '@mantine/core';
 import './aboutHeader.scss';
 
 export default function AboutHeader() {

@@ -1,13 +1,15 @@
 @import './variables.scss';
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .main {
   background-color: $main-bg;
   color: $main-color;
   font-family: $main-font;
+}
+
+.parent {
+  position: relative;
+  min-height: 100vh;
+}
+.testing {
+  display: block;
 }

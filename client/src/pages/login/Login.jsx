@@ -1,3 +1,4 @@
+import { Loader } from '@mantine/core';
 import axios from 'axios';
 import { useContext, useRef } from 'react';
 import { Context } from '../../context/Context';
@@ -18,7 +19,7 @@ export default function Login() {
       });
       dispatch({ type: 'LOGIN_SUCCESS', payload: res.data });
     } catch (err) {
-      dispatch({ type: 'LOGIN_FAILURE' });
+      dispatch({ type: 'LOGIN_FAILURE', payload: err });
     }
   };
 
@@ -41,7 +42,7 @@ export default function Login() {
           ref={passwordRef}
         />
         <button className='loginButton' type='submit' disabled={isFetching}>
-          Login
+          {isFetching ? <Loader size='sm' /> : 'Login'}
         </button>
       </form>
       <button className='loginRegisterButton'>Register</button>
