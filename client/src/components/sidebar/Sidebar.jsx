@@ -1,8 +1,10 @@
+import { Divider, Image, Title } from '@mantine/core';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import '../../data/QuickLinks';
+import quickLinks from '../../data/QuickLinks';
 import './sidebar.css';
-import { Title, Divider } from '@mantine/core';
 
 export default function Sidebar() {
   const [cats, setCat] = useState([]);
@@ -19,11 +21,24 @@ export default function Sidebar() {
     }
   }, []);
 
+  const images = quickLinks.map((pic) => {
+    return (
+      <Image
+        withPlaceholder
+        h={500}
+        w={700}
+        key={pic.id}
+        src={pic.img}
+        alt={pic.title}
+      />
+    );
+  });
+
   return (
     <div className='sidebar'>
       <div className='sidebarItem'>
         <Title className='sidebarTitle' order={2} align='center' p='xs'>
-          About Us
+          Quick Links
         </Title>
         <Divider size='lg' pb='md' color='blue' />
         <img
@@ -55,6 +70,7 @@ export default function Sidebar() {
       </div>
       <div className='sidebarItem'>
         <span className='sidebarTitle'>FOLLOW US</span>
+        <div>{images}</div>
         <div className='sidebarSocial'>
           <i className='sidebarIcon fab fa-facebook-square'></i>
           <i className='sidebarIcon fab fa-instagram-square'></i>
