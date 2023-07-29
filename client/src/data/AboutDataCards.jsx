@@ -1,7 +1,7 @@
 const aboutCards = [
   {
     id: 1,
-    title: 'About Cesar & Tracy',
+    title: 'Hi There!',
     text: "We are a passionate and adventurous duo with an insatiable love for traveling and exploring the beauty of nature. We're delighted to have you join us on our journey as we embark on thrilling adventures, discovering the mesmerizing landscapes of national parks and the enchanting allure of breathtaking waterfalls.",
     img: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2021&q=80',
     style: { flexDirection: 'row' },

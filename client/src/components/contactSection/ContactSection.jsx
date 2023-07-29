@@ -1,6 +1,7 @@
 import {
   Button,
   Card,
+  Divider,
   Group,
   MediaQuery,
   Paper,
@@ -9,13 +10,28 @@ import {
   TextInput,
   Textarea,
   Title,
+  createStyles,
 } from '@mantine/core';
-import './contactSection.scss';
+import { IconMail } from '@tabler/icons-react';
+
+const useStyles = createStyles((theme) => ({
+  contactTopIcon: {
+    display: 'block',
+    margin: 'auto',
+  },
+}));
 
 export default function ContactSection() {
+  const { classes } = useStyles();
+
   return (
     <>
       <Paper p='sm' radius={0}>
+        <IconMail
+          color='#228be6'
+          size={50}
+          className={classes.contactTopIcon}
+        />
         <Title
           className='contactSectionFormTitle'
           order={2}
@@ -24,6 +40,7 @@ export default function ContactSection() {
         >
           Contact us
         </Title>
+        <Divider size='lg' pb='md' color='blue' />
         <Text p='md' align='center' fz='lg'>
           Need to get in touch with us? Please fill out the form with your
           inquiry or email us at{' '}

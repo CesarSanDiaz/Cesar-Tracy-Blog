@@ -1,4 +1,4 @@
-import { Grid, MediaQuery, createStyles } from '@mantine/core';
+import { Grid, MediaQuery } from '@mantine/core';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
@@ -30,24 +30,16 @@ export default function Home() {
     // fetchPost();
   }, [search]);
 
-  const useStyles = createStyles(() => ({
-    test: {
-      order: 3,
-    },
-  }));
-
-  const { classes } = useStyles();
-
   return (
     <>
       <div className='home'>
         <Header />
-        <Grid grow>
-          <Grid.Col span={8} xs={12} sm={6} md={8} className='posts'>
+        <Grid grow p={0}>
+          <Grid.Col span={8} xs={12} sm={6} md={8} p={0}>
             <Posts posts={posts} />
           </Grid.Col>
           <MediaQuery smallerThan='sm' styles={{ display: 'none' }}>
-            <Grid.Col span={4} xs={0} sm={6} md={4} className={classes.sidebar}>
+            <Grid.Col span={4} xs={0} sm={6} md={4}>
               <Sidebar />
             </Grid.Col>
           </MediaQuery>

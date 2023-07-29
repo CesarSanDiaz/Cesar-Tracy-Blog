@@ -5,9 +5,9 @@ import {
   SimpleGrid,
   Text,
   Title,
-  UnstyledButton,
   createStyles,
 } from '@mantine/core';
+import { IconTrees } from '@tabler/icons-react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
@@ -21,6 +21,10 @@ const useStyles = createStyles((theme) => ({
       boxShadow: theme.shadows.lg,
       transform: 'scale(1.04)',
     },
+  },
+  blogTopIcon: {
+    display: 'block',
+    margin: 'auto',
   },
 }));
 
@@ -42,13 +46,18 @@ export default function BlogPage() {
 
   return (
     <Paper radius={0} p='sm'>
-      <Title order={2} align='center' transform='capitalize' pb='sm'>
+      <IconTrees color='#228be6' size={50} className={classes.blogTopIcon} />
+      <Title order={2} align='center' p='xs'>
         Blog Feed
       </Title>
-      <Divider my='sm' size='lg' />
+      <Divider size='lg' pb='md' color='blue' />
       <Group position='apart' maw='80vw' m='auto'>
-        <Text>Text 1</Text>
-        <Text>Filter button?</Text>
+        <Text size='lg' p='sm'>
+          Text 1
+        </Text>
+        <Text size='lg' p='sm'>
+          Filter button?
+        </Text>
       </Group>
       <SimpleGrid
         cols={4}
