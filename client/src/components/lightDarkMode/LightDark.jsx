@@ -10,7 +10,7 @@ export default function LightDark() {
     <Switch
       // color={theme.colorScheme === 'dark' ? 'gray' : 'blue'}
       onChange={() => toggleColorScheme()}
-      size='xs'
+      size='sm'
       onLabel={
         <IconSun size='1rem' stroke={2.5} color={theme.colors.yellow[4]} />
       }

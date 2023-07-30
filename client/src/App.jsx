@@ -38,10 +38,10 @@ function App() {
           colorScheme,
           // Fonts for the title, not sub headings
           headings: {
-            fontFamily: 'Varela Round, Roboto, sans-serif',
+            fontFamily: 'Lora, sans-serif',
           },
           // Fonts for everything but the <Title></Title> tag
-          fontFamily: 'Lora, Pacifico',
+          fontFamily: 'Ubuntu, Pacifico',
         }}
       >
         <Router>

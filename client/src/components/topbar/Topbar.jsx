@@ -1,11 +1,10 @@
 import {
-  Container,
   Group,
   MediaQuery,
+  Paper,
   Text,
   Title,
   createStyles,
-  useMantineTheme,
 } from '@mantine/core';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
@@ -19,6 +18,10 @@ const useStyles = createStyles((theme) => ({
     flexDirection: 'row-reverse',
     alignItems: 'center',
     justifyContent: 'space-between',
+    zIndex: '99',
+    position: 'sticky',
+    top: '-1px',
+    backgroundColor: '',
   },
   topListItem: {
     cursor: 'pointer',
@@ -30,10 +33,15 @@ const useStyles = createStyles((theme) => ({
   media: {
     flexWrap: 'nowrap',
   },
+  logo: {
+    color: theme.colorScheme === 'dark' ? 'white' : 'dark',
+    fontFamily: 'pacifico',
+    display: 'flex',
+    alignItems: 'center',
+  },
 }));
 
 export default function Topbar() {
-  const theme = useMantineTheme();
   const { classes } = useStyles();
   const { user } = useContext(Context);
   // const PF = 'http://localhost:5000/images/';
@@ -43,14 +51,7 @@ export default function Topbar() {
   // };
   return (
     <>
-      <Container
-        className={classes.main}
-        w='100%'
-        h={50}
-        m={0}
-        p='sm'
-        color={theme.colorScheme === 'dark' ? 'white' : 'black'}
-      >
+      <Paper className={classes.main} h={50} p='sm' radius={0} shadow='sm'>
         <MediaQuery
           className={classes.media}
           query='(max-width: 30em)'
@@ -102,20 +103,17 @@ export default function Topbar() {
         </MediaQuery>
         <Group position='left' spacing='md' className={classes.media}>
           <LightDark />
-          <Text
-            sx={{
-              fontFamily: theme.fontFamily[2],
-            }}
-            color={theme.colorScheme === 'dark' ? 'white' : 'dark'}
-          >
-            CesarTracy
-            <Text span c='#228be6'>
-              .
+          <Link className='link' to='/'>
+            <Text className={classes.logo}>
+              CesarTracy
+              <Text span c='#228be6' size={30}>
+                .
+              </Text>
+              Blog
             </Text>
-            Blog
-          </Text>
+          </Link>
         </Group>
-      </Container>
+      </Paper>
     </>
   );
 }
