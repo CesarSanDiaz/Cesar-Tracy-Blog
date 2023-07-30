@@ -45,9 +45,7 @@ function App() {
         }}
       >
         <Router>
-          <div className='testing'>
-            <TopBar />
-          </div>
+          <TopBar />
           <div className='parent'>
             <Routes>
               <Route exact path='/' element={<Home />}></Route>

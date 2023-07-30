@@ -1,18 +1,40 @@
-import { MediaQuery } from '@mantine/core';
 import {
-  IconBrandInstagram,
-  IconBrandPinterest,
-  IconBrandTwitter,
-  IconBrandYoutube,
-} from '@tabler/icons-react';
+  Container,
+  Group,
+  MediaQuery,
+  Text,
+  Title,
+  createStyles,
+  useMantineTheme,
+} from '@mantine/core';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Context } from '../../context/Context';
 import LightDark from '../lightDarkMode/LightDark';
 import MenuNavbar from '../menuNavbar/MenuNavbar';
-import './topbar.scss';
+
+const useStyles = createStyles((theme) => ({
+  main: {
+    display: 'flex',
+    flexDirection: 'row-reverse',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  topListItem: {
+    cursor: 'pointer',
+    color: theme.colorScheme === 'dark' ? 'white' : 'dark',
+    ':hover': {
+      color: '#228be6',
+    },
+  },
+  media: {
+    flexWrap: 'nowrap',
+  },
+}));
 
 export default function Topbar() {
+  const theme = useMantineTheme();
+  const { classes } = useStyles();
   const { user } = useContext(Context);
   // const PF = 'http://localhost:5000/images/';
 
@@ -21,65 +43,79 @@ export default function Topbar() {
   // };
   return (
     <>
-      <div className='top'>
-        {/* using a media query to display none of the icons when screen size gets past 40em. */}
-        <MediaQuery query='(max-width:40em)' styles={{ display: 'none' }}>
-          <div className='topLeft'>
-            <IconBrandYoutube className='topIcon youtube' size={28} />
-            <IconBrandInstagram className='topIcon instagram' size={28} />
-            <IconBrandTwitter className='topIcon twitter' size={28} />
-            <IconBrandPinterest className='topIcon pinterest' size={28} />
-          </div>
-        </MediaQuery>
-        <div className='topCenter'>
-          <ul className='topList'>
-            <li className='topListItem'>
+      <Container
+        className={classes.main}
+        w='100%'
+        h={50}
+        m={0}
+        p='sm'
+        color={theme.colorScheme === 'dark' ? 'white' : 'black'}
+      >
+        <MediaQuery
+          className={classes.media}
+          query='(max-width: 30em)'
+          styles={{ display: 'none' }}
+        >
+          <Group position='right' spacing='md'>
+            <Title order={5} className={classes.topListItem}>
               <Link className='link' to='/'>
                 Home
               </Link>
-            </li>
-            <li className='topListItem'>
+            </Title>
+            <Title order={5} className={classes.topListItem}>
               <Link className='link' to='/blog'>
                 Blog
               </Link>
-            </li>
-            <li className='topListItem'>
+            </Title>
+            <Title order={5} className={classes.topListItem}>
               <Link className='link' to='/about'>
                 About
               </Link>
-            </li>
-            <li className='topListItem'>
+            </Title>
+            <Title order={5} className={classes.topListItem}>
               <Link className='link' to='/contact'>
                 Contact
               </Link>
-            </li>
-            <li
+            </Title>
+            <Title
               style={user ? { display: 'block' } : { display: 'none' }}
-              className='topListItem'
+              order={5}
+              className={classes.topListItem}
             >
               <Link className='link' to='/write'>
                 Write
               </Link>
-            </li>
-            {/* <li
+            </Title>
+            {/* <Title order={5}
               style={user ? { display: 'block' } : { display: 'none' }}
-              className='topListItem test'
+              className={classes.topListItem}
               onClick={handleLogout}
-            >
+              >
               {user && 'LOGOUT'}
-            </li> */}
-          </ul>
-        </div>
-        <div className='navMenu'>
-          <MenuNavbar />
-        </div>
-        <div className='logo'>
-          <LightDark />
+            </Title> */}
+          </Group>
+        </MediaQuery>
+        <MediaQuery query='(min-width: 30em)' styles={{ display: 'none' }}>
           <div>
-            CesarTracy<span>.</span>Blog
+            <MenuNavbar />
           </div>
-        </div>
-      </div>
+        </MediaQuery>
+        <Group position='left' spacing='md' className={classes.media}>
+          <LightDark />
+          <Text
+            sx={{
+              fontFamily: theme.fontFamily[2],
+            }}
+            color={theme.colorScheme === 'dark' ? 'white' : 'dark'}
+          >
+            CesarTracy
+            <Text span c='#228be6'>
+              .
+            </Text>
+            Blog
+          </Text>
+        </Group>
+      </Container>
     </>
   );
 }

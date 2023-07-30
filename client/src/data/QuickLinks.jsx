@@ -11,47 +11,47 @@ import mountain from '../assets/mountain.jpg';
 const quickLinks = [
   {
     id: 1,
-    title: 'forest',
+    title: 'Travel',
     img: forest,
   },
   {
     id: 2,
-    title: 'hike',
+    title: 'Hiking',
     img: hike,
   },
   {
     id: 3,
-    title: 'road',
+    title: 'Road Trips',
     img: road,
   },
   {
     id: 4,
-    title: 'leaves',
+    title: 'Guides',
     img: leaves,
   },
   {
     id: 5,
-    title: 'mountain',
+    title: 'Views',
     img: mountain,
   },
   {
     id: 6,
-    title: 'teton',
+    title: 'National Parks',
     img: teton,
   },
   {
     id: 7,
-    title: 'waterfall',
+    title: 'Waterfalls',
     img: waterfall,
   },
   {
     id: 8,
-    title: 'flower',
+    title: 'Camping',
     img: flower,
   },
   {
     id: 9,
-    title: 'yosemite',
+    title: 'State Parks',
     img: yosemite,
   },
 ];

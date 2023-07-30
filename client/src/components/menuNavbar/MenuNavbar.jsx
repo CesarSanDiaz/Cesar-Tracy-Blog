@@ -6,6 +6,7 @@ import {
   Navbar,
   Paper,
   Text,
+  useMantineTheme,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import {
@@ -15,6 +16,7 @@ import {
   IconBrandYoutube,
   IconHome,
   IconMail,
+  IconTrees,
   IconUsers,
 } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
@@ -23,6 +25,7 @@ import './menuNavbar.scss';
 export default function MenuNavbar() {
   const [opened, { toggle }] = useDisclosure(false);
   const label = opened ? 'Close navigation' : 'Open navigation';
+  const theme = useMantineTheme();
 
   return (
     <>
@@ -33,8 +36,7 @@ export default function MenuNavbar() {
           onClick={toggle}
           aria-label={label}
           size='sm'
-          color='#fff'
-          mr='xl'
+          color={theme.colorScheme === 'dark' ? 'white' : 'black'}
         />
       </MediaQuery>
       <Navbar className='nav' hidden={!opened} p='sm'>
@@ -43,6 +45,10 @@ export default function MenuNavbar() {
             <Link className='link' to='/' onClick={toggle}>
               <IconHome className='linkIcon' />
               <Text>Home</Text>
+            </Link>
+            <Link className='link' to='/blog' onClick={toggle}>
+              <IconTrees className='linkIcon' />
+              <Text>Blog</Text>
             </Link>
             <Link className='link' to='/about' onClick={toggle}>
               <IconUsers className='linkIcon' />
@@ -53,7 +59,7 @@ export default function MenuNavbar() {
               <Text>Contact</Text>
             </Link>
           </Navbar.Section>
-          <Divider size='md' />
+          <Divider size='lg' color='blue' />
           <Navbar.Section className='navIconSection'>
             <Group position='left'>
               <IconBrandYoutube className='Icon youtube' size={24} />

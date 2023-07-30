@@ -39,7 +39,7 @@ export default function Posts({ posts }) {
         Our Latest Posts
       </Title>
       <Divider size='lg' pb='md' color='blue' />
-      <Grid className='posts1' grow gutter='sm'>
+      <Grid grow gutter='sm'>
         {posts.slice(0, 3).map((p, index) => {
           return (
             <Grid.Col

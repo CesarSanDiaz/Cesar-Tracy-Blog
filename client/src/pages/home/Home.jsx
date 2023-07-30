@@ -1,15 +1,21 @@
-import { Grid, MediaQuery } from '@mantine/core';
+import { Grid, MediaQuery, createStyles } from '@mantine/core';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import Header from '../../components/header/Header';
 import Posts from '../../components/posts/Posts';
 import Sidebar from '../../components/sidebar/Sidebar';
-import './home.scss';
+
+const useStyles = createStyles(() => ({
+  sidebar: {
+    margin: 'none',
+  },
+}));
 
 export default function Home() {
   const { search } = useLocation();
   const [posts, setPosts] = useState([]);
+  const { classes } = useStyles();
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -32,14 +38,18 @@ export default function Home() {
 
   return (
     <>
-      <div className='home'>
+      <div>
         <Header />
-        <Grid grow p={0}>
+        <Grid grow p='sm' m={0}>
           <Grid.Col span={8} xs={12} sm={6} md={8} p={0}>
             <Posts posts={posts} />
           </Grid.Col>
-          <MediaQuery smallerThan='sm' styles={{ display: 'none' }}>
-            <Grid.Col span={4} xs={0} sm={6} md={4}>
+          <MediaQuery
+            smallerThan='sm'
+            styles={{ display: 'none' }}
+            className={classes.sidebar}
+          >
+            <Grid.Col span={4} xs={0} sm={6} md={4} p='sm'>
               <Sidebar />
             </Grid.Col>
           </MediaQuery>

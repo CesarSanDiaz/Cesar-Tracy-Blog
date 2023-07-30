@@ -1,83 +1,138 @@
-import { Divider, Image, Title } from '@mantine/core';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import {
+  BackgroundImage,
+  Box,
+  Divider,
+  Paper,
+  SimpleGrid,
+  Text,
+  Title,
+  createStyles,
+} from '@mantine/core';
+import {
+  IconBrandInstagram,
+  IconBrandPinterest,
+  IconBrandTwitter,
+  IconBrandYoutube,
+} from '@tabler/icons-react';
+// import axios from 'axios';
+// import { useEffect, useState } from 'react';
+// import { Link } from 'react-router-dom';
 import '../../data/QuickLinks';
 import quickLinks from '../../data/QuickLinks';
-import './sidebar.css';
+
+const useStyles = createStyles(() => ({
+  box: {
+    textAlign: 'center',
+    padding: '6px',
+    color: 'white',
+    backgroundColor: 'rgb(0, 0, 0, 0.5)',
+  },
+  bgImage: {
+    ':hover': {
+      border: '1px solid white',
+    },
+  },
+  socialIcons: {
+    cursor: 'pointer',
+    display: 'flex',
+    justifyContent: 'space-evenly',
+  },
+  youtubeIcon: {
+    ':hover': {
+      color: '#ff0000',
+    },
+  },
+  instagramIcon: {
+    ':hover': {
+      color: '#e1306c',
+    },
+  },
+  twitterIcon: {
+    ':hover': {
+      color: '#1da1f2',
+    },
+  },
+  pinterestIcon: {
+    ':hover': {
+      color: '#e60023',
+    },
+  },
+}));
 
 export default function Sidebar() {
-  const [cats, setCat] = useState([]);
+  // const [cats, setCat] = useState([]);
+  const { classes } = useStyles();
 
-  useEffect(() => {
-    try {
-      const getCats = async () => {
-        const res = await axios.get('/categories');
-        setCat(res.data);
-      };
-      getCats();
-    } catch (err) {
-      console.log(err.message);
-    }
-  }, []);
+  // useEffect(() => {
+  //   try {
+  //     const getCats = async () => {
+  //       const res = await axios.get('/categories');
+  //       setCat(res.data);
+  //     };
+  //     getCats();
+  //   } catch (err) {
+  //     console.log(err.message);
+  //   }
+  // }, []);
 
   const images = quickLinks.map((pic) => {
     return (
-      <Image
-        withPlaceholder
-        h={500}
-        w={700}
+      <BackgroundImage
+        className={classes.bgImage}
         key={pic.id}
         src={pic.img}
         alt={pic.title}
-      />
+        component='a'
+        href='#'
+      >
+        <Box className={classes.box}>{pic.title}</Box>
+      </BackgroundImage>
     );
   });
 
   return (
-    <div className='sidebar'>
-      <div className='sidebarItem'>
-        <Title className='sidebarTitle' order={2} align='center' p='xs'>
-          Quick Links
-        </Title>
-        <Divider size='lg' pb='md' color='blue' />
-        <img
-          src='https://images.unsplash.com/photo-1582880421648-a7154a8c99c1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80'
-          alt='sidebar img'
-        />
-        <p>
-          Welcome to our travel blog! We're a couple who shares a love for
-          exploring new places and experiencing different cultures. Our passion
-          for travel has taken us to some incredible destinations around the
-          United States, and we're excited to share our experiences with you.
-          check out some of our latest posts to see some of the wonderful places
-          we have been!
-        </p>
+    <Paper>
+      <Title className='sidebarTitle' order={2} align='center' p='xs'>
+        Categories
+      </Title>
+      <Divider size='lg' pb='md' color='blue' />
+      <div>
+        <SimpleGrid cols={3} spacing={0} h={300} className={classes.grid}>
+          {images}
+        </SimpleGrid>
       </div>
-      <div className='sidebarItem'>
-        <span className='sidebarTitle'>CATEGORIES</span>
-        <ul className='sidebarList'>
-          {cats.map((c) => {
-            return (
-              <Link className='link' to={`/?cat=${c.name}`} key={c.name}>
-                <li className='sidebarListItem' key={c.name.type}>
-                  {c.name}
-                </li>
-              </Link>
-            );
-          })}
-        </ul>
+      <Title order={2} align='center' p='xs' pt='md'>
+        About Us
+      </Title>
+      <Divider size='lg' pb='md' color='blue' />
+      <Text size='lg'>
+        Welcome to our blog! We are excited to share our traveling journeys and
+        experiences with you. We love to explore new places and experience
+        different landscapes. Our passion for traveling has taken us to some
+        incredible destinations around the United States. Join us to experience
+        all these wonderful locations!
+      </Text>
+      <Title order={2} align='center' p='xs' pt='md'>
+        Follow Us!
+      </Title>
+      <Divider size='lg' pb='md' color='blue' />
+      <div className={classes.socialIcons}>
+        <IconBrandYoutube className={classes.youtubeIcon} size={28} />
+        <IconBrandInstagram className={classes.instagramIcon} size={28} />
+        <IconBrandTwitter className={classes.twitterIcon} size={28} />
+        <IconBrandPinterest className={classes.pinterestIcon} size={28} />
       </div>
-      <div className='sidebarItem'>
-        <span className='sidebarTitle'>FOLLOW US</span>
-        <div>{images}</div>
-        <div className='sidebarSocial'>
-          <i className='sidebarIcon fab fa-facebook-square'></i>
-          <i className='sidebarIcon fab fa-instagram-square'></i>
-          <i className='sidebarIcon fab fa-pinterest-square'></i>
-          <i className='sidebarIcon fab fa-twitter-square'></i>
-        </div>
-      </div>
-    </div>
+      {/* <ul className='sidebarList'>
+        {cats.map((c) => {
+          return (
+            <Link className='link' to={`/?cat=${c.name}`} key={c.name}>
+              <li className='sidebarListItem' key={c.name.type}>
+                {c.name}
+              </li>
+            </Link>
+          );
+        })}
+      </ul> */}
+    </Paper>
   );
 }
