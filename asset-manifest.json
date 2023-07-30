@@ -1,16 +1,23 @@
 {
   "files": {
-    "main.css": "/Cesar-Tracy-blog/static/css/main.22841be3.css",
-    "main.js": "/Cesar-Tracy-blog/static/js/main.c757e7a7.js",
-    "static/media/GrandTeton.jpg": "/Cesar-Tracy-blog/static/media/GrandTeton.dc2cc048d04b2218c9ce.jpg",
+    "main.css": "/Cesar-Tracy-blog/static/css/main.ffd72cea.css",
+    "main.js": "/Cesar-Tracy-blog/static/js/main.c5462736.js",
     "static/media/Bridge.JPG": "/Cesar-Tracy-blog/static/media/Bridge.3da62cdeac3e1dbaa273.JPG",
-    "static/media/Bridge2.JPG": "/Cesar-Tracy-blog/static/media/Bridge2.c2d641ae435bed3122c8.JPG",
+    "static/media/ForestCropped.jpg": "/Cesar-Tracy-blog/static/media/ForestCropped.529178ff992efc36e842.jpg",
+    "static/media/Hike.jpg": "/Cesar-Tracy-blog/static/media/Hike.38fbe067834a60679d9c.jpg",
+    "static/media/Yose.jpg": "/Cesar-Tracy-blog/static/media/Yose.9fa4a818011f50e6ba25.jpg",
+    "static/media/Waterfall.jpg": "/Cesar-Tracy-blog/static/media/Waterfall.852dfdd786709939807b.jpg",
+    "static/media/leaves.jpg": "/Cesar-Tracy-blog/static/media/leaves.c56d3dcd43896c049689.jpg",
+    "static/media/TetonCropped.jpg": "/Cesar-Tracy-blog/static/media/TetonCropped.f024cce409c5ca7d90ff.jpg",
+    "static/media/Flower.jpg": "/Cesar-Tracy-blog/static/media/Flower.0f594b27b1077d988c86.jpg",
+    "static/media/mountain.jpg": "/Cesar-Tracy-blog/static/media/mountain.2dfc97481519049e3004.jpg",
+    "static/media/RoadCropped.jpg": "/Cesar-Tracy-blog/static/media/RoadCropped.424ef1475e86fcb3606c.jpg",
     "index.html": "/Cesar-Tracy-blog/index.html",
-    "main.22841be3.css.map": "/Cesar-Tracy-blog/static/css/main.22841be3.css.map",
-    "main.c757e7a7.js.map": "/Cesar-Tracy-blog/static/js/main.c757e7a7.js.map"
+    "main.ffd72cea.css.map": "/Cesar-Tracy-blog/static/css/main.ffd72cea.css.map",
+    "main.c5462736.js.map": "/Cesar-Tracy-blog/static/js/main.c5462736.js.map"
   },
   "entrypoints": [
-    "static/css/main.22841be3.css",
-    "static/js/main.c757e7a7.js"
+    "static/css/main.ffd72cea.css",
+    "static/js/main.c5462736.js"
   ]
 }
