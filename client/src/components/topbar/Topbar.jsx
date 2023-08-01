@@ -21,11 +21,17 @@ const useStyles = createStyles((theme) => ({
     zIndex: '99',
     position: 'sticky',
     top: '-1px',
-    backgroundColor: '',
+    borderBottom:
+      theme.colorScheme === 'dark'
+        ? '0.0625rem solid #373A40'
+        : '0.0625rem solid #dee2e6',
+    // backgroundColor:
+    //   theme.colorScheme === 'dark'
+    //     ? theme.colors.myBlue[4]
+    //     : theme.colors.myYellow[4],
   },
-  topListItem: {
+  navLinks: {
     cursor: 'pointer',
-    color: theme.colorScheme === 'dark' ? 'white' : 'dark',
     ':hover': {
       color: '#228be6',
     },
@@ -34,7 +40,6 @@ const useStyles = createStyles((theme) => ({
     flexWrap: 'nowrap',
   },
   logo: {
-    color: theme.colorScheme === 'dark' ? 'white' : 'dark',
     fontFamily: 'pacifico',
     display: 'flex',
     alignItems: 'center',
@@ -51,29 +56,38 @@ export default function Topbar() {
   // };
   return (
     <>
-      <Paper className={classes.main} h={50} p='sm' radius={0} shadow='sm'>
+      <Paper
+        className={classes.main}
+        h={50}
+        p='sm'
+        radius={0}
+        shadow='sm'
+        // sx={(theme) => ({
+        //   background: theme.colors.teal[5],
+        // })}
+      >
         <MediaQuery
           className={classes.media}
           query='(max-width: 30em)'
           styles={{ display: 'none' }}
         >
           <Group position='right' spacing='md'>
-            <Title order={5} className={classes.topListItem}>
+            <Title order={5} className={classes.navLinks}>
               <Link className='link' to='/'>
                 Home
               </Link>
             </Title>
-            <Title order={5} className={classes.topListItem}>
+            <Title order={5} className={classes.navLinks}>
               <Link className='link' to='/blog'>
                 Blog
               </Link>
             </Title>
-            <Title order={5} className={classes.topListItem}>
+            <Title order={5} className={classes.navLinks}>
               <Link className='link' to='/about'>
                 About
               </Link>
             </Title>
-            <Title order={5} className={classes.topListItem}>
+            <Title order={5} className={classes.navLinks}>
               <Link className='link' to='/contact'>
                 Contact
               </Link>
@@ -81,7 +95,7 @@ export default function Topbar() {
             <Title
               style={user ? { display: 'block' } : { display: 'none' }}
               order={5}
-              className={classes.topListItem}
+              className={classes.navLinks}
             >
               <Link className='link' to='/write'>
                 Write
@@ -89,7 +103,7 @@ export default function Topbar() {
             </Title>
             {/* <Title order={5}
               style={user ? { display: 'block' } : { display: 'none' }}
-              className={classes.topListItem}
+              className={classes.navLinks}
               onClick={handleLogout}
               >
               {user && 'LOGOUT'}

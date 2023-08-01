@@ -91,7 +91,7 @@ export default function Sidebar() {
   });
 
   return (
-    <Paper>
+    <Paper radius={0} p='sm'>
       <Title className='sidebarTitle' order={2} align='center' p='xs'>
         Categories
       </Title>

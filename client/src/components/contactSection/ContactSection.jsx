@@ -91,8 +91,17 @@ export default function ContactSection() {
                 variant='filled'
               />
               <Group position='center' mt='xl'>
-                <Button type='submit' size='md'>
-                  Send message
+                <Button
+                  type='submit'
+                  size='md'
+                  sx={(theme) => ({
+                    color:
+                      theme.colorScheme === 'dark'
+                        ? theme.colors.myYellow[4]
+                        : 'dark',
+                  })}
+                >
+                  Send Message
                 </Button>
               </Group>
             </form>

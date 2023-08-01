@@ -1,4 +1,4 @@
-import { Grid, MediaQuery, createStyles } from '@mantine/core';
+import { Grid, MediaQuery, Paper, createStyles } from '@mantine/core';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
@@ -6,6 +6,7 @@ import Header from '../../components/header/Header';
 import Posts from '../../components/posts/Posts';
 import Sidebar from '../../components/sidebar/Sidebar';
 
+// revisit this margin?
 const useStyles = createStyles(() => ({
   sidebar: {
     margin: 'none',
@@ -37,11 +38,11 @@ export default function Home() {
   }, [search]);
 
   return (
-    <>
+    <Paper>
       <div>
         <Header />
-        <Grid grow p='sm' m={0}>
-          <Grid.Col span={8} xs={12} sm={6} md={8} p={0}>
+        <Grid grow m={0}>
+          <Grid.Col span={8} xs={12} sm={6} md={8}>
             <Posts posts={posts} />
           </Grid.Col>
           <MediaQuery
@@ -49,12 +50,12 @@ export default function Home() {
             styles={{ display: 'none' }}
             className={classes.sidebar}
           >
-            <Grid.Col span={4} xs={0} sm={6} md={4} p='sm'>
+            <Grid.Col span={4} xs={0} sm={6} md={4}>
               <Sidebar />
             </Grid.Col>
           </MediaQuery>
         </Grid>
       </div>
-    </>
+    </Paper>
   );
 }

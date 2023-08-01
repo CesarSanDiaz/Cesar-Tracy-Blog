@@ -22,13 +22,19 @@ import {
 } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
 
-const useStyles = createStyles(() => ({
+const useStyles = createStyles((theme) => ({
   nav: {
     position: 'absolute',
     top: '50px',
     left: '0',
     height: 'fit-content',
     borderBottom: '1px solid black',
+  },
+  icons: {
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.myYellow[7]
+        : theme.colors.blue[6],
   },
 }));
 
@@ -41,39 +47,32 @@ export default function MenuNavbar() {
   return (
     <>
       <MediaQuery largerThan='sm' styles={{ display: 'none' }}>
-        <Burger
-          styles={{ display: 'none' }}
-          opened={opened}
-          onClick={toggle}
-          aria-label={label}
-          size='sm'
-          color={theme.colorScheme === 'dark' ? 'white' : 'black'}
-        />
+        <Burger opened={opened} onClick={toggle} aria-label={label} size='sm' />
       </MediaQuery>
       <Navbar className={classes.nav} hidden={!opened} p='sm'>
         <Navbar.Section pb='sm'>
           <Stack>
             <Link className='link' to='/' onClick={toggle}>
               <Group spacing='sm'>
-                <IconHome color='#228be6' />
+                <IconHome className={classes.icons} />
                 <Text>Home</Text>
               </Group>
             </Link>
             <Link className='link' to='/blog' onClick={toggle}>
               <Group spacing='sm'>
-                <IconTrees color='#228be6' />
+                <IconTrees className={classes.icons} />
                 <Text>Blog</Text>
               </Group>
             </Link>
             <Link className='link' to='/about' onClick={toggle}>
               <Group spacing='sm'>
-                <IconUsers color='#228be6' />
+                <IconUsers className={classes.icons} />
                 <Text>About</Text>
               </Group>
             </Link>
             <Link className='link' to='/contact' onClick={toggle}>
               <Group spacing='sm'>
-                <IconMail color='#228be6' />
+                <IconMail className={classes.icons} />
                 <Text>Contact</Text>
               </Group>
             </Link>

@@ -34,14 +34,75 @@ function App() {
     >
       <MantineProvider
         withGlobalStyles
+        withNormalizeCSS
         theme={{
+          // globalStyles: (theme) => ({
+          //   body: {
+          //     backgroundColor:
+          //       theme.colorScheme === 'dark'
+          //         ? theme.colors.myBlue[9]
+          //         : theme.colors.myYellow[1],
+          //   },
+          // }),
           colorScheme,
+          // Adding my custom colors. myBlue[4] and myYellow[4] are the main ones
+          colors: {
+            myBlue: [
+              '#dadbdd',
+              '#aaabb1',
+              '#797b85',
+              '#494c58',
+              '#181c2c',
+              '#131623',
+              '#0e101a',
+              '#090a10',
+              '#040407',
+              '#18071B',
+            ],
+            myYellow: [
+              '#fffcf0',
+              '#fff7d9',
+              '#fff2c3',
+              '#ffedac',
+              '#ffe896',
+              '#ffe480',
+              '#ffdf69',
+              '#ffda53',
+              '#debe48',
+              '#bda13d',
+            ],
+            myPurple: [
+              '#eae9ea',
+              '#ccc8cd',
+              '#aea8af',
+              '#908892',
+              '#726874',
+              '#544756',
+              '#362739',
+              '#18071b',
+              '#150617',
+              '#120514',
+            ],
+          },
           // Fonts for the title, not sub headings
           headings: {
             fontFamily: 'Lora, sans-serif',
           },
           // Fonts for everything but the <Title></Title> tag
           fontFamily: 'Ubuntu, Pacifico',
+          // default heading colors
+          components: {
+            Title: {
+              defaultProps: (theme) => ({
+                color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+              }),
+            },
+            Text: {
+              defaultProps: (theme) => ({
+                color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+              }),
+            },
+          },
         }}
       >
         <Router>

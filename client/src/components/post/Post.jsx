@@ -5,7 +5,7 @@ import './post.scss';
 export default function Post({ post }) {
   const PF = 'http://localhost:5000/images/';
   return (
-    <Card shadow='md' radius='lg' withBorder padding='0'>
+    <Card shadow='sm' radius='lg' withBorder p={0}>
       <div className='post'>
         <Link to={`/post/${post._id}`}>
           {post.photo && (
