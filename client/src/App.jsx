@@ -37,6 +37,9 @@ function App() {
         withNormalizeCSS
         theme={{
           globalStyles: (theme) => ({
+            '*, *::before, *::after': {
+              boxSizing: 'border-box',
+            },
             body: {
               backgroundColor:
                 theme.colorScheme === 'dark'
@@ -84,7 +87,7 @@ function App() {
               '#908892',
               '#726874',
               '#544756',
-              '#362739',
+              '#2F2032',
               '#18071b',
               '#150617',
               '#120514',

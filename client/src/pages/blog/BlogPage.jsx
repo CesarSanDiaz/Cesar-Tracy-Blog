@@ -24,8 +24,8 @@ const useStyles = createStyles((theme) => ({
     transition: 'box-shadow 150ms ease, transform 100ms ease',
 
     '&:hover': {
-      boxShadow: theme.shadows.lg,
-      transform: 'scale(1.04)',
+      // boxShadow: theme.shadows.lg,
+      transform: 'scale(1.01)',
     },
   },
   blogTopIcon: {

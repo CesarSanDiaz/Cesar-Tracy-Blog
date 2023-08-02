@@ -8,15 +8,15 @@ const useStyles = createStyles((theme) => ({
     order: 3,
     transition: 'box-shadow 150ms ease, transform 100ms ease',
     '&:hover': {
-      boxShadow: theme.shadows.lg,
-      transform: 'scale(1.025)',
+      // boxShadow: theme.shadows.lg,
+      transform: 'scale(1.015)',
     },
   },
   number1: {
     order: 2,
     transition: 'box-shadow 150ms ease, transform 100ms ease',
     '&:hover': {
-      boxShadow: theme.shadows.lg,
+      // boxShadow: theme.shadows.lg,
       transform: 'scale(1.025)',
     },
   },
@@ -24,7 +24,7 @@ const useStyles = createStyles((theme) => ({
     order: 1,
     transition: 'box-shadow 150ms ease, transform 100ms ease',
     '&:hover': {
-      boxShadow: theme.shadows.lg,
+      // boxShadow: theme.shadows.lg,
       transform: 'scale(1.025)',
     },
   },

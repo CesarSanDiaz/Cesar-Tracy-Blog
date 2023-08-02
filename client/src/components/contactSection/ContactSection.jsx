@@ -86,7 +86,6 @@ export default function ContactSection() {
                 breakpoints={[{ maxWidth: 'sm', cols: 1 }]}
               >
                 <TextInput
-                  styles={{ label: { color: 'yellow' } }}
                   label='Name'
                   placeholder='Your name'
                   name='name'
