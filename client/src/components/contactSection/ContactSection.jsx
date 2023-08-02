@@ -15,9 +15,31 @@ import {
 import { IconMail } from '@tabler/icons-react';
 
 const useStyles = createStyles((theme) => ({
+  contactCard: {
+    backgroundColor:
+      theme.colorScheme === 'dark'
+        ? theme.colors.myPurple[6]
+        : theme.colors.white,
+  },
+  contactPaper: {
+    backgroundColor:
+      theme.colorScheme === 'dark'
+        ? theme.colors.myPurple[7]
+        : theme.colors.white,
+  },
   contactTopIcon: {
     display: 'block',
     margin: 'auto',
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.myYellow[7]
+        : theme.colors.blue[6],
+  },
+  contactDivider: {
+    backgroundColor:
+      theme.colorScheme === 'dark'
+        ? theme.colors.myYellow[7]
+        : theme.colors.blue[6],
   },
 }));
 
@@ -26,12 +48,8 @@ export default function ContactSection() {
 
   return (
     <>
-      <Paper p='sm' radius={0}>
-        <IconMail
-          color='#228be6'
-          size={50}
-          className={classes.contactTopIcon}
-        />
+      <Paper p='sm' radius={0} className={classes.contactPaper}>
+        <IconMail size={50} className={classes.contactTopIcon} />
         <Title
           className='contactSectionFormTitle'
           order={2}
@@ -40,7 +58,12 @@ export default function ContactSection() {
         >
           Contact us
         </Title>
-        <Divider size='lg' pb='md' color='blue' />
+        <Divider
+          size={0}
+          p='1.5px'
+          mb='md'
+          className={classes.contactDivider}
+        />
         <Text p='md' align='center' fz='lg'>
           Need to get in touch with us? Please fill out the form with your
           inquiry or email us at{' '}
@@ -50,7 +73,12 @@ export default function ContactSection() {
           .
         </Text>
         <MediaQuery largerThan='md' styles={{ width: '80%', margin: 'auto' }}>
-          <Card withBorder shadow='md' radius='md'>
+          <Card
+            withBorder
+            shadow='md'
+            radius='md'
+            className={classes.contactCard}
+          >
             <form>
               <SimpleGrid
                 cols={2}
@@ -58,6 +86,7 @@ export default function ContactSection() {
                 breakpoints={[{ maxWidth: 'sm', cols: 1 }]}
               >
                 <TextInput
+                  styles={{ label: { color: 'yellow' } }}
                   label='Name'
                   placeholder='Your name'
                   name='name'

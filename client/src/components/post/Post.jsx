@@ -1,11 +1,30 @@
-import { Badge, Card, Image, Text, Title } from '@mantine/core';
+import { Badge, Card, Image, Text, Title, createStyles } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import './post.scss';
 
+const useStyles = createStyles((theme) => ({
+  postCard: {
+    backgroundColor:
+      theme.colorScheme === 'dark'
+        ? theme.colors.myPurple[6]
+        : theme.colors.white,
+  },
+  postBadge: {
+    backgroundColor:
+      theme.colorScheme === 'dark' ? theme.colors.myYellow[7] : theme.blue,
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.myPurple[7]
+        : theme.colors.black,
+  },
+}));
+
 export default function Post({ post }) {
   const PF = 'http://localhost:5000/images/';
+  const { classes } = useStyles();
+
   return (
-    <Card shadow='sm' radius='lg' withBorder p={0}>
+    <Card shadow='sm' radius='lg' withBorder p={0} className={classes.postCard}>
       <div className='post'>
         <Link to={`/post/${post._id}`}>
           {post.photo && (
@@ -31,7 +50,7 @@ export default function Post({ post }) {
             <Title order={3}>{post.title}</Title>
           </Link>
           <hr />
-          <Badge fz='xs' m='xs' color='blue' variant='filled'>
+          <Badge fz='xs' m='xs' className={classes.postBadge} variant='filled'>
             {new Date(post.createdAt).toDateString()}
           </Badge>
           <Text align='center' lineClamp={1}>

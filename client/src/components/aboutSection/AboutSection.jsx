@@ -3,10 +3,26 @@ import { IconFriends } from '@tabler/icons-react';
 import AboutCard from '../../components/aboutCard/AboutCard';
 import aboutCards from '../../data/AboutDataCards';
 
-const useStyles = createStyles(() => ({
+const useStyles = createStyles((theme) => ({
+  aboutPaper: {
+    backgroundColor:
+      theme.colorScheme === 'dark'
+        ? theme.colors.myPurple[7]
+        : theme.colors.white,
+  },
   aboutTopIcon: {
     display: 'block',
     margin: 'auto',
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.myYellow[7]
+        : theme.colors.blue[6],
+  },
+  aboutDivider: {
+    backgroundColor:
+      theme.colorScheme === 'dark'
+        ? theme.colors.myYellow[7]
+        : theme.colors.blue[6],
   },
 }));
 
@@ -15,16 +31,12 @@ export default function AboutSection({ cards }) {
 
   return (
     <>
-      <Paper radius={0} p='sm'>
-        <IconFriends
-          color='#228be6'
-          size={50}
-          className={classes.aboutTopIcon}
-        />
+      <Paper radius={0} p='sm' className={classes.aboutPaper}>
+        <IconFriends size={50} className={classes.aboutTopIcon} />
         <Title order={2} align='center' p='xs'>
           About Us
         </Title>
-        <Divider size='lg' pb='md' color='blue' />
+        <Divider size={0} p='1.5px' mb='md' className={classes.aboutDivider} />
 
         {aboutCards.map((card) => {
           return (

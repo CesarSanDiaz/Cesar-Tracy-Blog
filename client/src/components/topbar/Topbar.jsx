@@ -13,7 +13,7 @@ import LightDark from '../lightDarkMode/LightDark';
 import MenuNavbar from '../menuNavbar/MenuNavbar';
 
 const useStyles = createStyles((theme) => ({
-  main: {
+  paperMain: {
     display: 'flex',
     flexDirection: 'row-reverse',
     alignItems: 'center',
@@ -21,6 +21,8 @@ const useStyles = createStyles((theme) => ({
     zIndex: '99',
     position: 'sticky',
     top: '-1px',
+    backgroundColor:
+      theme.colorScheme === 'dark' ? theme.colors.myPurple[8] : theme.dark,
     borderBottom:
       theme.colorScheme === 'dark'
         ? '0.0625rem solid #373A40'
@@ -33,7 +35,10 @@ const useStyles = createStyles((theme) => ({
   navLinks: {
     cursor: 'pointer',
     ':hover': {
-      color: '#228be6',
+      color:
+        theme.colorScheme === 'dark'
+          ? theme.colors.myYellow[7]
+          : theme.colors.blue[6],
     },
   },
   media: {
@@ -57,14 +62,12 @@ export default function Topbar() {
   return (
     <>
       <Paper
-        className={classes.main}
+        className={classes.paperMain}
+        classNames='paperMain'
         h={50}
         p='sm'
         radius={0}
         shadow='sm'
-        // sx={(theme) => ({
-        //   background: theme.colors.teal[5],
-        // })}
       >
         <MediaQuery
           className={classes.media}
@@ -120,7 +123,16 @@ export default function Topbar() {
           <Link className='link' to='/'>
             <Text className={classes.logo}>
               CesarTracy
-              <Text span c='#228be6' size={30}>
+              <Text
+                span
+                sx={(theme) => ({
+                  color:
+                    theme.colorScheme === 'dark'
+                      ? theme.colors.myYellow[7]
+                      : theme.colors.blue[6],
+                })}
+                size={24}
+              >
                 .
               </Text>
               Blog

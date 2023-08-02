@@ -14,6 +14,12 @@ import { useLocation } from 'react-router';
 import Post from '../../components/post/Post';
 
 const useStyles = createStyles((theme) => ({
+  blogPagePaper: {
+    backgroundColor:
+      theme.colorScheme === 'dark'
+        ? theme.colors.myPurple[7]
+        : theme.colors.white,
+  },
   post: {
     transition: 'box-shadow 150ms ease, transform 100ms ease',
 
@@ -25,6 +31,16 @@ const useStyles = createStyles((theme) => ({
   blogTopIcon: {
     display: 'block',
     margin: 'auto',
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.myYellow[7]
+        : theme.colors.blue[6],
+  },
+  blogPageDivider: {
+    backgroundColor:
+      theme.colorScheme === 'dark'
+        ? theme.colors.myYellow[7]
+        : theme.colors.blue[6],
   },
 }));
 
@@ -45,12 +61,12 @@ export default function BlogPage() {
   }, [search]);
 
   return (
-    <Paper radius={0} p='sm'>
-      <IconTrees color='#228be6' size={50} className={classes.blogTopIcon} />
+    <Paper radius={0} p='sm' className={classes.blogPagePaper}>
+      <IconTrees size={50} className={classes.blogTopIcon} />
       <Title order={2} align='center' p='xs'>
         Blog Feed
       </Title>
-      <Divider size='lg' pb='md' color='blue' />
+      <Divider size={0} p='1.5px' mb='md' className={classes.blogPageDivider} />
       <Group position='apart' maw='80vw' m='auto'>
         <Text size='lg' p='sm'>
           Text 1

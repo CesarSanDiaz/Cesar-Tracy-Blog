@@ -36,14 +36,20 @@ function App() {
         withGlobalStyles
         withNormalizeCSS
         theme={{
-          // globalStyles: (theme) => ({
-          //   body: {
-          //     backgroundColor:
-          //       theme.colorScheme === 'dark'
-          //         ? theme.colors.myBlue[9]
-          //         : theme.colors.myYellow[1],
-          //   },
-          // }),
+          globalStyles: (theme) => ({
+            body: {
+              backgroundColor:
+                theme.colorScheme === 'dark'
+                  ? theme.colors.myPurple[7]
+                  : theme.white,
+            },
+            // '.paperMain': {
+            //   backgroundColor:
+            //     theme.colorScheme === 'dark'
+            //       ? theme.colors.myPurple[7]
+            //       : theme.colors.dark,
+            // },
+          }),
           colorScheme,
           // Adding my custom colors. myBlue[4] and myYellow[4] are the main ones
           colors: {

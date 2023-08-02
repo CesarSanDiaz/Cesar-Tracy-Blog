@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 import { Context } from '../../context/Context';
 
 const useStyles = createStyles((theme) => ({
-  wrapper: {
+  footerPaper: {
+    backgroundColor:
+      theme.colorScheme === 'dark' ? theme.colors.myPurple[8] : theme.dark,
     borderTop:
       theme.colorScheme === 'dark'
         ? '0.0625rem solid #373A40'
@@ -40,7 +42,7 @@ export default function Footer() {
   };
 
   return (
-    <Paper p='xs' radius={0} className={classes.wrapper}>
+    <Paper p='xs' radius={0} className={classes.footerPaper}>
       <Stack spacing={1} align='center'>
         <Text className={classes.text}>
           2023 &copy; Copyright SanDiazDesigns

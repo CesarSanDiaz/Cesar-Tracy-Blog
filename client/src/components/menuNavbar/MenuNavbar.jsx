@@ -7,7 +7,6 @@ import {
   Stack,
   Text,
   createStyles,
-  useMantineTheme,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import {
@@ -29,9 +28,17 @@ const useStyles = createStyles((theme) => ({
     left: '0',
     height: 'fit-content',
     borderBottom: '1px solid black',
+    backgroundColor:
+      theme.colorScheme === 'dark' ? theme.colors.myPurple[7] : theme.white,
   },
   icons: {
     color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.myYellow[7]
+        : theme.colors.blue[6],
+  },
+  divider: {
+    backgroundColor:
       theme.colorScheme === 'dark'
         ? theme.colors.myYellow[7]
         : theme.colors.blue[6],
@@ -41,7 +48,6 @@ const useStyles = createStyles((theme) => ({
 export default function MenuNavbar() {
   const [opened, { toggle }] = useDisclosure(false);
   const label = opened ? 'Close navigation' : 'Open navigation';
-  const theme = useMantineTheme();
   const { classes } = useStyles();
 
   return (
@@ -78,7 +84,7 @@ export default function MenuNavbar() {
             </Link>
           </Stack>
         </Navbar.Section>
-        <Divider size='lg' color='blue' pb='sm' />
+        <Divider size='xs' p='1.5px' mb='sm' className={classes.divider} />
         <Navbar.Section className='navIconSection'>
           <Group position='left'>
             <IconBrandYoutube color='#ff0000' size={24} />

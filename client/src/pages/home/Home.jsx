@@ -38,7 +38,12 @@ export default function Home() {
   }, [search]);
 
   return (
-    <Paper>
+    <Paper
+      sx={(theme) => ({
+        backgroundColor:
+          theme.colorScheme === 'dark' ? theme.colors.myPurple[7] : theme.white,
+      })}
+    >
       <div>
         <Header />
         <Grid grow m={0}>

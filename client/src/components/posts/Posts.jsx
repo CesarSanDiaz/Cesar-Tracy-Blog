@@ -28,17 +28,26 @@ const useStyles = createStyles((theme) => ({
       transform: 'scale(1.025)',
     },
   },
+  postsDivider: {
+    backgroundColor:
+      theme.colorScheme === 'dark'
+        ? theme.colors.myYellow[7]
+        : theme.colors.blue[6],
+  },
+  postsPaper: {
+    backgroundColor: 'transparent',
+  },
 }));
 
 export default function Posts({ posts }) {
   const { classes } = useStyles();
 
   return (
-    <Paper radius={0} p='sm'>
-      <Title className='recentPosts' order={2} align='center' p='xs'>
+    <Paper radius={0} p='sm' className={classes.postsPaper}>
+      <Title order={2} align='center' p='xs'>
         Our Latest Posts
       </Title>
-      <Divider size='lg' pb='md' color='blue' />
+      <Divider size={0} p='1.5px' mb='md' className={classes.postsDivider} />
       <Grid grow gutter='sm'>
         {posts.slice(0, 3).map((p, index) => {
           return (

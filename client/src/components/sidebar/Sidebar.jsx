@@ -20,17 +20,15 @@ import {
 import '../../data/QuickLinks';
 import quickLinks from '../../data/QuickLinks';
 
-const useStyles = createStyles(() => ({
+const useStyles = createStyles((theme) => ({
+  paper: {
+    backgroundColor: 'transparent',
+  },
   box: {
     textAlign: 'center',
     padding: '6px',
-    color: 'white',
+    color: theme.white,
     backgroundColor: 'rgb(0, 0, 0, 0.5)',
-  },
-  bgImage: {
-    ':hover': {
-      border: '1px solid white',
-    },
   },
   socialIcons: {
     cursor: 'pointer',
@@ -56,6 +54,12 @@ const useStyles = createStyles(() => ({
     ':hover': {
       color: '#e60023',
     },
+  },
+  sidebarDivider: {
+    backgroundColor:
+      theme.colorScheme === 'dark'
+        ? theme.colors.myYellow[7]
+        : theme.colors.blue[6],
   },
 }));
 
@@ -91,20 +95,20 @@ export default function Sidebar() {
   });
 
   return (
-    <Paper radius={0} p='sm'>
+    <Paper radius={0} p='sm' className={classes.paper}>
       <Title className='sidebarTitle' order={2} align='center' p='xs'>
         Categories
       </Title>
-      <Divider size='lg' pb='md' color='blue' />
+      <Divider size={0} p='1.5px' mb='md' className={classes.sidebarDivider} />
       <div>
-        <SimpleGrid cols={3} spacing={0} h={300} className={classes.grid}>
+        <SimpleGrid cols={2} spacing={0} h={500} className={classes.grid}>
           {images}
         </SimpleGrid>
       </div>
       <Title order={2} align='center' p='xs' pt='md'>
         About Us
       </Title>
-      <Divider size='lg' pb='md' color='blue' />
+      <Divider size={0} p='1.5px' mb='md' className={classes.sidebarDivider} />
       <Text size='lg'>
         Welcome to our blog! We are excited to share our traveling journeys and
         experiences with you. We love to explore new places and experience
@@ -115,7 +119,7 @@ export default function Sidebar() {
       <Title order={2} align='center' p='xs' pt='md'>
         Follow Us!
       </Title>
-      <Divider size='lg' pb='md' color='blue' />
+      <Divider size={0} p='1.5px' mb='md' className={classes.sidebarDivider} />
       <div className={classes.socialIcons}>
         <IconBrandYoutube className={classes.youtubeIcon} size={28} />
         <IconBrandInstagram className={classes.instagramIcon} size={28} />
