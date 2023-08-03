@@ -1,6 +1,7 @@
 import {
   Burger,
   Divider,
+  Drawer,
   Group,
   MediaQuery,
   Navbar,
@@ -28,7 +29,7 @@ const useStyles = createStyles((theme) => ({
     left: '0',
     height: 'fit-content',
     borderBottom: '1px solid black',
-    backgroundColor:
+    color:
       theme.colorScheme === 'dark' ? theme.colors.myPurple[7] : theme.white,
   },
   icons: {
@@ -43,6 +44,16 @@ const useStyles = createStyles((theme) => ({
         ? theme.colors.myYellow[7]
         : theme.colors.blue[6],
   },
+  header: {
+    padding: '12px',
+  },
+  title: {
+    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+    fontFamily: 'Pacifico',
+  },
+  body: {
+    padding: '12px',
+  },
 }));
 
 export default function MenuNavbar() {
@@ -55,9 +66,27 @@ export default function MenuNavbar() {
       <MediaQuery largerThan='sm' styles={{ display: 'none' }}>
         <Burger opened={opened} onClick={toggle} aria-label={label} size='sm' />
       </MediaQuery>
-      <Navbar className={classes.nav} hidden={!opened} p='sm'>
-        <Navbar.Section pb='sm'>
-          <Stack>
+      <Drawer
+        hidden={!opened}
+        opened={opened}
+        onClose={toggle}
+        size='45%'
+        position='top'
+        overlayProps={{ opacity: 0.5, blur: 4 }}
+        title='CesarTracy.Blog'
+        classNames={{
+          header: classes.header,
+          body: classes.body,
+          title: classes.title,
+        }}
+        transitionProps={{
+          transition: 'slide-down',
+          duration: 200,
+          timingFunction: 'linear',
+        }}
+      >
+        <Navbar.Section>
+          <Stack pb='sm'>
             <Link className='link' to='/' onClick={toggle}>
               <Group spacing='sm'>
                 <IconHome className={classes.icons} />
@@ -93,7 +122,7 @@ export default function MenuNavbar() {
             <IconBrandPinterest color='#E60023' size={24} />
           </Group>
         </Navbar.Section>
-      </Navbar>
+      </Drawer>
     </>
   );
 }

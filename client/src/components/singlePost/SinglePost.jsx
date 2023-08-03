@@ -1,10 +1,54 @@
+import {
+  BackgroundImage,
+  Badge,
+  Divider,
+  Group,
+  Text,
+  Title,
+  createStyles,
+} from '@mantine/core';
 import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Context } from '../../context/Context';
 import './singlePost.scss';
 
+const useStyles = createStyles((theme) => ({
+  singlePostDivider: {
+    backgroundColor:
+      theme.colorScheme === 'dark'
+        ? theme.colors.myYellow[7]
+        : theme.colors.blue[6],
+  },
+  singlePostBadge: {
+    color:
+      theme.colorScheme === 'dark' ? theme.colors.myPurple[7] : theme.black,
+    background:
+      theme.colorScheme === 'dark'
+        ? theme.colors.myYellow[7]
+        : theme.colors.blue[6],
+  },
+  singlePostImg: {
+    width: '100%',
+    height: '35vh',
+    backgroundSize: 'contain',
+    position: 'center',
+  },
+  singlePostDesc: {
+    ':first-letter': {
+      color:
+        theme.colorScheme === 'dark'
+          ? theme.colors.myYellow[7]
+          : theme.colors.blue[6],
+      paddingLeft: 'sm',
+      fontSize: '30px',
+      fontWeight: 500,
+    },
+  },
+}));
+
 export default function SinglePost() {
+  const { classes } = useStyles();
   const location = useLocation();
   const path = location.pathname.split('/')[2];
   const [post, setPost] = useState({});
@@ -64,10 +108,7 @@ export default function SinglePost() {
 
   return (
     <>
-      <div className='singlePostWrapper'>
-        {post.photo && (
-          <img className='singlePostImg' src={PF + post.photo} alt='' />
-        )}
+      <div className='singlePostWrapper' style={{ padding: '12px' }}>
         {updateMode ? (
           <input
             type='text'
@@ -77,31 +118,54 @@ export default function SinglePost() {
             onChange={(e) => setTitle(e.target.value)}
           />
         ) : (
-          <h1 className='singlePostTitle'>
-            {title}
-            {post.username === user?.username && (
-              <div className='singlePostEdit'>
-                <i
-                  className='singlePostIcon far fa-edit'
-                  onClick={() => setUpdateMode(true)}
-                ></i>
-                <i
-                  className='singlePostIcon far fa-trash-alt'
-                  onClick={handleDelete}
-                ></i>
-              </div>
-            )}
-          </h1>
+          <div>
+            <Title order={1} align='center' p='sm'>
+              {title}
+              {post.username === user?.username && (
+                <div className='singlePostEdit'>
+                  <i
+                    className='singlePostIcon far fa-edit'
+                    onClick={() => setUpdateMode(true)}
+                  ></i>
+                  <i
+                    className='singlePostIcon far fa-trash-alt'
+                    onClick={handleDelete}
+                  ></i>
+                </div>
+              )}
+            </Title>
+          </div>
         )}
-        <div className='singlePostInfo'>
-          <span className='singlePostAuthor'>
-            Author:
+        <Divider
+          size='xs'
+          p='1.5px'
+          mb='sm'
+          className={classes.singlePostDivider}
+          m='auto'
+          w='25%'
+        />
+        {post.photo && (
+          <BackgroundImage
+            className={classes.singlePostImg}
+            src={PF + post.photo}
+            alt=''
+            radius='sm'
+          />
+        )}
+        <Group position='apart' py='sm'>
+          <Text align='center' transform='capitalize'>
+            Posted on {new Date(post.createdAt).toDateString()} by{' '}
             <Link to={`/?user=${post.username}`} className='link'>
               <b>{post.username}</b>
             </Link>
-          </span>
-          <span>{new Date(post.createdAt).toDateString()}</span>
-        </div>
+          </Text>
+          <Group>
+            <Text>Categories:</Text>
+            <Badge size='xs' radius='sm' className={classes.singlePostBadge}>
+              Category
+            </Badge>
+          </Group>
+        </Group>
         {updateMode ? (
           <textarea
             className='singlePostDescInput'
@@ -109,7 +173,9 @@ export default function SinglePost() {
             onChange={(e) => setDesc(e.target.value)}
           />
         ) : (
-          <p className='singlePostDesc'>{desc}</p>
+          <Text p='sm' className={classes.singlePostDesc}>
+            {desc}
+          </Text>
         )}
         {updateMode && (
           <button className='singlePostButton' onClick={handleUpdate}>

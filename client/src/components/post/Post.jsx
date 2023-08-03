@@ -4,13 +4,11 @@ import {
   Group,
   Image,
   Paper,
-  Stack,
   Text,
   Title,
   createStyles,
 } from '@mantine/core';
 import { Link } from 'react-router-dom';
-import './post.scss';
 
 const useStyles = createStyles((theme) => ({
   postCard: {
@@ -19,14 +17,14 @@ const useStyles = createStyles((theme) => ({
         ? theme.colors.myPurple[6]
         : theme.colors.white,
   },
-  // postBadge: {
-  // backgroundColor:
-  //   theme.colorScheme === 'dark' ? theme.colors.myYellow[7] : theme.blue,
-  //   color:
-  //     theme.colorScheme === 'dark'
-  //       ? theme.colors.myYellow[7]
-  //       : theme.colors.black,
-  // },
+  postBadge: {
+    color:
+      theme.colorScheme === 'dark' ? theme.colors.myPurple[7] : theme.black,
+    background:
+      theme.colorScheme === 'dark'
+        ? theme.colors.myYellow[7]
+        : theme.colors.blue[6],
+  },
 }));
 
 export default function Post({ post }) {
@@ -68,7 +66,12 @@ export default function Post({ post }) {
         </div>
 
         <Group position='apart' pt='xs'>
-          <Text size={12}>Author: {post.username}</Text>
+          <Text size={12}>
+            Author:{' '}
+            <Link to={`/?user=${post.username}`} className='link'>
+              <b>{post.username}</b>
+            </Link>
+          </Text>
           <Text size={12} component='a' href={`/post/${post._id}`}>
             Read more...
           </Text>

@@ -66,7 +66,14 @@ export default function BlogPage() {
       <Title order={2} align='center' p='xs'>
         Blog Feed
       </Title>
-      <Divider size={0} p='1.5px' mb='md' className={classes.blogPageDivider} />
+      <Divider
+        size={0}
+        p='1.5px'
+        mb='md'
+        className={classes.blogPageDivider}
+        m='auto'
+        w='25%'
+      />
       <Group position='apart' maw='80vw' m='auto'>
         <Text size='lg' p='sm'>
           Text 1

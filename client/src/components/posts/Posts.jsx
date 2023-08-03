@@ -47,7 +47,14 @@ export default function Posts({ posts }) {
       <Title order={2} align='center' p='xs'>
         Our Latest Posts
       </Title>
-      <Divider size={0} p='1.5px' mb='md' className={classes.postsDivider} />
+      <Divider
+        size={0}
+        p='1.5px'
+        mb='md'
+        className={classes.postsDivider}
+        m='auto'
+        w='25%'
+      />
       <Grid grow gutter='sm'>
         {posts.slice(0, 3).map((p, index) => {
           return (

@@ -99,7 +99,14 @@ export default function Sidebar() {
       <Title className='sidebarTitle' order={2} align='center' p='xs'>
         Categories
       </Title>
-      <Divider size={0} p='1.5px' mb='md' className={classes.sidebarDivider} />
+      <Divider
+        size={0}
+        p='1.5px'
+        mb='md'
+        className={classes.sidebarDivider}
+        m='auto'
+        w='25%'
+      />
       <div>
         <SimpleGrid cols={2} spacing={0} h={500} className={classes.grid}>
           {images}
@@ -108,7 +115,14 @@ export default function Sidebar() {
       <Title order={2} align='center' p='xs' pt='md'>
         About Us
       </Title>
-      <Divider size={0} p='1.5px' mb='md' className={classes.sidebarDivider} />
+      <Divider
+        size={0}
+        p='1.5px'
+        mb='md'
+        className={classes.sidebarDivider}
+        m='auto'
+        w='25%'
+      />
       <Text size='lg'>
         Welcome to our blog! We are excited to share our traveling journeys and
         experiences with you. We love to explore new places and experience
@@ -119,7 +133,14 @@ export default function Sidebar() {
       <Title order={2} align='center' p='xs' pt='md'>
         Follow Us!
       </Title>
-      <Divider size={0} p='1.5px' mb='md' className={classes.sidebarDivider} />
+      <Divider
+        size={0}
+        p='1.5px'
+        mb='md'
+        className={classes.sidebarDivider}
+        m='auto'
+        w='25%'
+      />
       <div className={classes.socialIcons}>
         <IconBrandYoutube className={classes.youtubeIcon} size={28} />
         <IconBrandInstagram className={classes.instagramIcon} size={28} />

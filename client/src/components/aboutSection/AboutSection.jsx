@@ -36,7 +36,14 @@ export default function AboutSection({ cards }) {
         <Title order={2} align='center' p='xs'>
           About Us
         </Title>
-        <Divider size={0} p='1.5px' mb='md' className={classes.aboutDivider} />
+        <Divider
+          size={0}
+          p='1.5px'
+          mb='md'
+          className={classes.aboutDivider}
+          m='auto'
+          w='25%'
+        />
 
         {aboutCards.map((card) => {
           return (

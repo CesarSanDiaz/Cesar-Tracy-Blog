@@ -56,6 +56,18 @@ function App() {
           colorScheme,
           // Adding my custom colors. myBlue[4] and myYellow[4] are the main ones
           colors: {
+            dark: [
+              '#C1C2C5',
+              '#A6A7AB',
+              '#909296',
+              '#5c5f66',
+              '#373A40',
+              '#2C2E33',
+              '#25262b',
+              '#18071b',
+              '#141517',
+              '#101113',
+            ],
             myBlue: [
               '#dadbdd',
               '#aaabb1',

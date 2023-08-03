@@ -63,6 +63,8 @@ export default function ContactSection() {
           p='1.5px'
           mb='md'
           className={classes.contactDivider}
+          m='auto'
+          w='25%'
         />
         <Text p='md' align='center' fz='lg'>
           Need to get in touch with us? Please fill out the form with your
