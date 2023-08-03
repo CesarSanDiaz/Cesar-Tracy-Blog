@@ -1,9 +1,12 @@
 import {
   BackgroundImage,
   Badge,
+  Button,
   Divider,
   Group,
   Text,
+  TextInput,
+  Textarea,
   Title,
   createStyles,
 } from '@mantine/core';
@@ -11,7 +14,6 @@ import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Context } from '../../context/Context';
-import './singlePost.scss';
 
 const useStyles = createStyles((theme) => ({
   singlePostDivider: {
@@ -30,9 +32,10 @@ const useStyles = createStyles((theme) => ({
   },
   singlePostImg: {
     width: '100%',
-    height: '35vh',
+    height: '50vh',
     backgroundSize: 'contain',
     position: 'center',
+    backgroundRepeat: 'no-repeat',
   },
   singlePostDesc: {
     ':first-letter': {
@@ -110,8 +113,11 @@ export default function SinglePost() {
     <>
       <div className='singlePostWrapper' style={{ padding: '12px' }}>
         {updateMode ? (
-          <input
+          <TextInput
             type='text'
+            size='lg'
+            variant='filled'
+            label='Enter Post Title'
             value={title}
             className='singlePostTitleInput'
             autoFocus
@@ -120,19 +126,15 @@ export default function SinglePost() {
         ) : (
           <div>
             <Title order={1} align='center' p='sm'>
-              {title}
               {post.username === user?.username && (
-                <div className='singlePostEdit'>
-                  <i
-                    className='singlePostIcon far fa-edit'
-                    onClick={() => setUpdateMode(true)}
-                  ></i>
-                  <i
-                    className='singlePostIcon far fa-trash-alt'
-                    onClick={handleDelete}
-                  ></i>
-                </div>
+                <Group position='apart'>
+                  <Button onClick={() => setUpdateMode(true)}>Update</Button>
+                  <Button onClick={handleDelete} c='red'>
+                    Delete
+                  </Button>
+                </Group>
               )}
+              {title}
             </Title>
           </div>
         )}
@@ -144,14 +146,16 @@ export default function SinglePost() {
           m='auto'
           w='25%'
         />
-        {post.photo && (
-          <BackgroundImage
-            className={classes.singlePostImg}
-            src={PF + post.photo}
-            alt=''
-            radius='sm'
-          />
-        )}
+        <div className={classes.picWrapper}>
+          {post.photo && (
+            <BackgroundImage
+              className={classes.singlePostImg}
+              src={PF + post.photo}
+              alt=''
+              radius='sm'
+            />
+          )}
+        </div>
         <Group position='apart' py='sm'>
           <Text align='center' transform='capitalize'>
             Posted on {new Date(post.createdAt).toDateString()} by{' '}
@@ -167,8 +171,10 @@ export default function SinglePost() {
           </Group>
         </Group>
         {updateMode ? (
-          <textarea
-            className='singlePostDescInput'
+          <Textarea
+            label='Enter Post Description'
+            variant='filled'
+            autosize
             value={desc}
             onChange={(e) => setDesc(e.target.value)}
           />
@@ -177,11 +183,7 @@ export default function SinglePost() {
             {desc}
           </Text>
         )}
-        {updateMode && (
-          <button className='singlePostButton' onClick={handleUpdate}>
-            Update
-          </button>
-        )}
+        {updateMode && <Button onClick={handleUpdate}>Update</Button>}
       </div>
     </>
   );

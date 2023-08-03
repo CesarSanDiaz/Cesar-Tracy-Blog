@@ -113,6 +113,13 @@ function App() {
           fontFamily: 'Ubuntu, Pacifico',
           // default heading colors
           components: {
+            Button: {
+              defaultProps: (theme) => ({
+                variant: 'outline',
+                size: 'xs',
+                color: theme.colorScheme === 'dark' ? 'myYellow.7' : 'blue',
+              }),
+            },
             Title: {
               defaultProps: (theme) => ({
                 color: theme.colorScheme === 'dark' ? theme.white : theme.black,

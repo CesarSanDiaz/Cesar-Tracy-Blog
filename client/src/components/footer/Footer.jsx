@@ -67,9 +67,13 @@ export default function Footer() {
             <div className='options'>
               <Link className='link' to='/settings'>
                 <img
-                  className='topImg'
                   src={PF + user.profilePic}
                   alt='Avatar'
+                  style={{
+                    width: '25px',
+                    borderRadius: '50%',
+                    height: '25px',
+                  }}
                 />
               </Link>
               <Button size='xs' onClick={handleLogout}>
