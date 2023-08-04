@@ -4,12 +4,20 @@ import {
   Button,
   Divider,
   Group,
+  Modal,
+  Stack,
   Text,
   TextInput,
   Textarea,
   Title,
   createStyles,
 } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+import {
+  IconExclamationMark,
+  IconPencil,
+  IconTrash,
+} from '@tabler/icons-react';
 import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
@@ -60,6 +68,7 @@ export default function SinglePost() {
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
   const [updateMode, setUpdateMode] = useState(false);
+  const [opened, { open, close }] = useDisclosure(false);
 
   useEffect(() => {
     //ANOTHER WAY
@@ -111,7 +120,7 @@ export default function SinglePost() {
 
   return (
     <>
-      <div className='singlePostWrapper' style={{ padding: '12px' }}>
+      <div style={{ padding: '12px' }}>
         {updateMode ? (
           <TextInput
             type='text'
@@ -128,9 +137,19 @@ export default function SinglePost() {
             <Title order={1} align='center' p='sm'>
               {post.username === user?.username && (
                 <Group position='apart'>
-                  <Button onClick={() => setUpdateMode(true)}>Update</Button>
-                  <Button onClick={handleDelete} c='red'>
-                    Delete
+                  <Button
+                    leftIcon={<IconPencil size='1rem' />}
+                    onClick={() => setUpdateMode(true)}
+                  >
+                    Update Post
+                  </Button>
+                  <Button
+                    onClick={open}
+                    variant='filled'
+                    sx={{ backgroundColor: 'red' }}
+                    leftIcon={<IconTrash size='1rem' />}
+                  >
+                    Delete Post
                   </Button>
                 </Group>
               )}
@@ -146,7 +165,7 @@ export default function SinglePost() {
           m='auto'
           w='25%'
         />
-        <div className={classes.picWrapper}>
+        <div>
           {post.photo && (
             <BackgroundImage
               className={classes.singlePostImg}
@@ -183,7 +202,36 @@ export default function SinglePost() {
             {desc}
           </Text>
         )}
-        {updateMode && <Button onClick={handleUpdate}>Update</Button>}
+        {updateMode && (
+          <Group position='center' p='sm'>
+            <Button
+              size='sm'
+              onClick={handleUpdate}
+              sx={(theme) => ({
+                backgroundColor:
+                  theme.colorScheme === 'dark'
+                    ? theme.colors.green[9]
+                    : theme.colors.green[3],
+              })}
+            >
+              Update
+            </Button>
+            <Button onClick={() => setUpdateMode(false)}>Cancel</Button>
+          </Group>
+        )}
+        <Modal opened={opened} onClose={close} title='Delete Post'>
+          <Stack align='center' spacing='xs'>
+            <IconExclamationMark size='5rem' color='red' />
+            <Title order={4}>Are you sure?</Title>
+            <Text>This process cannot be undone.</Text>
+          </Stack>
+          <Group position='center' p='sm'>
+            <Button onClick={close}>Cancel</Button>
+            <Button variant='filled' color='red' onClick={handleDelete}>
+              Delete
+            </Button>
+          </Group>
+        </Modal>
       </div>
     </>
   );

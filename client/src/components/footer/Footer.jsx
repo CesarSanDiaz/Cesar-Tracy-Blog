@@ -1,4 +1,10 @@
-import { Button, Paper, Stack, Text, createStyles } from '@mantine/core';
+import {
+  Paper,
+  Stack,
+  Text,
+  UnstyledButton,
+  createStyles,
+} from '@mantine/core';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Context } from '../../context/Context';
@@ -76,9 +82,9 @@ export default function Footer() {
                   }}
                 />
               </Link>
-              <Button size='xs' onClick={handleLogout}>
+              <UnstyledButton onClick={handleLogout} px='sm'>
                 Logout
-              </Button>
+              </UnstyledButton>
             </div>
           ) : (
             <div className={classes.bottomList}>

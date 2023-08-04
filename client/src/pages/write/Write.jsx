@@ -1,8 +1,32 @@
-import { Button, FileButton, TextInput, Tooltip } from '@mantine/core';
+import {
+  BackgroundImage,
+  Button,
+  Divider,
+  FileButton,
+  TextInput,
+  Title,
+  createStyles,
+} from '@mantine/core';
 import axios from 'axios';
 import { useContext, useState } from 'react';
 import { Context } from '../../context/Context';
 import './write.css';
+
+const useStyles = createStyles((theme) => ({
+  uploadImg: {
+    width: '500px',
+    height: '300px',
+    backgroundSize: 'contain',
+    position: 'center',
+    backgroundRepeat: 'no-repeat',
+  },
+  writeDivider: {
+    backgroundColor:
+      theme.colorScheme === 'dark'
+        ? theme.colors.myYellow[7]
+        : theme.colors.blue[6],
+  },
+}));
 
 export default function Write() {
   const [title, setTitle] = useState('');
@@ -10,6 +34,7 @@ export default function Write() {
   const [cat, setCat] = useState('');
   const [file, setFile] = useState(null);
   const { user } = useContext(Context);
+  const { classes } = useStyles();
 
   const handleSubmit = async (e) => {
     console.log(file);
@@ -40,24 +65,38 @@ export default function Write() {
     }
   };
   return (
-    <div className='write'>
+    <div style={{ padding: '12px' }}>
+      <Title order={2} align='center'>
+        New Post
+      </Title>
+      <Divider
+        size='xs'
+        p='1.5px'
+        mb='sm'
+        className={classes.writeDivider}
+        m='auto'
+        w='25%'
+      />
       {file && (
-        <img className='writeImg' src={URL.createObjectURL(file)} alt='' />
-      )}
-      <form className='writeForm' onSubmit={handleSubmit}>
-        <div className='writeFormGroup'>
-          <Tooltip
-            withArrow
-            position='left'
-            label='Add Image'
-            arrowPosition='center'
+        <div>
+          <BackgroundImage
+            src={URL.createObjectURL(file)}
+            alt=''
+            className={classes.uploadImg}
+          />
+          <Button
+            onClick={() => {
+              setFile(null);
+            }}
           >
-            <label htmlFor='fileInput'>
-              <i className='writeIcon fas fa-plus'></i>
-            </label>
-          </Tooltip>
+            Cancel
+          </Button>
+        </div>
+      )}
+      <form onSubmit={handleSubmit}>
+        <div className='writeFormGroup'>
           <FileButton onChange={setFile}>
-            {(props) => <Button {...props}>Upload</Button>}
+            {(props) => <Button {...props}>Upload image</Button>}
           </FileButton>
           <input
             className='writeInput'

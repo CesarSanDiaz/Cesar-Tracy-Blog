@@ -1,24 +1,8 @@
-.write {
-  padding-top: 50px;
-}
-
-.writeImg {
-  margin-left: 150px;
-  width: 70vw;
-  height: 250px;
-  border-radius: 10px;
-  object-fit: cover;
-}
-
-.writeForm {
-  position: relative;
-}
-
+/* 
 .writeFormGroup {
-  margin-left: 150px;
   display: flex;
   align-items: center;
-}
+} */
 
 .writeIcon {
   width: 25px;
@@ -32,13 +16,12 @@
   justify-content: center;
   cursor: pointer;
 }
-
+/* 
 .writeInput {
   font-size: 30px;
   border: none;
-  padding: 20px;
   width: 70vw;
-}
+} */
 
 .writeInput::placeholder {
   color: rgb(189, 185, 185);
