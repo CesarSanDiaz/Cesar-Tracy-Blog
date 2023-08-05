@@ -6,6 +6,7 @@ import {
   BrowserRouter as Router,
   Routes,
 } from 'react-router-dom';
+import Categories from './components/categories/Categories';
 import Footer from './components/footer/Footer';
 import SinglePost from './components/singlePost/SinglePost';
 import TopBar from './components/topbar/Topbar';
@@ -150,6 +151,7 @@ function App() {
                 element={user ? <Write /> : <Register />}
               ></Route>
               <Route path='/singlePost' element={<SinglePost />}></Route>
+              <Route path='/categories' element={<Categories />}></Route>
               <Route
                 path='/register'
                 element={user ? <Navigate to='/' /> : <Register />}

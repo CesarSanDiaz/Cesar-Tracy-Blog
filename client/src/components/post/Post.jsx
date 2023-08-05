@@ -18,12 +18,11 @@ const useStyles = createStyles((theme) => ({
         : theme.colors.white,
   },
   postBadge: {
-    color:
-      theme.colorScheme === 'dark' ? theme.colors.myPurple[7] : theme.black,
-    background:
+    backgroundColor:
       theme.colorScheme === 'dark'
         ? theme.colors.myYellow[7]
-        : theme.colors.blue[6],
+        : theme.colors.blue[1],
+    color: theme.colorScheme === 'dark' ? theme.colors.myPurple[7] : theme.blue,
   },
 }));
 
@@ -47,11 +46,16 @@ export default function Post({ post }) {
       <Paper sx={{ backgroundColor: 'transparent' }} p='xs'>
         {/* <Stack align='flex-start' spacing='md'> */}
         <div>
-          <Badge className={classes.postBadge} size='xs' radius='sm'>
-            {post.category?.map((c) => {
-              return <Text key={post.name}>{c.name}</Text>;
-            }) || 'Category'}
+          <Badge className={classes.postBadge} size='xs'>
+            {post.categories.map((c) => {
+              return (
+                <Link to={`/?cat=${c}`} className='link' key={c}>
+                  {c}
+                </Link>
+              );
+            })}
           </Badge>
+
           <Link to={`/post/${post._id}`} className='link'>
             <Title order={2} ta='center'>
               {post.title}
@@ -66,7 +70,7 @@ export default function Post({ post }) {
         </div>
 
         <Group position='apart' pt='xs'>
-          <Text size={12}>
+          <Text size={12} sx={{ textTransform: 'capitalize' }}>
             Author:{' '}
             <Link to={`/?user=${post.username}`} className='link'>
               <b>{post.username}</b>

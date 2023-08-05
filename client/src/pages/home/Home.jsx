@@ -18,6 +18,7 @@ export default function Home() {
   const [posts, setPosts] = useState([]);
   const { classes } = useStyles();
 
+  // Fetching Posts
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await axios.get('http://localhost:5000/api/posts' + search);

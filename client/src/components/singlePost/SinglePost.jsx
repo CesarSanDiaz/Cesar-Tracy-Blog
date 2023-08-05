@@ -67,6 +67,7 @@ export default function SinglePost() {
   const { user } = useContext(Context);
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
+  const [category, setCategory] = useState([]);
   const [updateMode, setUpdateMode] = useState(false);
   const [opened, { open, close }] = useDisclosure(false);
 
@@ -87,6 +88,7 @@ export default function SinglePost() {
         setPost(res.data);
         setTitle(res.data.title);
         setDesc(res.data.desc);
+        setCategory(res.data.categories);
       };
       getPost();
     } catch (err) {
@@ -184,8 +186,8 @@ export default function SinglePost() {
           </Text>
           <Group>
             <Text>Categories:</Text>
-            <Badge size='xs' radius='sm' className={classes.singlePostBadge}>
-              Category
+            <Badge size='xs' className={classes.singlePostBadge}>
+              {category}
             </Badge>
           </Group>
         </Group>
