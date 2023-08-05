@@ -31,6 +31,7 @@ const useStyles = createStyles((theme) => ({
         : theme.colors.blue[6],
   },
   singlePostBadge: {
+    textTransform: 'capitalize',
     color:
       theme.colorScheme === 'dark' ? theme.colors.myPurple[7] : theme.black,
     background:

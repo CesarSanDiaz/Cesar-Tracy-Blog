@@ -18,6 +18,7 @@ const useStyles = createStyles((theme) => ({
         : theme.colors.white,
   },
   postBadge: {
+    textTransform: 'capitalize',
     backgroundColor:
       theme.colorScheme === 'dark'
         ? theme.colors.myYellow[7]

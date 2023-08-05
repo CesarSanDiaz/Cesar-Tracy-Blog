@@ -1,5 +1,5 @@
 import { Button, TextInput, Title } from '@mantine/core';
-import axios from 'axios';
+// import axios from 'axios';
 import { useState } from 'react';
 
 export default function Categories() {
@@ -7,17 +7,14 @@ export default function Categories() {
   console.log(categories);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    // removing space if any
-
-    let noSpaces = categories.replace(/\s+/g, '');
-    alert(noSpaces);
-
+    //   e.preventDefault();
+    //   // removing space if any
+    //   let noSpaces = categories.replace(/\s+/g, '');
+    //   alert(noSpaces);
     // const data = {
     //   name: categories,
     //   title: noSpaces,
     // };
-
     // try {
     //   await axios.post('/categories', data);
     // } catch (err) {
