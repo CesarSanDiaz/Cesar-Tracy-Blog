@@ -62,7 +62,6 @@ export default function Write() {
     e.preventDefault();
     // removing space if any
     let noSpaces = categories.replace(/\s+/g, '');
-
     const newCat = {
       name: categories,
       title: noSpaces,
@@ -86,21 +85,22 @@ export default function Write() {
       } catch (err) {
         console.log(err.message);
       }
-      // sending posts to backend
-      try {
-        const res = await axios.post('/posts', newPost);
-        window.location.replace('/post/' + res.data._id);
-      } catch (err) {
-        console.log(err.message);
-      }
-      // sending Categories to backend
-      try {
-        await axios.post('/categories', newCat);
-      } catch (err) {
-        console.log(err);
-      }
+    }
+    // sending posts to backend
+    try {
+      const res = await axios.post('/posts', newPost);
+      window.location.replace('/post/' + res.data._id);
+    } catch (err) {
+      console.log(err.message);
+    }
+    // sending Categories to backend
+    try {
+      await axios.post('/categories', newCat);
+    } catch (err) {
+      console.log(err);
     }
   };
+
   return (
     <div style={{ padding: '12px' }}>
       <Title order={2} align='center'>
