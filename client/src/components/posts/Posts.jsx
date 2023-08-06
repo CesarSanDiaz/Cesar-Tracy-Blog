@@ -1,7 +1,5 @@
-import { Divider, Grid, Paper, Title } from '@mantine/core';
+import { Divider, Grid, Paper, Title, createStyles } from '@mantine/core';
 import Post from '../../components/post/Post';
-// import './posts.scss';
-import { createStyles } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
   number0: {

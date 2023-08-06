@@ -24,6 +24,7 @@ export default function Home() {
       const res = await axios.get('http://localhost:5000/api/posts' + search);
       setPosts(res.data);
     };
+    console.log(posts);
     fetchPosts();
     // const fetchPost = async () => {
     //   return axios
@@ -57,7 +58,7 @@ export default function Home() {
             className={classes.sidebar}
           >
             <Grid.Col span={4} xs={0} sm={6} md={4}>
-              <Sidebar />
+              <Sidebar posts={posts} />
             </Grid.Col>
           </MediaQuery>
         </Grid>

@@ -1,6 +1,5 @@
 import {
   Badge,
-  // Box,
   Divider,
   Paper,
   SimpleGrid,
@@ -72,7 +71,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export default function Sidebar() {
+export default function Sidebar({ posts }) {
   const [cats, setCat] = useState([]);
   const { classes } = useStyles();
 
@@ -81,23 +80,13 @@ export default function Sidebar() {
       const getCats = async () => {
         const res = await axios.get('/categories');
         setCat(res.data);
+        console.log(res.data);
       };
       getCats();
     } catch (err) {
       console.log(err.message);
     }
   }, []);
-
-  // Looping through categories array stored in state
-  const catBadge = cats.map((c) => {
-    return (
-      <Link className='link' to={`/?cat=${c.title}`} key={c.id}>
-        <Badge size='md' className={classes.badge}>
-          {c.name}
-        </Badge>
-      </Link>
-    );
-  });
 
   // const images = quickLinks.map((pic) => {
   //   return (
@@ -129,8 +118,13 @@ export default function Sidebar() {
       />
       <div>
         <SimpleGrid cols={2}>
+          <li>{cats.id}</li>
+          {/* <div>
+            {posts.map((cat) => (
+              <Badge key={cat.id}>{cat.categories}</Badge>
+            ))}
+          </div> */}
           {/* {images} */}
-          {catBadge}
         </SimpleGrid>
       </div>
       <Title order={2} align='center' p='xs' pt='md'>
