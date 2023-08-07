@@ -23,7 +23,7 @@ const useStyles = createStyles((theme) => ({
   paper: {
     backgroundColor: 'transparent',
   },
-  badge: {
+  sidebarBadge: {
     variant: 'light',
     textTransform: 'capitalize',
     backgroundColor:
@@ -119,7 +119,11 @@ export default function Sidebar() {
       <div>
         <SimpleGrid cols={2}>
           {categories &&
-            categories.map((cat) => <Badge key={cat._id}>{cat.name}</Badge>)}
+            categories.map((cat) => (
+              <Link to={`/?cat=${cat.name}`} className='link' key={cat._id}>
+                <Badge className={classes.sidebarBadge}>{cat.name}</Badge>
+              </Link>
+            ))}
           {/* {images} */}
         </SimpleGrid>
       </div>

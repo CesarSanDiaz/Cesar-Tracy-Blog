@@ -53,7 +53,7 @@ const useStyles = createStyles((theme) => ({
 export default function Write() {
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
-  const [categories, setCategories] = useState([]);
+  // const [categories, setCategories] = useState([]);
   const [file, setFile] = useState(null);
   const { user } = useContext(Context);
   const { classes } = useStyles();
@@ -61,12 +61,6 @@ export default function Write() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // removing space if any
-    let noSpaces = categories.replace(/\s+/g, '');
-    const newCat = {
-      name: categories,
-      title: noSpaces,
-      label: '',
-    };
 
     const newPost = {
       username: user.username,
@@ -95,11 +89,11 @@ export default function Write() {
       console.log(err.message);
     }
     // sending Categories to backend
-    try {
-      await axios.post('/categories', newCat);
-    } catch (err) {
-      console.log(err);
-    }
+    // try {
+    //   await axios.post('/categories', newCat);
+    // } catch (err) {
+    //   console.log(err);
+    // }
   };
 
   return (
@@ -177,18 +171,11 @@ export default function Write() {
             placeholder='select categories'
             onChange={(e) => setCat(e[0])}
           /> */}
-          <TextInput
+          {/* <TextInput
             placeholder='Category'
             type='text'
             onChange={(e) => setCategories(e.target.value)}
             py='sm'
-          />
-          cat: {categories}
-          {/* <TextInput
-            placeholder='Enter post category'
-            label='Category'
-            variant='filled'
-            onChange={(e) => setCat(e.target.value)}
           /> */}
           <Button type='submit'>Publish</Button>
         </form>

@@ -84,25 +84,5 @@ export default function Post({ post }) {
         {/* </Stack> */}
       </Paper>
     </Card>
-
-    // const useStyles = createStyles((theme) => ({
-    //   catCard: {
-    //     width: '25%',
-    //     margin: 'auto',
-    //     backgroundColor:
-    //       theme.colorScheme === 'dark'
-    //         ? theme.colors.myPurple[6]
-    //         : theme.colors.white,
-    //   },
-    // }));
-
-    //     <Card
-    //   shadow='sm'
-    //   radius='lg'
-    //   withBorder
-    //   p='md'
-    //   className={classes.catCard}
-    //   align='center'
-    // ></Card>
   );
 }

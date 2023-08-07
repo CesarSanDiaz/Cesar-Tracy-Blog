@@ -8,17 +8,6 @@ const CategorySchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    // {Title is used so that I can display the link to this without an space}
-    // title: {
-    //   type: String,
-    //   required: false,
-    //   unique: true,
-    // },
-    // label: {
-    //   type: String,
-    //   required: false,
-    //   unique: false,
-    // },
     photo: {
       type: String,
       required: false,
