@@ -85,7 +85,7 @@ router.get('/', async (req, res) => {
     }
     res.status(200).json(posts);
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json(err + 'could not fetch all documents');
   }
 });
 

@@ -24,7 +24,7 @@ export default function Home() {
       const res = await axios.get('http://localhost:5000/api/posts' + search);
       setPosts(res.data);
     };
-    console.log(posts);
+    // console.log(posts);
     fetchPosts();
     // const fetchPost = async () => {
     //   return axios

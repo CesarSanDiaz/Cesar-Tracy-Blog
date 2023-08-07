@@ -71,21 +71,21 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export default function Sidebar({ posts }) {
-  const [cats, setCat] = useState([]);
+export default function Sidebar() {
+  const [categories, setCategories] = useState(null);
+
   const { classes } = useStyles();
 
   useEffect(() => {
-    try {
-      const getCats = async () => {
+    const getCategories = async () => {
+      try {
         const res = await axios.get('/categories');
-        setCat(res.data);
-        console.log(res.data);
-      };
-      getCats();
-    } catch (err) {
-      console.log(err.message);
-    }
+        setCategories(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getCategories();
   }, []);
 
   // const images = quickLinks.map((pic) => {
@@ -118,12 +118,8 @@ export default function Sidebar({ posts }) {
       />
       <div>
         <SimpleGrid cols={2}>
-          <li>{cats.id}</li>
-          {/* <div>
-            {posts.map((cat) => (
-              <Badge key={cat.id}>{cat.categories}</Badge>
-            ))}
-          </div> */}
+          {categories &&
+            categories.map((cat) => <Badge key={cat._id}>{cat.name}</Badge>)}
           {/* {images} */}
         </SimpleGrid>
       </div>

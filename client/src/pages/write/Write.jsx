@@ -65,13 +65,14 @@ export default function Write() {
     const newCat = {
       name: categories,
       title: noSpaces,
+      label: '',
     };
 
     const newPost = {
       username: user.username,
       title,
       desc,
-      categories,
+      // categories,
     };
 
     if (file) {
