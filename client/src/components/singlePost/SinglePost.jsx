@@ -32,12 +32,11 @@ const useStyles = createStyles((theme) => ({
   },
   singlePostBadge: {
     textTransform: 'capitalize',
-    color:
-      theme.colorScheme === 'dark' ? theme.colors.myPurple[7] : theme.black,
-    background:
+    color: theme.colorScheme === 'dark' ? theme.colors.myPurple[7] : theme.blue,
+    backgroundColor:
       theme.colorScheme === 'dark'
         ? theme.colors.myYellow[7]
-        : theme.colors.blue[6],
+        : theme.colors.blue[1],
   },
   singlePostImg: {
     width: '100%',
@@ -95,7 +94,7 @@ export default function SinglePost() {
     } catch (err) {
       console.log(err.message);
     }
-  }, [path]);
+  }, [path, category]);
 
   const handleDelete = async () => {
     try {
@@ -187,9 +186,11 @@ export default function SinglePost() {
           </Text>
           <Group>
             <Text>Categories:</Text>
-            <Badge size='xs' className={classes.singlePostBadge}>
-              {category}
-            </Badge>
+            {category.map((cat, i) => (
+              <Badge size='xs' className={classes.singlePostBadge} key={cat.i}>
+                {cat}
+              </Badge>
+            ))}
           </Group>
         </Group>
         {updateMode ? (

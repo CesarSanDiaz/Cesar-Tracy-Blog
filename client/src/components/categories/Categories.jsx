@@ -5,7 +5,7 @@ import SelectCategories from './SelectCategories';
 
 const useStyles = createStyles((theme) => ({
   catCard: {
-    width: '25%',
+    width: '50%',
     margin: 'auto',
     backgroundColor:
       theme.colorScheme === 'dark'

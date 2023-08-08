@@ -47,15 +47,15 @@ export default function Post({ post }) {
       <Paper sx={{ backgroundColor: 'transparent' }} p='xs'>
         {/* <Stack align='flex-start' spacing='md'> */}
         <div>
-          <Badge className={classes.postBadge} size='xs'>
-            {post.categories.map((c) => {
-              return (
-                <Link to={`/?cat=${c}`} className='link' key={c}>
+          {post.categories.map((c) => {
+            return (
+              <Link to={`/?cat=${c}`} className='link' key={c}>
+                <Badge className={classes.postBadge} size='xs' mr='sm'>
                   {c}
-                </Link>
-              );
-            })}
-          </Badge>
+                </Badge>
+              </Link>
+            );
+          })}
 
           <Link to={`/post/${post._id}`} className='link'>
             <Title order={2} ta='center'>

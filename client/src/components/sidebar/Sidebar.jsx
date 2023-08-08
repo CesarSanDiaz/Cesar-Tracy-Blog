@@ -16,8 +16,6 @@ import {
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../../data/QuickLinks';
-// import quickLinks from '../../data/QuickLinks';
 
 const useStyles = createStyles((theme) => ({
   paper: {
@@ -32,12 +30,6 @@ const useStyles = createStyles((theme) => ({
         : theme.colors.blue[1],
     color: theme.colorScheme === 'dark' ? theme.colors.myPurple[7] : theme.blue,
   },
-  // box: {
-  //   textAlign: 'center',
-  //   padding: '6px',
-  //   color: theme.white,
-  //   backgroundColor: 'rgb(0, 0, 0, 0.5)',
-  // },
   socialIcons: {
     cursor: 'pointer',
     display: 'flex',
@@ -88,19 +80,6 @@ export default function Sidebar() {
     getCategories();
   }, []);
 
-  // const images = quickLinks.map((pic) => {
-  //   return (
-  //     <BackgroundImage
-  //       className={classes.bgImage}
-  //       key={pic.id}
-  //       src={pic.img}
-  //       alt={pic.title}
-  //     >
-  //       <Box className={classes.box}>{pic.title}</Box>
-  //     </BackgroundImage>
-  //   );
-  // });
-
   return (
     <Paper radius={0} p='sm' className={classes.paper}>
       <Link to='/categories' className='link'>
@@ -117,7 +96,7 @@ export default function Sidebar() {
         w='25%'
       />
       <div>
-        <SimpleGrid cols={2}>
+        <SimpleGrid cols={3}>
           {categories &&
             categories.map((cat) => (
               <Link to={`/?cat=${cat.name}`} className='link' key={cat._id}>

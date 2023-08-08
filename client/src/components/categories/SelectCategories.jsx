@@ -1,35 +1,36 @@
-import { Badge, MultiSelect, Text } from '@mantine/core';
+import { MultiSelect } from '@mantine/core';
 import axios from 'axios';
-// import { useEffect, useState } from 'react';
-// import { Link } from 'react-router-dom';
-const catData = [
-  { _id: '64d10101a313ac10f72463d4', name: 'Tracy' },
-  { _id: '64d100fea313ac10f72463d2', name: 'Cesar' },
-  { _id: '64d0fe5fa313ac10f72463c8', name: 'Travel' },
-  { _id: '64d0fdaea313ac10f72463bc', name: 'Unique?' },
-];
+import { useEffect, useState } from 'react';
 
-export default function Categories() {
-  // const [categories, setCategories] = useState(null);
-  // useEffect(() => {
-  //   const getCategories = async () => {
-  //     try {
-  //       const res = await axios.get('/categories');
-  //       setCategories(res.data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   getCategories();
-  // }, []);
+export default function SelectCategories() {
+  // const [value, setValue] = useState(null);
+  const [categories, setCategories] = useState(null);
 
-  const catArray = Array.from(catData.map((c) => c.name));
+  useEffect(() => {
+    const getCategories = async () => {
+      try {
+        const res = await axios.get('/categories');
+        const namesToArray = Array.from(res.data.map((cat) => cat.name));
+        setCategories(namesToArray);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getCategories();
+  }, []);
+
+  // const catArray = Array.from(catData.map((c) => c.name));
 
   return (
     <>
-      <div>
-        <MultiSelect data={catArray} placeholder='select categories' />
-      </div>
+      <MultiSelect
+        label='Select Category'
+        dropdownPosition='top'
+        variant='filled'
+        placeholder='select categories'
+        data={categories || []}
+        categories={categories}
+      />
     </>
   );
 }

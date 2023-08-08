@@ -4,32 +4,25 @@ import {
   Card,
   Divider,
   FileButton,
-  // MultiSelect,
+  Group,
+  MultiSelect,
+  Paper,
+  // Select,
   Stack,
   TextInput,
+  Textarea,
   Title,
   createStyles,
-  rem,
 } from '@mantine/core';
 import { IconCamera } from '@tabler/icons-react';
 import axios from 'axios';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+// import SelectCategories from '../../components/categories/SelectCategories';
 import { Context } from '../../context/Context';
-
-// const catData = [
-//   'Travel',
-//   'Hiking',
-//   'Road Trips',
-//   'Guides',
-//   'Views',
-//   'National Parks',
-//   'Waterfalls',
-//   'Camping',
-//   'State Parks',
-// ];
 
 const useStyles = createStyles((theme) => ({
   card: {
+    height: 'fitContent',
     backgroundColor:
       theme.colorScheme === 'dark'
         ? theme.colors.myPurple[6]
@@ -53,20 +46,37 @@ const useStyles = createStyles((theme) => ({
 export default function Write() {
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
-  // const [categories, setCategories] = useState([]);
+  // used for getting all the categories
+  const [categories, setCategories] = useState([]);
+  //used for storing only the selected category
+  const [selectedCat, setSelectedCat] = useState([]);
   const [file, setFile] = useState(null);
   const { user } = useContext(Context);
   const { classes } = useStyles();
 
+  // useEffect to GET call categories
+  useEffect(() => {
+    const getCategories = async () => {
+      try {
+        const res = await axios.get('/categories');
+        // categories into array form so that the multiselect can use that data
+        const namesToArray = Array.from(res.data.map((cat) => cat.name));
+        setCategories(namesToArray);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getCategories();
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // removing space if any
 
     const newPost = {
       username: user.username,
       title,
       desc,
-      // categories,
+      categories: selectedCat,
     };
 
     if (file) {
@@ -89,15 +99,15 @@ export default function Write() {
       console.log(err.message);
     }
     // sending Categories to backend
-    // try {
-    //   await axios.post('/categories', newCat);
-    // } catch (err) {
-    //   console.log(err);
-    // }
+    try {
+      await axios.post('/categories', [selectedCat]);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
-    <div style={{ padding: '12px' }}>
+    <Paper style={{ padding: '12px' }}>
       <Title order={2} align='center'>
         Create a Post
       </Title>
@@ -151,35 +161,46 @@ export default function Write() {
             )}
           </FileButton>
         )}
-        <form onSubmit={handleSubmit} style={{ padding: '12px 0' }}>
+        <form onSubmit={handleSubmit} className={classes.writeForm}>
           <TextInput
+            label='Title'
             required
-            placeholder='Title'
+            placeholder='Post Title'
             type='text'
+            variant='filled'
             onChange={(e) => setTitle(e.target.value)}
           />
-          <div>
-            <textarea
-              placeholder='Tell your story...'
-              type='text'
-              onChange={(e) => setDesc(e.target.value)}
-              style={{ width: rem(400), height: rem(120) }}
-            />
-          </div>
-          {/* <MultiSelect
-            data={catData}
-            placeholder='select categories'
-            onChange={(e) => setCat(e[0])}
-          /> */}
-          {/* <TextInput
-            placeholder='Category'
-            type='text'
-            onChange={(e) => setCategories(e.target.value)}
+          <Textarea
             py='sm'
-          /> */}
-          <Button type='submit'>Publish</Button>
+            placeholder='Tell your story...'
+            label='Description'
+            onChange={(e) => setDesc(e.target.value)}
+            minRows={4}
+            autosize
+            withAsterisk
+            variant='filled'
+          />
+          <Group align='apart'>
+            {/* <SelectCategories /> */}
+            <MultiSelect
+              label='Select Category'
+              dropdownPosition='top'
+              variant='filled'
+              onChange={setSelectedCat}
+              placeholder='select categories'
+              data={categories || []}
+            />
+          </Group>
+          <Button
+            type='submit'
+            sx={{ display: 'block', marginLeft: 'auto' }}
+            my='sm'
+          >
+            Publish
+          </Button>
+          {console.log(selectedCat)}
         </form>
       </Card>
-    </div>
+    </Paper>
   );
 }
