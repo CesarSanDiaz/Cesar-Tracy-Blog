@@ -25,7 +25,7 @@ const useStyles = createStyles((theme) => ({
     height: 'fitContent',
     backgroundColor:
       theme.colorScheme === 'dark'
-        ? theme.colors.myPurple[6]
+        ? theme.colors.myPurple[8]
         : theme.colors.blue[1],
   },
   uploadImg: {

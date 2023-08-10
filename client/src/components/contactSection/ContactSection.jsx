@@ -18,13 +18,7 @@ const useStyles = createStyles((theme) => ({
   contactCard: {
     backgroundColor:
       theme.colorScheme === 'dark'
-        ? theme.colors.myPurple[6]
-        : theme.colors.white,
-  },
-  contactPaper: {
-    backgroundColor:
-      theme.colorScheme === 'dark'
-        ? theme.colors.myPurple[7]
+        ? theme.colors.myPurple[8]
         : theme.colors.white,
   },
   contactTopIcon: {
@@ -48,7 +42,7 @@ export default function ContactSection() {
 
   return (
     <>
-      <Paper p='sm' radius={0} className={classes.contactPaper}>
+      <Paper p='sm' radius={0}>
         <IconMail size={50} className={classes.contactTopIcon} />
         <Title
           className='contactSectionFormTitle'
@@ -74,7 +68,7 @@ export default function ContactSection() {
           </Text>
           .
         </Text>
-        <MediaQuery largerThan='md' styles={{ width: '80%', margin: 'auto' }}>
+        <MediaQuery largerThan='xs' styles={{ width: '75%', margin: 'auto' }}>
           <Card
             withBorder
             shadow='md'
