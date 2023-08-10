@@ -1,6 +1,7 @@
 import { Loader } from '@mantine/core';
 import axios from 'axios';
 import { useContext, useRef } from 'react';
+// import { TestingPostContext } from '../../components/TestingPostContext';
 import { Context } from '../../context/Context';
 import './login.css';
 
@@ -46,6 +47,7 @@ export default function Login() {
         </button>
       </form>
       <button className='loginRegisterButton'>Register</button>
+      {/* <TestingPostContext /> */}
     </div>
   );
 }

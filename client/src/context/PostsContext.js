@@ -3,7 +3,7 @@ import React, { createContext, useState } from 'react';
 
 export const PostsContext = createContext();
 
-const PostsContextProvider = ({ children }) => {
+export const PostsContextProvider = ({ children }) => {
   const [posts, setPosts] = useState([
     { title: 'Post Title 1', desc: 'Post description 1', id: '1' },
     { title: 'Post Title 2', desc: 'Post description 2', id: '2' },
@@ -19,10 +19,8 @@ const PostsContextProvider = ({ children }) => {
     setPosts(posts.filter((post) => post.id !== id));
   };
   return (
-    <PostsContextProvider value={{ posts, addPost, removePost }}>
+    <PostsContext.Provider value={{ posts, addPost, removePost }}>
       {children}
-    </PostsContextProvider>
+    </PostsContext.Provider>
   );
 };
-
-export default PostsContextProvider;
