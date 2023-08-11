@@ -53,18 +53,14 @@ app.use('/api/users', userRoute);
 app.use('/api/posts', postRoute);
 app.use('/api/categories', categoryRoute);
 
-if (process.env.PORT) {
-  //connect to db using mongoose. Helps with Schemas to be stricter with documents
-  mongoose
-    //will authenticate our credentials on mongo. We don't want to listen until we are in
-    .connect(process.env.MONGO_URL)
-    .then(() => {
-      // Once in, listen for requests to our port
-      app.listen(process.env.PORT, () => {
-        console.log('connected to db & listening on port', process.env.PORT);
-      });
-    })
-    .catch((error) => console.log(error));
-}
-
-module.exports = app;
+//connect to db using mongoose. Helps with Schemas to be stricter with documents
+mongoose
+  //will authenticate our credentials on mongo. We don't want to listen until we are in
+  .connect(process.env.MONGO_URL)
+  .then(() => {
+    // Once in, listen for requests to our port
+    app.listen(process.env.PORT, () => {
+      console.log('connected to db & listening on port', process.env.PORT);
+    });
+  })
+  .catch((error) => console.log(error));
