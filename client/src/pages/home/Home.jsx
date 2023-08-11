@@ -1,11 +1,12 @@
 import { Grid, MediaQuery, Paper, createStyles } from '@mantine/core';
+// import axios from 'axios';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import Header from '../../components/header/Header';
 import Posts from '../../components/posts/Posts';
 import Sidebar from '../../components/sidebar/Sidebar';
-import { axiosInstance } from '../../config';
+// import { axiosInstance } from '../../config';
 
 // revisit this margin?
 const useStyles = createStyles(() => ({
@@ -22,7 +23,9 @@ export default function Home() {
   // Fetching Posts
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axiosInstance.get('/posts' + search);
+      const res = await axios.get(
+        'https://cesar-tracy-blog.vercel.app/api/posts' + search
+      );
       setPosts(res.data);
     };
     // console.log(posts);
