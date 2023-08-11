@@ -10,11 +10,12 @@ const multer = require('multer');
 const cors = require('cors');
 const path = require('path');
 
-app.use(
-  cors({
-    origin: 'http://localhost:3000',
-  })
-);
+app.use(cors());
+// app.use(
+//   cors({
+//     origin: 'http://localhost:3000',
+//   })
+// );
 
 dotenv.config();
 app.use(express.json());

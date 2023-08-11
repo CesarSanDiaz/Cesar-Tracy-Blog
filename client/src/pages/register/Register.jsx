@@ -9,8 +9,8 @@ import {
   Title,
   createStyles,
 } from '@mantine/core';
-// import axios from 'axios';
-import { useState } from 'react';
+import { useForm } from '@mantine/form';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const useStyles = createStyles((theme) => ({
@@ -34,33 +34,40 @@ const useStyles = createStyles((theme) => ({
 
 export default function Register() {
   const { classes } = useStyles();
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError(false);
-    // if (username !== username) {
-    //   setError(true);
-    // }
-    console.log({ username, email, password });
-    // try {
-    //   const res = await axios.post('/auth/register', {
-    //     username,
-    //     email,
-    //     password,
-    //   });
-    //   res.data && window.location.replace('/login');
-    // } catch (err) {
-    //   setError(true);
-    // }
+  const form = useForm({
+    initialValues: {
+      username: '',
+      email: '',
+      password: '',
+      // confirmPassword: '',
+    },
+
+    validate: {
+      username: (value) =>
+        value.length < 3 ? 'username must have at least 2 letters' : null,
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+      password: (value) =>
+        /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(value)
+          ? null
+          : 'Password must contain: Minimum eight characters, at least one letter and one number',
+      confirmPassword: (value, values) =>
+        value !== values.password ? 'Passwords did not match' : null,
+    },
+  });
+
+  const handleSubmit = async () => {
+    try {
+      const res = await axios.post('/auth/register', form.values);
+      res.data && window.location.replace('/login');
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
     <Container size={420} my={40}>
-      <Title align='center' sx={(theme) => ({ fontWeight: 900 })}>
+      <Title align='center' sx={{ fontWeight: 900 }}>
         Register
       </Title>
       <Text color='dimmed' size='sm' align='center' mt={5}>
@@ -79,34 +86,34 @@ export default function Register() {
         radius='md'
         className={classes.RegisterPaper}
       >
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={form.onSubmit(handleSubmit)}>
           <TextInput
-            required
+            withAsterisk
             label='Username'
-            type='text'
             placeholder='Enter username'
-            onChange={(e) => setUsername(e.target.value)}
-            pattern='^[A-Za-z0-9]{3,16}$'
-            error={
-              error &&
-              'username should include at lease 6 characters and no special characters'
-            }
+            {...form.getInputProps('username')}
           />
           <TextInput
             mt='sm'
-            required
+            withAsterisk
             label='Email'
-            type='text'
             placeholder='Enter email'
-            onChange={(e) => setEmail(e.target.value)}
+            {...form.getInputProps('email')}
           />
           <PasswordInput
             mt='sm'
-            required
+            withAsterisk
             label='Password'
-            onChange={(e) => setPassword(e.target.value)}
+            placeholder='Password'
+            {...form.getInputProps('password')}
           />
-          <PasswordInput mt='sm' label='Confirm password' />
+          <PasswordInput
+            withAsterisk
+            mt='sm'
+            label='Confirm password'
+            placeholder='Confirm password'
+            {...form.getInputProps('confirmPassword')}
+          />
           <Button
             mt='md'
             variant='filled'
@@ -117,11 +124,6 @@ export default function Register() {
             Register
           </Button>
         </form>
-        {error && (
-          <span style={{ color: 'red', marginTop: '10px' }}>
-            Something went wrong!
-          </span>
-        )}
       </Paper>
     </Container>
   );

@@ -1,4 +1,5 @@
 import {
+  Button,
   Group,
   MediaQuery,
   Paper,
@@ -48,6 +49,12 @@ const useStyles = createStyles((theme) => ({
     fontFamily: 'pacifico',
     display: 'flex',
     alignItems: 'center',
+  },
+  topbarButton: {
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.myPurple[6]
+        : theme.colors.white,
   },
 }));
 
@@ -101,7 +108,9 @@ export default function Topbar() {
               className={classes.navLinks}
             >
               <Link className='link' to='/write'>
-                Write
+                <Button variant='filled' className={classes.topbarButton}>
+                  Create Post
+                </Button>
               </Link>
             </Title>
             {/* <Title order={5}
