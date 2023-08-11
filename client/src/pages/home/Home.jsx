@@ -5,6 +5,7 @@ import { useLocation } from 'react-router';
 import Header from '../../components/header/Header';
 import Posts from '../../components/posts/Posts';
 import Sidebar from '../../components/sidebar/Sidebar';
+import { axiosInstance } from '../../config';
 
 // revisit this margin?
 const useStyles = createStyles(() => ({
@@ -21,7 +22,7 @@ export default function Home() {
   // Fetching Posts
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axios.get('http://localhost:5000/api/posts' + search);
+      const res = await axiosInstance.get('/posts' + search);
       setPosts(res.data);
     };
     // console.log(posts);
