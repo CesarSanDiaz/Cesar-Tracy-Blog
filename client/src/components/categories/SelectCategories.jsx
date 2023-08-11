@@ -9,7 +9,9 @@ export default function SelectCategories() {
   useEffect(() => {
     const getCategories = async () => {
       try {
-        const res = await axios.get('/categories');
+        const res = await axios.get(
+          'https://cesar-tracy-blog.vercel.app/api/categories'
+        );
         const namesToArray = Array.from(res.data.map((cat) => cat.name));
         setCategories(namesToArray);
       } catch (error) {
