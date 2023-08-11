@@ -45,6 +45,7 @@
       "last 1 safari version"
     ]
   },
+  "proxy": "https://cesar-tracy-blog.vercel.app/api/",
   "devDependencies": {
     "gh-pages": "^5.0.0"
   }
