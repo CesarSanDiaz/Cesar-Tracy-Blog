@@ -28,7 +28,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export default function Post({ post }) {
-  const PF = 'http://localhost:5000/images/';
+  const PF = 'https://cesar-tracy-blog.vercel.app/images/';
   const { classes } = useStyles();
 
   return (
