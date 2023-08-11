@@ -10,8 +10,9 @@ import {
   createStyles,
 } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import axios from 'axios';
+// import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { axiosInstance } from '../../config';
 
 const useStyles = createStyles((theme) => ({
   RegisterPaper: {
@@ -58,7 +59,7 @@ export default function Register() {
 
   const handleSubmit = async () => {
     try {
-      const res = await axios.post('/auth/register', form.values);
+      const res = await axiosInstance.post('/auth/register', form.values);
       res.data && window.location.replace('/login');
     } catch (error) {
       console.log(error.message);

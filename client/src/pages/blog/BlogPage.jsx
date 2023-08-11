@@ -8,10 +8,11 @@ import {
   createStyles,
 } from '@mantine/core';
 import { IconTrees } from '@tabler/icons-react';
-import axios from 'axios';
+// import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import Post from '../../components/post/Post';
+import { axiosInstance } from '../../config';
 
 const useStyles = createStyles((theme) => ({
   blogPagePaper: {
@@ -54,7 +55,7 @@ export default function BlogPage() {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axios.get('http://localhost:5000/api/posts' + search);
+      const res = await axiosInstance.get('/posts' + search);
       setPosts(res.data);
     };
     fetchPosts();
