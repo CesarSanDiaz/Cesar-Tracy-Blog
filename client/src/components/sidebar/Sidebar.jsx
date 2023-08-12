@@ -1,6 +1,7 @@
 import {
   Badge,
   Divider,
+  Group,
   Paper,
   SimpleGrid,
   Text,
@@ -13,9 +14,10 @@ import {
   IconBrandTwitter,
   IconBrandYoutube,
 } from '@tabler/icons-react';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { axiosInstance } from '../../config';
+// import axios from 'axios';
 
 const useStyles = createStyles((theme) => ({
   paper: {
@@ -30,29 +32,28 @@ const useStyles = createStyles((theme) => ({
         : theme.colors.blue[1],
     color: theme.colorScheme === 'dark' ? theme.colors.myPurple[7] : theme.blue,
   },
-  socialIcons: {
-    cursor: 'pointer',
-    display: 'flex',
-    justifyContent: 'space-evenly',
-  },
   youtubeIcon: {
     ':hover': {
       color: '#ff0000',
+      cursor: 'pointer',
     },
   },
   instagramIcon: {
     ':hover': {
       color: '#e1306c',
+      cursor: 'pointer',
     },
   },
   twitterIcon: {
     ':hover': {
       color: '#1da1f2',
+      cursor: 'pointer',
     },
   },
   pinterestIcon: {
     ':hover': {
       color: '#e60023',
+      cursor: 'pointer',
     },
   },
   sidebarDivider: {
@@ -71,7 +72,8 @@ export default function Sidebar() {
   useEffect(() => {
     const getCategories = async () => {
       try {
-        const res = await axios.get('/categories');
+        // const res = await axios.get('http://localhost:5000/api/categories');
+        const res = await axiosInstance.get('/categories');
         setCategories(res.data);
       } catch (error) {
         console.log(error);
@@ -135,12 +137,12 @@ export default function Sidebar() {
         m='auto'
         w='25%'
       />
-      <div className={classes.socialIcons}>
+      <Group position='apart'>
         <IconBrandYoutube className={classes.youtubeIcon} size={28} />
         <IconBrandInstagram className={classes.instagramIcon} size={28} />
         <IconBrandTwitter className={classes.twitterIcon} size={28} />
         <IconBrandPinterest className={classes.pinterestIcon} size={28} />
-      </div>
+      </Group>
     </Paper>
   );
 }

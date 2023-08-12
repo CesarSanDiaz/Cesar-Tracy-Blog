@@ -1,5 +1,6 @@
 import {
   Burger,
+  Button,
   Divider,
   Drawer,
   Group,
@@ -17,10 +18,13 @@ import {
   IconBrandYoutube,
   IconHome,
   IconMail,
+  IconPencil,
   IconTrees,
   IconUsers,
 } from '@tabler/icons-react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { Context } from '../../context/Context';
 
 const useStyles = createStyles((theme) => ({
   nav: {
@@ -54,12 +58,17 @@ const useStyles = createStyles((theme) => ({
   body: {
     padding: '12px',
   },
+  loginBtn: {
+    color:
+      theme.colorScheme === 'dark' ? theme.colors.myPurple[7] : theme.white,
+  },
 }));
 
 export default function MenuNavbar() {
   const [opened, { toggle }] = useDisclosure(false);
   const label = opened ? 'Close navigation' : 'Open navigation';
   const { classes } = useStyles();
+  const user = useContext(Context);
 
   return (
     <>
@@ -70,7 +79,7 @@ export default function MenuNavbar() {
         hidden={!opened}
         opened={opened}
         onClose={toggle}
-        size='45%'
+        size='fitContent'
         position='top'
         overlayProps={{ opacity: 0.5, blur: 4 }}
         title='CesarTracy.Blog'
@@ -85,6 +94,7 @@ export default function MenuNavbar() {
           timingFunction: 'linear',
         }}
       >
+        <Divider size='xs' p='1.5px' mb='sm' className={classes.divider} />
         <Navbar.Section>
           <Stack pb='sm'>
             <Link className='link' to='/' onClick={toggle}>
@@ -111,15 +121,33 @@ export default function MenuNavbar() {
                 <Text>Contact</Text>
               </Group>
             </Link>
+            <Link className='link' to='/write' onClick={toggle}>
+              {user && (
+                <Button
+                  variant='filled'
+                  fullWidth
+                  leftIcon={<IconPencil size='1rem' />}
+                  className={classes.loginBtn}
+                >
+                  Create Post
+                </Button>
+              )}
+            </Link>
           </Stack>
         </Navbar.Section>
-        <Divider size='xs' p='1.5px' mb='sm' className={classes.divider} />
+        <Divider
+          style={user ? { display: 'none' } : { display: 'block' }}
+          size='xs'
+          p='1.5px'
+          mb='sm'
+          className={classes.divider}
+        />
         <Navbar.Section className='navIconSection'>
           <Group position='left'>
-            <IconBrandYoutube color='#ff0000' size={24} />
-            <IconBrandInstagram color='#e1306c' size={24} />
-            <IconBrandTwitter color='#1da1f2' size={24} />
-            <IconBrandPinterest color='#E60023' size={24} />
+            <IconBrandYoutube size={24} />
+            <IconBrandInstagram size={24} />
+            <IconBrandTwitter size={24} />
+            <IconBrandPinterest size={24} />
           </Group>
         </Navbar.Section>
       </Drawer>

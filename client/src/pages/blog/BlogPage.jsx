@@ -8,6 +8,7 @@ import {
   createStyles,
 } from '@mantine/core';
 import { IconTrees } from '@tabler/icons-react';
+// import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import Post from '../../components/post/Post';
@@ -55,6 +56,9 @@ export default function BlogPage() {
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await axiosInstance.get('/posts' + search);
+
+      // fetching from local host if its up and running
+      // const res = await axios.get('http://localhost:5000/api/posts' + search);
       setPosts(res.data);
     };
     fetchPosts();

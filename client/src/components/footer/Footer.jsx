@@ -1,10 +1,10 @@
+import { Button, Group, Paper, Stack, Text, createStyles } from '@mantine/core';
 import {
-  Paper,
-  Stack,
-  Text,
-  UnstyledButton,
-  createStyles,
-} from '@mantine/core';
+  IconBrandInstagram,
+  IconBrandPinterest,
+  IconBrandTwitter,
+  IconBrandYoutube,
+} from '@tabler/icons-react';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Context } from '../../context/Context';
@@ -18,10 +18,29 @@ const useStyles = createStyles((theme) => ({
         ? '0.0625rem solid #373A40'
         : '0.0625rem solid #dee2e6',
   },
-  socialIcons: {
-    cursor: 'pointer',
-    display: 'flex',
-    justifyContent: 'space-evenly',
+  youtubeIcon: {
+    ':hover': {
+      color: '#ff0000',
+      cursor: 'pointer',
+    },
+  },
+  instagramIcon: {
+    ':hover': {
+      color: '#e1306c',
+      cursor: 'pointer',
+    },
+  },
+  twitterIcon: {
+    ':hover': {
+      color: '#1da1f2',
+      cursor: 'pointer',
+    },
+  },
+  pinterestIcon: {
+    ':hover': {
+      color: '#e60023',
+      cursor: 'pointer',
+    },
   },
   center: {
     display: 'flex',
@@ -35,11 +54,17 @@ const useStyles = createStyles((theme) => ({
   text: {
     color: theme.colorScheme === 'dark' ? theme.white : theme.black,
   },
+  footerButton: {
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.myPurple[6]
+        : theme.colors.white,
+  },
 }));
 
 export default function Footer() {
   const { user, dispatch } = useContext(Context);
-  const PF = 'http://localhost:5000/images/';
+  const PF = 'https://cesar-tracy-blog.vercel.app/images/';
   const { classes } = useStyles();
 
   const handleLogout = () => {
@@ -48,29 +73,27 @@ export default function Footer() {
   };
 
   return (
-    <Paper p='xs' radius={0} className={classes.footerPaper}>
+    <Paper p='xs' radius={0} shadow='xl' className={classes.footerPaper}>
       <Stack spacing={1} align='center'>
-        <Text className={classes.text}>
-          2023 &copy; Copyright SanDiazDesigns
-        </Text>
-        <Text className={classes.text}>
-          Follow us on{' '}
-          <Text component='a' href='#' c='#e1306c'>
-            Instagram
-          </Text>
-          ,{' '}
-          <Text component='a' href='#' c='#1da1f2'>
-            Twitter
-          </Text>
-          , and{' '}
-          <Text component='a' href='#' c='#e60023'>
-            Pinterest
-          </Text>
-          .
-        </Text>
-        <div className='bottomLinks'>
+        <Text>2023 &copy; Copyright SanDiazDesigns</Text>
+        <Group position='center'>
+          <Text>Follow us on:</Text>
+          <Group>
+            <IconBrandYoutube className={classes.youtubeIcon} size='1.5rem' />
+            <IconBrandInstagram
+              className={classes.instagramIcon}
+              size='1.5rem'
+            />
+            <IconBrandTwitter className={classes.twitterIcon} size='1.5rem' />
+            <IconBrandPinterest
+              className={classes.pinterestIcon}
+              size='1.5rem'
+            />
+          </Group>
+        </Group>
+        <div>
           {user ? (
-            <div className='options'>
+            <Group position='center'>
               <Link className='link' to='/settings'>
                 <img
                   src={PF + user.profilePic}
@@ -82,10 +105,14 @@ export default function Footer() {
                   }}
                 />
               </Link>
-              <UnstyledButton onClick={handleLogout} px='sm'>
+              <Button
+                variant='filled'
+                onClick={handleLogout}
+                className={classes.footerButton}
+              >
                 Logout
-              </UnstyledButton>
-            </div>
+              </Button>
+            </Group>
           ) : (
             <div className={classes.bottomList}>
               <Text className={classes.text}>

@@ -5,6 +5,7 @@ import Header from '../../components/header/Header';
 import Posts from '../../components/posts/Posts';
 import Sidebar from '../../components/sidebar/Sidebar';
 import { axiosInstance } from '../../config';
+// import axios from 'axios';
 
 // revisit this margin?
 const useStyles = createStyles(() => ({
@@ -20,23 +21,14 @@ export default function Home() {
 
   // Fetching Posts
   useEffect(() => {
+    // fetching from Vercel
     const fetchPosts = async () => {
       const res = await axiosInstance.get('/posts' + search);
+      // fetching from local host if its up and running
+      // const res = await axios.get('http://localhost:5000/api/posts' + search);
       setPosts(res.data);
     };
-    // console.log(posts);
     fetchPosts();
-    // const fetchPost = async () => {
-    //   return axios
-    //     .get('http://localhost:5000/api/posts', {})
-    //     .then((res) => {
-    //       setPosts(res.data);
-    //     })
-    //     .catch((error) => {
-    //       console.log(error.message);
-    //     });
-    // };
-    // fetchPost();
   }, [search]);
 
   return (

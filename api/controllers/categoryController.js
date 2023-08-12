@@ -15,12 +15,10 @@ const getCategories = async (req, res) => {
 // get single category
 const getCategory = async (req, res) => {
   const { id } = req.params;
-
   //checking to see if its a valid mongoose id
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(404).json({ error: 'no such category' });
   }
-
   // checking our Catagories to find by id
   const category = await Category.findById(id);
   if (!category) {

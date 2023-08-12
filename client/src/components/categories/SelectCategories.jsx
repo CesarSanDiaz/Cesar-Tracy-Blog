@@ -1,10 +1,12 @@
 import { MultiSelect } from '@mantine/core';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+// import { useLocation } from 'react-router-dom';
 
 export default function SelectCategories() {
   // const [value, setValue] = useState(null);
   const [categories, setCategories] = useState(null);
+  // const { search } = useLocation();
 
   useEffect(() => {
     const getCategories = async () => {

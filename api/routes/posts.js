@@ -59,7 +59,7 @@ router.delete('/:id', async (req, res) => {
 //GET POST
 router.get('/:id', async (req, res) => {
   try {
-    const post = await Post.findById(req.params.id).sort({ createdAt: -1 });
+    const post = await Post.findById(req.params.id);
     res.status(200).json(post);
   } catch (err) {
     res.status(500).json(err);
@@ -81,7 +81,7 @@ router.get('/', async (req, res) => {
         },
       });
     } else {
-      posts = await Post.find();
+      posts = await Post.find().sort({ createdAt: -1 });
     }
     res.status(200).json(posts);
   } catch (err) {
