@@ -139,7 +139,7 @@ function App() {
           <div className='parent'>
             <Routes>
               <Route path='/' element={<Home />}></Route>
-              <Route exact path='/blog' element={<BlogPage />}></Route>
+              <Route path='/blog' element={<BlogPage />}></Route>
               <Route path='/about' element={<About />}></Route>
               <Route path='/contact' element={<Contact />}></Route>
               <Route
