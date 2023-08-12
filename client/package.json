@@ -1,5 +1,5 @@
 {
-  "homepage": "/public",
+  "homepage": "/public/index.html",
   "name": "client",
   "version": "0.1.0",
   "private": true,
