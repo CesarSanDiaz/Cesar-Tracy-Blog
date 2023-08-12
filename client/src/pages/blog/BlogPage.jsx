@@ -8,7 +8,6 @@ import {
   createStyles,
 } from '@mantine/core';
 import { IconTrees } from '@tabler/icons-react';
-// import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import Post from '../../components/post/Post';
