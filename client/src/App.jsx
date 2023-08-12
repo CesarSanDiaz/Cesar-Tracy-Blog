@@ -35,7 +35,7 @@ function App() {
     >
       <MantineProvider
         withGlobalStyles
-        withNormalizeCSS
+        // withNormalizeCSS
         theme={{
           globalStyles: (theme) => ({
             '*, *::before, *::after': {
@@ -138,7 +138,7 @@ function App() {
           <TopBar />
           <div className='parent'>
             <Routes>
-              <Route exact path='/' element={<Home />}></Route>
+              <Route path='/' element={<Home />}></Route>
               <Route exact path='/blog' element={<BlogPage />}></Route>
               <Route path='/about' element={<About />}></Route>
               <Route path='/contact' element={<Contact />}></Route>

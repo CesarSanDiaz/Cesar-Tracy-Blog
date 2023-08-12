@@ -24,7 +24,7 @@ export default function Home() {
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await axios.get(
-        'https://cesar-tracy-blog.vercel.app/api/posts'
+        'https://cesar-tracy-blog.vercel.app/api/posts' + search
       );
       setPosts(res.data);
     };
