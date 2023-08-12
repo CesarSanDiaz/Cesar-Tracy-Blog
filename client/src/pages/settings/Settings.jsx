@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useContext, useState } from 'react';
-import Sidebar from '../../components/sidebar/Sidebar';
+import CreateCategory from '../../components/categories/CreateCategory';
 import { LoginSuccess } from '../../context/Actions';
 import { Context } from '../../context/Context';
 import './settings.css';
@@ -129,7 +129,7 @@ export default function Settings() {
           )}
         </form>
       </div>
-      <Sidebar />
+      <CreateCategory />
     </div>
   );
 }
