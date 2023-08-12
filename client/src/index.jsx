@@ -9,8 +9,8 @@ const root = ReactDOM.createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <ContextProvider basename='/'>
+    <BrowserRouter basename='/'>
+      <ContextProvider>
         <App />
       </ContextProvider>
     </BrowserRouter>
