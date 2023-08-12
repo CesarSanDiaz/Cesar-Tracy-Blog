@@ -43,7 +43,7 @@ export default function Posts({ posts }) {
   return (
     <Paper radius={0} p='sm' className={classes.postsPaper}>
       <Title order={2} align='center' p='xs'>
-        Our Latest Posts
+        Posts
       </Title>
       <Divider
         size={0}

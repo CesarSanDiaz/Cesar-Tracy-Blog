@@ -49,7 +49,7 @@ export default function Post({ post }) {
         <div>
           {post.categories.map((c) => {
             return (
-              <Link to={`/?cat=${c}`} className='link' key={c}>
+              <Link to={`/categories/?cat=${c}`} className='link' key={c}>
                 <Badge className={classes.postBadge} size='xs' mr='sm'>
                   {c}
                 </Badge>

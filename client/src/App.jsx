@@ -7,11 +7,11 @@ import {
   BrowserRouter as Router,
   Routes,
 } from 'react-router-dom';
-import Categories from './components/categories/Categories';
 import Footer from './components/footer/Footer';
 import SinglePost from './components/singlePost/SinglePost';
 import TopBar from './components/topbar/Topbar';
 import { Context } from './context/Context';
+import Categories from './pages/Categories';
 import About from './pages/about/About';
 import BlogPage from './pages/blog/BlogPage';
 import Contact from './pages/contact/Contact';
@@ -37,7 +37,7 @@ function App() {
       >
         <MantineProvider
           withGlobalStyles
-          // withNormalizeCSS
+          withNormalizeCSS
           theme={{
             globalStyles: (theme) => ({
               '*, *::before, *::after': {

@@ -121,8 +121,8 @@ export default function MenuNavbar() {
                 <Text>Contact</Text>
               </Group>
             </Link>
-            <Link className='link' to='/write' onClick={toggle}>
-              {user && (
+            {user && (
+              <Link className='link' to='/write' onClick={toggle}>
                 <Button
                   variant='filled'
                   fullWidth
@@ -131,17 +131,17 @@ export default function MenuNavbar() {
                 >
                   Create Post
                 </Button>
-              )}
-            </Link>
+              </Link>
+            )}
           </Stack>
+          <Divider
+            size='xs'
+            p='1.5px'
+            mb='sm'
+            className={classes.divider}
+            style={user ? { display: 'none' } : { display: 'block' }}
+          />
         </Navbar.Section>
-        <Divider
-          style={user ? { display: 'none' } : { display: 'block' }}
-          size='xs'
-          p='1.5px'
-          mb='sm'
-          className={classes.divider}
-        />
         <Navbar.Section className='navIconSection'>
           <Group position='left'>
             <IconBrandYoutube size={24} />
