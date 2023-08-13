@@ -152,7 +152,7 @@ function App() {
                 ></Route>
                 <Route
                   path='/write'
-                  element={user ? <Write /> : <Register />}
+                  element={user ? <Write /> : <Login />}
                 ></Route>
                 <Route path='/singlePost' element={<SinglePost />}></Route>
                 <Route path='/categories' element={<Categories />}></Route>

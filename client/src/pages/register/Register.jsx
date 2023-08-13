@@ -49,9 +49,9 @@ export default function Register() {
         value.length < 3 ? 'username must have at least 2 letters' : null,
       email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
       password: (value) =>
-        /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(value)
+        /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/.test(value)
           ? null
-          : 'Password must contain: Minimum eight characters, at least one letter and one number',
+          : 'Password must contain: Minimum five characters, at least one letter and one number',
       confirmPassword: (value, values) =>
         value !== values.password ? 'Passwords did not match' : null,
     },
@@ -79,6 +79,9 @@ export default function Register() {
           </Link>
         </Anchor>
       </Text>
+      <Text c='red' size='sm' align='center' m='sm'>
+        Our apologies, We are not taking new members at the moment
+      </Text>
       <Paper
         withBorder
         shadow='xl'
@@ -89,12 +92,14 @@ export default function Register() {
       >
         <form onSubmit={form.onSubmit(handleSubmit)}>
           <TextInput
+            disabled
             withAsterisk
             label='Username'
             placeholder='Enter username'
             {...form.getInputProps('username')}
           />
           <TextInput
+            disabled
             mt='sm'
             withAsterisk
             label='Email'
@@ -102,6 +107,7 @@ export default function Register() {
             {...form.getInputProps('email')}
           />
           <PasswordInput
+            disabled
             mt='sm'
             withAsterisk
             label='Password'
@@ -109,6 +115,7 @@ export default function Register() {
             {...form.getInputProps('password')}
           />
           <PasswordInput
+            disabled
             withAsterisk
             mt='sm'
             label='Confirm password'
@@ -116,6 +123,7 @@ export default function Register() {
             {...form.getInputProps('confirmPassword')}
           />
           <Button
+            disabled
             mt='md'
             variant='filled'
             fullWidth

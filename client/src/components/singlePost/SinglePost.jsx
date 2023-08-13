@@ -72,16 +72,6 @@ export default function SinglePost() {
   const [opened, { open, close }] = useDisclosure(false);
 
   useEffect(() => {
-    //ANOTHER WAY
-    // const getPost = async () => {
-    //   return axios
-    //     .get('http://localhost:5000/api/posts/' + path)
-    //     .then((res) => setPost(res.data))
-    //     .catch((error) => {
-    //       console.log(error.message);
-    //     });
-    // };
-    // getPost();
     try {
       const getPost = async () => {
         const res = await axios.get(

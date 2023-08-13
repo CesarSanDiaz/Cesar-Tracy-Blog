@@ -1,20 +1,50 @@
+import {
+  Button,
+  Card,
+  Divider,
+  FileButton,
+  Group,
+  Image,
+  Modal,
+  PasswordInput,
+  Stack,
+  Text,
+  TextInput,
+  Title,
+  createStyles,
+} from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+import {
+  IconExclamationMark,
+  IconPencil,
+  IconTrash,
+} from '@tabler/icons-react';
 import axios from 'axios';
 import { useContext, useState } from 'react';
 import CreateCategory from '../../components/categories/CreateCategory';
 import { LoginSuccess } from '../../context/Actions';
 import { Context } from '../../context/Context';
-import './settings.css';
 
+const useStyles = createStyles((theme) => ({
+  settingsDivider: {
+    backgroundColor:
+      theme.colorScheme === 'dark'
+        ? theme.colors.myYellow[7]
+        : theme.colors.blue[6],
+  },
+}));
 export default function Settings() {
+  const { classes } = useStyles();
   const { user, dispatch } = useContext(Context);
   const [file, setFile] = useState(null);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [success, setSuccess] = useState(false);
-  const PF = 'http://localhost:5000/images/';
-  const [editButtonText, setEditButtonText] = useState('Edit Profile');
+  const PF = 'https://cesar-tracy-blog.vercel.app/api/images/';
+  const [editButtonText, setEditButtonText] = useState('Edit');
   const [isDisabled, setIsDisabled] = useState(true);
+  const [opened, { open, close }] = useDisclosure(false);
 
   const handleClick = () => {
     if (isDisabled) {
@@ -23,15 +53,12 @@ export default function Settings() {
     } else if (!isDisabled) {
       setIsDisabled(true);
       setEditButtonText('Edit Profile');
-      window.location.reload();
     }
-    // isDisabled ? setIsDisabled(false) : setIsDisabled(true);
-    // if (editButtonText) {
-    //   setEditButtonText('Edit Profile');
-    // }
-    // const cancel = 'Cancel';
-    // setEditButtonText(cancel);
   };
+
+  // const handleDelete = () => {
+  //   console.log(user);
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -64,62 +91,102 @@ export default function Settings() {
   };
 
   return (
-    <div className='settings'>
-      <div className='settingsWrapper'>
-        <div className='settingsTitle'>
-          <span className='settingsTitleUpdate'>Account</span>
-          {/* <span className='settingsTitleDelete'>Delete Account</span> */}
-        </div>
-        <button className='settingsEditButton' onClick={handleClick}>
-          {editButtonText}
-        </button>
-        <form className='settingsForm' onSubmit={handleSubmit}>
-          <label>Profile Picture</label>
-          <div className='settingsPP'>
-            <img
+    <>
+      <Title align='center'>Hello {user.username}</Title>
+      <Divider
+        size='xs'
+        p='1.5px'
+        mb='sm'
+        className={classes.settingsDivider}
+        m='auto'
+        w='25%'
+      />
+      <Card
+        radius='md'
+        withBorder
+        m='auto'
+        w='80%'
+        p='lg'
+        sx={(theme) => ({
+          backgroundColor:
+            theme.colorScheme === 'dark'
+              ? theme.colors.myPurple[8]
+              : theme.white,
+        })}
+      >
+        <Group position='apart'>
+          <Button leftIcon={<IconPencil size='1rem' />} onClick={handleClick}>
+            {editButtonText}
+          </Button>
+          <Button
+            onClick={open}
+            variant='filled'
+            sx={{ backgroundColor: 'red' }}
+            leftIcon={<IconTrash size='1rem' />}
+          >
+            Delete
+          </Button>
+        </Group>
+        <form onSubmit={handleSubmit}>
+          <Stack align='center' spacing='sm'>
+            <Text>Profile Picture</Text>
+            <Image
               src={file ? URL.createObjectURL(file) : PF + user.profilePic}
-              alt='pic'
+              alt='With default placeholder'
+              withPlaceholder
+              width={70}
+              height={70}
+              fit='cover'
+              radius={20}
             />
-            <label htmlFor='fileInput'>
-              <i className='settingsPPIcon far fa-user-circle'></i>
-            </label>
-            <input
-              id='fileInput'
-              type='file'
-              style={{ display: 'none' }}
-              className='settingsPPInput'
-              onChange={(e) => setFile(e.target.files[0])}
-              disabled={isDisabled}
-            />
-          </div>
-          <label>Username</label>
-          <input
-            autoFocus
-            type='text'
+            {file ? (
+              <Button
+                display='block'
+                m='auto'
+                onClick={() => {
+                  setFile(null);
+                }}
+              >
+                Remove
+              </Button>
+            ) : (
+              <FileButton onChange={setFile}>
+                {(props) => (
+                  <Button {...props} disabled={isDisabled}>
+                    Upload image
+                  </Button>
+                )}
+              </FileButton>
+            )}
+          </Stack>
+          <TextInput
+            mt='sm'
+            label='Username'
+            value={user.username}
             placeholder={user.username}
-            name='name'
+            autoFocus
             onChange={(e) => setUsername(e.target.value)}
             disabled={isDisabled}
           />
-          <label>Email</label>
-          <input
+          <TextInput
             type='email'
+            mt='sm'
+            label='Email'
+            value={user.email}
             placeholder={user.email}
-            name='email'
             onChange={(e) => setEmail(e.target.value)}
             disabled={isDisabled}
           />
-          <label>Password</label>
-          <input
-            type='password'
-            placeholder='*********'
-            name='password'
+          <PasswordInput
+            mt='sm'
+            label='Password'
+            placeholder='******'
             onChange={(e) => setPassword(e.target.value)}
             disabled={isDisabled}
           />
-          <button className='settingsSubmitButton' type='submit'>
+          <Button mt='sm' type='submit' disabled={isDisabled}>
             Update
-          </button>
+          </Button>
           {success && (
             <span
               style={{ color: 'green', textAlign: 'center', margin: '10px' }}
@@ -128,8 +195,21 @@ export default function Settings() {
             </span>
           )}
         </form>
-      </div>
+      </Card>
+      <Modal opened={opened} onClose={close} title='Delete Account'>
+        <Stack align='center' spacing='xs'>
+          <IconExclamationMark size='5rem' color='red' />
+          <Title order={4}>Are you sure?</Title>
+          <Text>This process cannot be undone.</Text>
+        </Stack>
+        <Group position='center' p='sm'>
+          <Button onClick={close}>Cancel</Button>
+          {/* <Button variant='filled' color='red' onClick={handleDelete}>
+            Delete
+          </Button> */}
+        </Group>
+      </Modal>
       <CreateCategory />
-    </div>
+    </>
   );
 }

@@ -1,6 +1,7 @@
 import { Button, Card, TextInput, Title, createStyles } from '@mantine/core';
-import axios from 'axios';
+// import axios from 'axios';
 import { useState } from 'react';
+import { axiosInstance } from '../../config';
 
 const useStyles = createStyles((theme) => ({
   catCard: {
@@ -24,7 +25,8 @@ export default function CreateCategory() {
     const category = { name };
 
     try {
-      const response = await axios.post('/categories', category);
+      const response = await axiosInstance.post('/categories', category);
+      // const response = await axios.post('/categories', category);
       if (response) {
         // resets name back to an empty field
         setName('');
