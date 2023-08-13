@@ -1,0 +1,12 @@
+.settingsTitleUpdate {
+  font-size: 30px;
+  margin-bottom: 20px;
+  color: lightcoral;
+}
+
+.settingsSubmitButton:hover {
+  background-color: rgb(0, 128, 128, 0.8);
+}
+.settingsEditButton:hover {
+  background-color: rgb(240, 128, 128, 0.8);
+}
