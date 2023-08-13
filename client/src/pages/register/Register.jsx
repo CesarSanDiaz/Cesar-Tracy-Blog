@@ -80,7 +80,7 @@ export default function Register() {
         </Anchor>
       </Text>
       <Text c='red' size='sm' align='center' m='sm'>
-        Our apologies, We are not taking new members at the moment
+        Our apologies, We are currently not taking new members at the moment.
       </Text>
       <Paper
         withBorder
