@@ -18,6 +18,7 @@ import { IconCamera } from '@tabler/icons-react';
 import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 // import SelectCategories from '../../components/categories/SelectCategories';
+import { axiosInstance } from '../../config';
 import { Context } from '../../context/Context';
 
 const useStyles = createStyles((theme) => ({
@@ -58,7 +59,7 @@ export default function Write() {
   useEffect(() => {
     const getCategories = async () => {
       try {
-        const res = await axios.get('/categories');
+        const res = await axiosInstance.get('/categories');
         // categories into array form so that the multiselect can use that data
         const namesToArray = Array.from(res.data.map((cat) => cat.name));
         setCategories(namesToArray);
@@ -93,7 +94,7 @@ export default function Write() {
     }
     // sending posts to backend
     try {
-      const res = await axios.post('/posts', newPost);
+      const res = await axiosInstance.post('/posts', newPost);
       window.location.replace('/post/' + res.data._id);
     } catch (err) {
       console.log(err.message);
@@ -198,7 +199,6 @@ export default function Write() {
           >
             Publish
           </Button>
-          {console.log(selectedCat)}
         </form>
       </Card>
     </Paper>
