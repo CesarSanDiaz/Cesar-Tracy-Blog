@@ -2,7 +2,8 @@ import {
   Button,
   Card,
   Divider,
-  FileButton,
+  // FileButton,
+  FileInput,
   Group,
   Image,
   Modal,
@@ -19,9 +20,10 @@ import {
   IconPencil,
   IconTrash,
 } from '@tabler/icons-react';
-import axios from 'axios';
 import { useContext, useState } from 'react';
 import CreateCategory from '../../components/categories/CreateCategory';
+// import { axiosInstance } from '../../config';
+import axios from 'axios';
 import { LoginSuccess } from '../../context/Actions';
 import { Context } from '../../context/Context';
 
@@ -41,7 +43,8 @@ export default function Settings() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [success, setSuccess] = useState(false);
-  const PF = 'https://cesar-tracy-blog.vercel.app/api/images/';
+  // const PF = 'https://cesar-tracy-blog.vercel.app/images/';
+  const PF = 'http://localhost:5000/images/';
   const [editButtonText, setEditButtonText] = useState('Edit');
   const [isDisabled, setIsDisabled] = useState(true);
   const [opened, { open, close }] = useDisclosure(false);
@@ -76,7 +79,7 @@ export default function Settings() {
       data.append('file', file);
       updatedUser.profilePic = filename;
       try {
-        await axios.post('/upload', data);
+        await axios.post('http://localhost:5000/api/upload', data);
       } catch (err) {
         console.log(err.message);
       }
@@ -150,19 +153,18 @@ export default function Settings() {
                 Remove
               </Button>
             ) : (
-              <FileButton onChange={setFile}>
-                {(props) => (
+              <FileInput onChange={setFile} placeholder='pick file'>
+                {/* {(props) => (
                   <Button {...props} disabled={isDisabled}>
                     Upload image
                   </Button>
-                )}
-              </FileButton>
+                )} */}
+              </FileInput>
             )}
           </Stack>
           <TextInput
             mt='sm'
             label='Username'
-            value={user.username}
             placeholder={user.username}
             autoFocus
             onChange={(e) => setUsername(e.target.value)}
@@ -172,7 +174,6 @@ export default function Settings() {
             type='email'
             mt='sm'
             label='Email'
-            value={user.email}
             placeholder={user.email}
             onChange={(e) => setEmail(e.target.value)}
             disabled={isDisabled}
