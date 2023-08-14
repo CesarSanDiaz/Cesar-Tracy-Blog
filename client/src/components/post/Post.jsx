@@ -32,7 +32,6 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export default function Post({ post }) {
-  // const { user } = useContext(Context);
   const PF = 'https://cesar-tracy-blog.vercel.app/images/';
   // const PF = 'http://localhost:5000/images/';
   const { classes } = useStyles();
@@ -47,9 +46,7 @@ export default function Post({ post }) {
       //   `http://localhost:5000/api/users/?username=${username}`
       // );
       // fetching from vercel
-      const res = await axiosInstance.get(
-        `https://cesar-tracy-blog.vercel.app/api/users/?username=${username}`
-      );
+      const res = await axiosInstance.get(`users/?username=${username}`);
       setPostUser(res.data);
     };
     fetchUserInfo();
@@ -69,7 +66,6 @@ export default function Post({ post }) {
       </Link>
 
       <Paper sx={{ backgroundColor: 'transparent' }} p='xs'>
-        {/* <Stack align='flex-start' spacing='md'> */}
         <div>
           {post.categories.map((c) => {
             return (
@@ -116,7 +112,6 @@ export default function Post({ post }) {
             Read more...
           </Text>
         </Group>
-        {/* </Stack> */}
       </Paper>
     </Card>
   );

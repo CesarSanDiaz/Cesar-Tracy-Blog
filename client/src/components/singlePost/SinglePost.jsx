@@ -19,9 +19,10 @@ import {
   IconPencil,
   IconTrash,
 } from '@tabler/icons-react';
-import axios from 'axios';
+// import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { axiosInstance } from '../../config';
 import { Context } from '../../context/Context';
 
 const useStyles = createStyles((theme) => ({
@@ -71,13 +72,12 @@ export default function SinglePost() {
   const [category, setCategory] = useState([]);
   const [updateMode, setUpdateMode] = useState(false);
   const [opened, { open, close }] = useDisclosure(false);
+  const [postUserImage, setPostUserImage] = useState('');
 
   useEffect(() => {
     try {
       const getPost = async () => {
-        const res = await axios.get(
-          'https://cesar-tracy-blog.vercel.app/api/posts/' + path
-        );
+        const res = await axiosInstance.get('/posts/' + path);
         setPost(res.data);
         setTitle(res.data.title);
         setDesc(res.data.desc);
@@ -87,11 +87,11 @@ export default function SinglePost() {
     } catch (err) {
       console.log(err.message);
     }
-  }, [path, category]);
+  }, [path]);
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`/posts/${post._id}`, {
+      await axiosInstance.delete(`/posts/${post._id}`, {
         data: { username: user.username },
       });
       window.location.replace('/');
@@ -102,7 +102,7 @@ export default function SinglePost() {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`/posts/${post._id}`, {
+      await axiosInstance.put(`/posts/${post._id}`, {
         username: user.username,
         title,
         desc,
@@ -112,6 +112,20 @@ export default function SinglePost() {
       console.log(err.message);
     }
   };
+
+  // useEffect to get post user info like ProfilePic
+  useEffect(() => {
+    try {
+      const { username } = post;
+      const fetchUserInfo = async () => {
+        const res = await axiosInstance.get(`/users/?username=${username}`);
+        setPostUserImage(res.data[0]?.profilePic);
+      };
+      fetchUserInfo();
+    } catch (error) {
+      console.log('error:' + error.message);
+    }
+  }, [post]);
 
   return (
     <>
@@ -172,7 +186,7 @@ export default function SinglePost() {
         </div>
         <Group position='apart' py='sm'>
           <Group>
-            <Avatar size='md' radius='md' src='' />
+            <Avatar size='md' radius='md' src={PF + postUserImage} />
             <Stack spacing={0}>
               <Link to={`/?user=${post.username}`} className='link'>
                 <Text fw='bold' fz='xs'>
