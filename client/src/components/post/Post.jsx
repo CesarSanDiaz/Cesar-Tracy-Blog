@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Badge,
   Card,
   Group,
@@ -8,11 +9,10 @@ import {
   Title,
   createStyles,
 } from '@mantine/core';
-import axios from 'axios';
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-// import { axiosInstance } from '../../config';
 // import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { axiosInstance } from '../../config';
 
 const useStyles = createStyles((theme) => ({
   postCard: {
@@ -34,24 +34,26 @@ const useStyles = createStyles((theme) => ({
 export default function Post({ post }) {
   // const { user } = useContext(Context);
   const PF = 'https://cesar-tracy-blog.vercel.app/images/';
+  // const PF = 'http://localhost:5000/images/';
   const { classes } = useStyles();
-
-  const postUsername = post.username;
-  // console.log(postUsername);
+  const [postUser, setPostUser] = useState([]);
 
   useEffect(() => {
-    // if (user === postUsername) {
-    const fetchUsers = async () => {
-      const res = await axios.get('http://localhost:5000/api/users/');
+    // fetching usr info based off post name
+    const { username } = post;
+    const fetchUserInfo = async () => {
       // fetching from local host if its up and running
-      // const res = await axios.get('http://localhost:5000/api/posts' + search);
-      const users = res.data;
-      const newUser = users.filter((user) => user.username === postUsername);
-      console.log(newUser);
+      // const res = await axios.get(
+      //   `http://localhost:5000/api/users/?username=${username}`
+      // );
+      // fetching from vercel
+      const res = await axiosInstance.get(
+        `https://cesar-tracy-blog.vercel.app/api/users/?username=${username}`
+      );
+      setPostUser(res.data);
     };
-    fetchUsers();
-    // }
-  }, []);
+    fetchUserInfo();
+  }, [post]);
 
   return (
     <Card shadow='sm' radius='lg' withBorder p={0} className={classes.postCard}>
@@ -80,7 +82,7 @@ export default function Post({ post }) {
           })}
 
           <Link to={`/post/${post._id}`} className='link'>
-            <Title order={2} ta='center'>
+            <Title order={2} ta='center' pt='sm'>
               {post.title}
             </Title>
           </Link>
@@ -93,12 +95,23 @@ export default function Post({ post }) {
         </div>
 
         <Group position='apart' pt='xs'>
-          <Text size={12} sx={{ textTransform: 'capitalize' }}>
+          <Group spacing='xs'>
             <Link to={`/?user=${post.username}`} className='link'>
-              <b>{post.username}</b>
-              {/* <Image width='25px' height='25px' src={post.photo} alt='PPic' /> */}
+              {postUser.map((user) => (
+                <Avatar
+                  size='md'
+                  radius='md'
+                  src={PF + user.profilePic}
+                  key={user.id}
+                />
+              ))}
             </Link>
-          </Text>
+            <Link to={`/?user=${post.username}`} className='link'>
+              <Text size={14} sx={{ textTransform: 'capitalize' }}>
+                <b>{post.username}</b>
+              </Text>
+            </Link>
+          </Group>
           <Text size={12} component='a' href={`/post/${post._id}`}>
             Read more...
           </Text>

@@ -1,4 +1,5 @@
 import {
+  Avatar,
   BackgroundImage,
   Badge,
   Button,
@@ -40,8 +41,8 @@ const useStyles = createStyles((theme) => ({
   },
   singlePostImg: {
     width: '100%',
-    height: '50vh',
-    backgroundSize: 'contain',
+    height: '60vh',
+    backgroundSize: 'cover',
     position: 'center',
     backgroundRepeat: 'no-repeat',
   },
@@ -170,12 +171,19 @@ export default function SinglePost() {
           )}
         </div>
         <Group position='apart' py='sm'>
-          <Text align='center' transform='capitalize'>
-            Posted on {new Date(post.createdAt).toDateString()} by{' '}
-            <Link to={`/?user=${post.username}`} className='link'>
-              <b>{post.username}</b>
-            </Link>
-          </Text>
+          <Group>
+            <Avatar size='md' radius='md' src='' />
+            <Stack spacing={0}>
+              <Link to={`/?user=${post.username}`} className='link'>
+                <Text fw='bold' fz='xs'>
+                  {post.username}
+                </Text>
+              </Link>
+              <Text fz='xs' transform='capitalize'>
+                Posted on {new Date(post.createdAt).toDateString()}
+              </Text>
+            </Stack>
+          </Group>
           <Group>
             <Text>Categories:</Text>
             {category.map((cat, i) => (
