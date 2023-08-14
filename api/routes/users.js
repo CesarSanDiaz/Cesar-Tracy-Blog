@@ -47,15 +47,48 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-//GER USER
-router.get('/:id', async (req, res) => {
+//GER USER by id
+// router.get('/:id', async (req, res) => {
+//   try {
+//     const user = await User.findById(req.params.id);
+//     const { password, ...others } = user._doc;
+//     res.status(200).json(others);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+// getting user by username if no query. gets all users
+router.get('/', async (req, res) => {
+  // res.json({ requestParams: req.params });
+  //destructuring username from the request.query
+  const { username, email } = req.query;
+  // then can i do this and do it for all the key value pairs?
+  // const { username, email, } = req.query;
+  // or const { ...all } = req.query;
+
   try {
-    const user = await User.findById(req.params.id);
-    const { password, ...others } = user._doc;
-    res.status(200).json(others);
-  } catch (err) {
-    res.status(500).json(err);
+    let users;
+    // if query find that
+    if (username) {
+      users = await User.find({ username });
+    } else {
+      users = await User.find();
+    }
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json(error + ', could not fetch user with that username');
   }
 });
+
+// GET all users
+// router.get('/', async (req, res) => {
+//   try {
+//     const users = await User.find();
+//     res.status(200).json(users);
+//   } catch (error) {
+//     res.status(500).json(error + 'could not fetch users');
+//   }
+// });
 
 module.exports = router;

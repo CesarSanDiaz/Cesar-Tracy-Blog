@@ -68,6 +68,7 @@ router.get('/:id', async (req, res) => {
 
 //GET ALL POSTS
 router.get('/', async (req, res) => {
+  // getting posts depending on query
   const username = req.query.user;
   const catName = req.query.cat;
   try {

@@ -8,7 +8,11 @@ import {
   Title,
   createStyles,
 } from '@mantine/core';
+import axios from 'axios';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+// import { axiosInstance } from '../../config';
+// import axios from 'axios';
 
 const useStyles = createStyles((theme) => ({
   postCard: {
@@ -28,8 +32,26 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export default function Post({ post }) {
+  // const { user } = useContext(Context);
   const PF = 'https://cesar-tracy-blog.vercel.app/images/';
   const { classes } = useStyles();
+
+  const postUsername = post.username;
+  // console.log(postUsername);
+
+  useEffect(() => {
+    // if (user === postUsername) {
+    const fetchUsers = async () => {
+      const res = await axios.get('http://localhost:5000/api/users/');
+      // fetching from local host if its up and running
+      // const res = await axios.get('http://localhost:5000/api/posts' + search);
+      const users = res.data;
+      const newUser = users.filter((user) => user.username === postUsername);
+      console.log(newUser);
+    };
+    fetchUsers();
+    // }
+  }, []);
 
   return (
     <Card shadow='sm' radius='lg' withBorder p={0} className={classes.postCard}>
@@ -72,9 +94,9 @@ export default function Post({ post }) {
 
         <Group position='apart' pt='xs'>
           <Text size={12} sx={{ textTransform: 'capitalize' }}>
-            Author:{' '}
             <Link to={`/?user=${post.username}`} className='link'>
               <b>{post.username}</b>
+              {/* <Image width='25px' height='25px' src={post.photo} alt='PPic' /> */}
             </Link>
           </Text>
           <Text size={12} component='a' href={`/post/${post._id}`}>
