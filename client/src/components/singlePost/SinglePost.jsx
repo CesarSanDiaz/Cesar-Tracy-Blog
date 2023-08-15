@@ -65,7 +65,8 @@ export default function SinglePost() {
   const location = useLocation();
   const path = location.pathname.split('/')[2];
   const [post, setPost] = useState({});
-  const PF = 'https://cesar-tracy-blog.vercel.app/images/';
+  // const PF = 'https://cesar-tracy-blog.vercel.app/images/';
+  const PF = 'http://localhost:5000/images/';
   const { user } = useContext(Context);
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
@@ -91,7 +92,7 @@ export default function SinglePost() {
 
   const handleDelete = async () => {
     try {
-      await axiosInstance.delete(`/posts/${post._id}`, {
+      await axiosInstance.delete(`posts/${post._id}`, {
         data: { username: user.username },
       });
       window.location.replace('/');
@@ -102,7 +103,7 @@ export default function SinglePost() {
 
   const handleUpdate = async () => {
     try {
-      await axiosInstance.put(`/posts/${post._id}`, {
+      await axiosInstance.put(`posts/${post._id}`, {
         username: user.username,
         title,
         desc,
@@ -200,8 +201,8 @@ export default function SinglePost() {
           </Group>
           <Group>
             <Text>Categories:</Text>
-            {category.map((cat, i) => (
-              <Link key={cat.i} to={`/?cat=${cat}`} className='link'>
+            {category.map((cat) => (
+              <Link key={cat} to={`/?cat=${cat}`} className='link'>
                 <Badge size='xs' className={classes.singlePostBadge}>
                   {cat}
                 </Badge>

@@ -24,6 +24,7 @@ import { useContext, useState } from 'react';
 import CreateCategory from '../../components/categories/CreateCategory';
 import { axiosInstance } from '../../config';
 // import axios from 'axios';
+import axios from 'axios';
 import { LoginSuccess } from '../../context/Actions';
 import { Context } from '../../context/Context';
 
@@ -43,10 +44,10 @@ export default function Settings() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [success, setSuccess] = useState(false);
-  const PF = 'https://cesar-tracy-blog.vercel.app/images/';
+  // const PF = 'https://cesar-tracy-blog.vercel.app/images/';
 
   // working when connected to local host
-  // const PF = 'http://localhost:5000/images/';
+  const PF = 'http://localhost:5000/images/';
   const [editButtonText, setEditButtonText] = useState('Edit');
   const [isDisabled, setIsDisabled] = useState(true);
   const [opened, { open, close }] = useDisclosure(false);
@@ -81,7 +82,7 @@ export default function Settings() {
       data.append('file', file);
       updatedUser.profilePic = filename;
       try {
-        await axiosInstance.post('/api/upload', data);
+        await axios.post('http://localhost:5000/api/upload', data);
       } catch (err) {
         console.log(err.message);
       }
@@ -136,7 +137,7 @@ export default function Settings() {
           <Stack align='center' spacing='sm'>
             <Text>Profile Picture</Text>
             <Image
-              src={file ? URL.createObjectURL(file) : PF + user.profilePic}
+              src={file && PF + user.profilePic}
               alt='With default placeholder'
               withPlaceholder
               width={70}
