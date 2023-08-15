@@ -15,9 +15,7 @@ import {
   createStyles,
 } from '@mantine/core';
 import { IconCamera } from '@tabler/icons-react';
-import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
-// import SelectCategories from '../../components/categories/SelectCategories';
 import { axiosInstance } from '../../config';
 import { Context } from '../../context/Context';
 
@@ -87,7 +85,7 @@ export default function Write() {
       data.append('file', file);
       newPost.photo = filename;
       try {
-        await axios.post('http://localhost:5000/api/upload', data);
+        await axiosInstance.post('/upload', data);
       } catch (err) {
         console.log(err.message);
       }
@@ -101,7 +99,7 @@ export default function Write() {
     }
     // sending Categories to backend
     try {
-      await axios.post('/categories', [selectedCat]);
+      await axiosInstance.post('/categories', [selectedCat]);
     } catch (err) {
       console.log(err);
     }
