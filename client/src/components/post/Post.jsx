@@ -4,7 +4,9 @@ import {
   Card,
   Group,
   Image,
+  Loader,
   Paper,
+  Skeleton,
   Text,
   Title,
   createStyles,
@@ -32,12 +34,14 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export default function Post({ post }) {
+  const [isLoading, setIsLoading] = useState(false);
   const PF = 'https://cesar-tracy-blog.vercel.app/images/';
   // const PF = 'http://localhost:5000/images/';
   const { classes } = useStyles();
   const [postUser, setPostUser] = useState([]);
 
   useEffect(() => {
+    setIsLoading(true);
     // fetching usr info based off post name
     const { username } = post;
     const fetchUserInfo = async () => {
@@ -48,6 +52,7 @@ export default function Post({ post }) {
       // fetching from vercel
       const res = await axiosInstance.get(`users/?username=${username}`);
       setPostUser(res.data);
+      setIsLoading(false);
     };
     fetchUserInfo();
   }, [post]);
@@ -55,14 +60,17 @@ export default function Post({ post }) {
   return (
     <Card shadow='sm' radius='lg' withBorder p={0} className={classes.postCard}>
       <Link to={`/post/${post._id}`}>
-        {post.photo && (
-          <Image
-            className='postImg'
-            src={PF + post.photo}
-            alt='pic'
-            height={350}
-          />
-        )}
+        {post.photo &&
+          (isLoading ? (
+            <Loader my='20%' size='xl' />
+          ) : (
+            <Image
+              className='postImg'
+              src={PF + post.photo}
+              alt='Post Pic'
+              height={350}
+            />
+          ))}
       </Link>
 
       <Paper sx={{ backgroundColor: 'transparent' }} p='xs'>
@@ -90,18 +98,24 @@ export default function Post({ post }) {
           </Text>
         </div>
 
+        {/* <Skeleton visible={isLoading} radius='lg' > */}
         <Group position='apart' pt='xs'>
           <Group spacing='xs'>
-            <Link to={`/?user=${post.username}`} className='link'>
-              {postUser.map((user) => (
-                <Avatar
-                  size='md'
-                  radius='md'
-                  src={PF + user.profilePic}
-                  key={user.id}
-                />
-              ))}
-            </Link>
+            {isLoading ? (
+              <Loader my='20%' size='xs' />
+            ) : (
+              <Link to={`/?user=${post.username}`} className='link'>
+                {postUser.map((user) => (
+                  <Avatar
+                    size='md'
+                    radius='md'
+                    src={PF + user.profilePic}
+                    key={user.id}
+                  />
+                ))}
+              </Link>
+            )}
+
             <Link to={`/?user=${post.username}`} className='link'>
               <Text size={14} sx={{ textTransform: 'capitalize' }}>
                 <b>{post.username}</b>
@@ -112,6 +126,7 @@ export default function Post({ post }) {
             Read more...
           </Text>
         </Group>
+        {/* </Skeleton> */}
       </Paper>
     </Card>
   );
