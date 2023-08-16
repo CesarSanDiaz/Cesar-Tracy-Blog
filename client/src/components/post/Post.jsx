@@ -6,7 +6,6 @@ import {
   Image,
   Loader,
   Paper,
-  Skeleton,
   Text,
   Title,
   createStyles,

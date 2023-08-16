@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 // import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router';
+import Tiptap from '../components/tiptap/Tiptap';
 
 const useStyles = createStyles((theme) => ({
   catDivider: {
@@ -47,7 +48,6 @@ export default function Categories() {
   }, [search]);
 
   useEffect(() => {
-    // fetching from Vercel
     const fetchPosts = async () => {
       const res = await axios.get('http://localhost:5000/api/posts');
       // fetching from local host if its up and running
@@ -89,6 +89,7 @@ export default function Categories() {
           },
         })}
       />
+      <Tiptap />
     </div>
   );
 }
