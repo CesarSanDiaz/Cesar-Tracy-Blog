@@ -19,7 +19,7 @@ const useStyles = createStyles((theme) => ({
   postCard: {
     backgroundColor:
       theme.colorScheme === 'dark'
-        ? theme.colors.myPurple[6]
+        ? theme.colors.myPurple[8]
         : theme.colors.white,
   },
   postBadge: {
@@ -63,12 +63,7 @@ export default function Post({ post }) {
           (isLoading ? (
             <Loader my='20%' size='xl' />
           ) : (
-            <Image
-              className='postImg'
-              src={PF + post.photo}
-              alt='Post Pic'
-              height={350}
-            />
+            <Image src={PF + post.photo} alt='Post Pic' height={350} />
           ))}
       </Link>
 

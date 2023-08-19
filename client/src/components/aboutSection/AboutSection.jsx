@@ -26,7 +26,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export default function AboutSection({ cards }) {
+export default function AboutSection() {
   const { classes } = useStyles();
 
   return (

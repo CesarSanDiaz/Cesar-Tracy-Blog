@@ -1,4 +1,4 @@
-import { Card, Text, Title } from '@mantine/core';
+import { Card, Paper, Text, Title } from '@mantine/core';
 import './aboutCard.scss';
 
 export default function AboutSection({ card }) {
@@ -16,10 +16,19 @@ export default function AboutSection({ card }) {
         m='auto'
         padding={0}
       >
-        <img classNames='aboutSectionImg' src={card.img} alt='img' />
-        <Text className='aboutSectionText' align='center' p='sm'>
+        {/* <Paper
+          style={{
+            backgroundColor: (theme) =>
+              theme.colorscheme === 'dark'
+                ? theme.colors.myPurple[8]
+                : theme.colors.light,
+          }}
+        > */}
+        <img src={card.img} alt='img' />
+        <Text align='center' p='sm'>
           {card.text}
         </Text>
+        {/* </Paper> */}
       </Card>
     </>
   );

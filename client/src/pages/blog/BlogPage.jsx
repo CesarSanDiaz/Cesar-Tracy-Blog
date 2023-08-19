@@ -3,11 +3,11 @@ import {
   Group,
   Paper,
   SimpleGrid,
-  Text,
+  TextInput,
   Title,
   createStyles,
 } from '@mantine/core';
-import { IconTrees } from '@tabler/icons-react';
+import { IconSearch, IconTrees } from '@tabler/icons-react';
 // import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
@@ -45,11 +45,10 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-// had to do another API call until I figure out how to get the post in a UseContext.
-
 export default function BlogPage() {
   const { search } = useLocation();
   const [posts, setPosts] = useState([]);
+  const [filter, setFilter] = useState('');
 
   const { classes } = useStyles();
 
@@ -78,13 +77,15 @@ export default function BlogPage() {
         m='auto'
         w='25%'
       />
-      <Group position='apart' maw='80vw' m='auto'>
-        <Text size='lg' p='sm'>
-          Text 1
-        </Text>
-        <Text size='lg' p='sm'>
-          Filter button?
-        </Text>
+      <Group position='right'>
+        <TextInput
+          placeholder='Search Post'
+          value={filter}
+          mb='sm'
+          px={0}
+          icon={<IconSearch size='1rem' />}
+          onChange={(e) => setFilter(e.target.value)}
+        />
       </Group>
       <SimpleGrid
         cols={4}
@@ -98,13 +99,15 @@ export default function BlogPage() {
         ]}
         className=''
       >
-        {posts.map((p) => {
-          return (
-            <div key={p.title} className={classes.post}>
-              <Post post={p} />
-            </div>
-          );
-        })}
+        {posts
+          .filter((p) => p.title.toLowerCase().includes(filter.toLowerCase()))
+          .map((p) => {
+            return (
+              <div key={p.title} className={classes.post}>
+                <Post post={p} />
+              </div>
+            );
+          })}
       </SimpleGrid>
     </Paper>
   );
