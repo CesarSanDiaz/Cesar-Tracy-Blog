@@ -1,6 +1,7 @@
-import { Grid, MediaQuery, Paper, createStyles } from '@mantine/core';
+import { Button, Grid, MediaQuery, Paper, createStyles } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
+import { Link } from 'react-router-dom';
 import Header from '../../components/header/Header';
 import Posts from '../../components/posts/Posts';
 import Sidebar from '../../components/sidebar/Sidebar';
@@ -54,6 +55,17 @@ export default function Home() {
             </Grid.Col>
           </MediaQuery>
         </Grid>
+        <Button
+          style={{ display: 'block' }}
+          variant='filled'
+          m='auto'
+          my='sm'
+          size='md'
+        >
+          <Link to='/blog' className='link'>
+            All Posts
+          </Link>
+        </Button>
       </div>
     </Paper>
   );

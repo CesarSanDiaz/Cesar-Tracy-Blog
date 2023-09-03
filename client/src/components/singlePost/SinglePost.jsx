@@ -20,6 +20,7 @@ import {
   IconTrash,
 } from '@tabler/icons-react';
 // import axios from 'axios';
+import parser from 'html-react-parser';
 import { useContext, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { axiosInstance } from '../../config';
@@ -220,7 +221,7 @@ export default function SinglePost() {
           />
         ) : (
           <Text p='sm' className={classes.singlePostDesc}>
-            {desc}
+            {parser(desc)}
           </Text>
         )}
         {updateMode && (

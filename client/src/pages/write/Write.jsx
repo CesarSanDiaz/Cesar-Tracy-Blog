@@ -7,15 +7,14 @@ import {
   Group,
   MultiSelect,
   Paper,
-  // Select,
   Stack,
   TextInput,
-  Textarea,
   Title,
   createStyles,
 } from '@mantine/core';
 import { IconCamera } from '@tabler/icons-react';
 import { useContext, useEffect, useState } from 'react';
+import TipTap from '../../components/tiptap/TipTap';
 import { axiosInstance } from '../../config';
 import { Context } from '../../context/Context';
 
@@ -39,6 +38,14 @@ const useStyles = createStyles((theme) => ({
       theme.colorScheme === 'dark'
         ? theme.colors.myYellow[7]
         : theme.colors.blue[6],
+  },
+  buttons: {
+    display: 'block',
+    margin: 'auto',
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.myPurple[6]
+        : theme.colors.white,
   },
 }));
 
@@ -138,7 +145,9 @@ export default function Write() {
           <div style={{ paddingTop: '12px' }}>
             <Button
               display='block'
+              variant='filled'
               m='auto'
+              className={classes.buttons}
               onClick={() => {
                 setFile(null);
               }}
@@ -150,6 +159,8 @@ export default function Write() {
           <FileButton onChange={setFile}>
             {(props) => (
               <Button
+                className={classes.buttons}
+                variant='filled'
                 {...props}
                 leftIcon={<IconCamera size='1rem' />}
                 display='block'
@@ -162,26 +173,20 @@ export default function Write() {
         )}
         <form onSubmit={handleSubmit} className={classes.writeForm}>
           <TextInput
-            label='Title'
             required
+            label='Title'
             placeholder='Post Title'
             type='text'
             variant='filled'
             onChange={(e) => setTitle(e.target.value)}
           />
-          <Textarea
-            py='sm'
-            placeholder='Tell your story...'
-            label='Description'
-            onChange={(e) => setDesc(e.target.value)}
-            minRows={4}
-            autosize
-            withAsterisk
-            variant='filled'
-          />
+          <Title order={6} mt='sm'>
+            Description
+          </Title>
+          <TipTap setDesc={setDesc} />
           <Group align='apart'>
-            {/* <SelectCategories /> */}
             <MultiSelect
+              mt='sm'
               label='Select Category'
               dropdownPosition='top'
               variant='filled'
@@ -191,6 +196,8 @@ export default function Write() {
             />
           </Group>
           <Button
+            className={classes.buttons}
+            variant='filled'
             type='submit'
             sx={{ display: 'block', marginLeft: 'auto' }}
             my='sm'

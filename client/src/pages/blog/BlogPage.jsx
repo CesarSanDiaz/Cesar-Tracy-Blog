@@ -49,7 +49,6 @@ export default function BlogPage() {
   const { search } = useLocation();
   const [posts, setPosts] = useState([]);
   const [filter, setFilter] = useState('');
-
   const { classes } = useStyles();
 
   useEffect(() => {

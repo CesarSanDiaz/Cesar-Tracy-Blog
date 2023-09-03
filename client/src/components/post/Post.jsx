@@ -11,6 +11,7 @@ import {
   createStyles,
 } from '@mantine/core';
 // import axios from 'axios';
+import parser from 'html-react-parser';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { axiosInstance } from '../../config';
@@ -88,7 +89,7 @@ export default function Post({ post }) {
             {new Date(post.createdAt).toDateString()}
           </Text>
           <Text lineClamp={1} ta='center'>
-            {post.desc}
+            {parser(post.desc)}
           </Text>
         </div>
 

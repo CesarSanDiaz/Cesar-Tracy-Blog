@@ -1,4 +1,16 @@
 .tiptap {
+  min-height: 100px;
+  padding: 1rem;
+  border-radius: 5px;
+  border: 1px solid black;
+
+  &:focus {
+  }
+
+  Button.is-active {
+    color: #ff0000;
+  }
+
   > * + * {
     margin-top: 0.75em;
   }
@@ -52,4 +64,11 @@
     border-top: 2px solid rgba(#0d0d0d, 0.1);
     margin: 2rem 0;
   }
+}
+
+.menubar {
+  padding: 12px;
+  border-bottom: none;
+  gap: 0.1rem;
+  justify-content: center;
 }
