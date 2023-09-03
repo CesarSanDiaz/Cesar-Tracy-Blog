@@ -1,4 +1,5 @@
 import {
+  Alert,
   Anchor,
   Button,
   Checkbox,
@@ -12,7 +13,9 @@ import {
   createStyles,
 } from '@mantine/core';
 // import axios from 'axios';
-import { useContext, useRef } from 'react';
+// import { useDisclosure } from '@mantine/hooks';
+import { IconAlertCircle } from '@tabler/icons-react';
+import { useContext, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { axiosInstance } from '../../config';
 import { Context } from '../../context/Context';
@@ -37,14 +40,22 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
+// const LoginFailed = () => {
+//   return (
+
+//   );
+// };
+
 export default function Login() {
   const { classes } = useStyles();
   const userRef = useRef();
   const passwordRef = useRef();
   const { dispatch, isFetching } = useContext(Context);
+  const [error, setError] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(false);
     dispatch({ type: 'LOGIN_START' });
     try {
       const res = await axiosInstance.post('/auth/login', {
@@ -54,6 +65,7 @@ export default function Login() {
       dispatch({ type: 'LOGIN_SUCCESS', payload: res.data });
     } catch (err) {
       dispatch({ type: 'LOGIN_FAILURE', payload: err });
+      setError(true);
     }
   };
 
@@ -79,8 +91,20 @@ export default function Login() {
         className={classes.loginPaper}
       >
         <form onSubmit={handleSubmit}>
+          {error && (
+            <Alert
+              my='sm'
+              icon={<IconAlertCircle size='1rem' />}
+              color='red'
+              variant='filled'
+            >
+              Sorry, we can't find an account with this email address and
+              password. Please try again or create a new account.
+            </Alert>
+          )}
           <TextInput
             required
+            error={error}
             label='Username'
             type='text'
             placeholder='Your username'
@@ -88,6 +112,7 @@ export default function Login() {
           />
           <TextInput
             required
+            error={error}
             mt='sm'
             label='Password'
             type='password'

@@ -14,7 +14,8 @@ import {
 } from '@mantine/core';
 import { IconCamera } from '@tabler/icons-react';
 import { useContext, useEffect, useState } from 'react';
-import TipTap from '../../components/tiptap/TipTap';
+// import TipTap from '../../components/tiptap/TipTap';
+import RtfMantine from '../../components/tiptap/RtfMantine';
 import { axiosInstance } from '../../config';
 import { Context } from '../../context/Context';
 
@@ -183,7 +184,7 @@ export default function Write() {
           <Title order={6} mt='sm'>
             Description
           </Title>
-          <TipTap setDesc={setDesc} />
+          <RtfMantine setDesc={setDesc} />
           <Group align='apart'>
             <MultiSelect
               mt='sm'

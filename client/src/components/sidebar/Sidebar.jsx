@@ -98,7 +98,7 @@ export default function Sidebar() {
         w='25%'
       />
       <div>
-        <SimpleGrid cols={3}>
+        <SimpleGrid cols={2}>
           {categories &&
             categories.map((cat) => (
               <Link to={`/?cat=${cat.name}`} className='link' key={cat._id}>

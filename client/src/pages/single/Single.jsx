@@ -1,4 +1,4 @@
-import { Grid } from '@mantine/core';
+// import { Grid } from '@mantine/core';
 // import PostSidebar from '../../components/sidebar/PostSidebar';
 import SinglePost from '../../components/singlePost/SinglePost';
 

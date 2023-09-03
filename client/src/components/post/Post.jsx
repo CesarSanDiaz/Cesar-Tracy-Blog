@@ -6,6 +6,7 @@ import {
   Image,
   Loader,
   Paper,
+  Stack,
   Text,
   Title,
   createStyles,
@@ -70,7 +71,7 @@ export default function Post({ post }) {
 
       <Paper sx={{ backgroundColor: 'transparent' }} p='xs'>
         <div>
-          {post.categories.map((c) => {
+          {post.categories.map((c, i) => {
             return (
               <Link to={`/?cat=${c}`} className='link' key={c}>
                 <Badge className={classes.postBadge} size='md' mr='sm'>
@@ -85,9 +86,7 @@ export default function Post({ post }) {
               {post.title}
             </Title>
           </Link>
-          <Text size={10} py={0} ta='center'>
-            {new Date(post.createdAt).toDateString()}
-          </Text>
+
           <Text lineClamp={1} ta='center'>
             {parser(post.desc)}
           </Text>
@@ -111,14 +110,17 @@ export default function Post({ post }) {
               </Link>
             )}
 
-            <Link to={`/?user=${post.username}`} className='link'>
-              <Text size={14} sx={{ textTransform: 'capitalize' }}>
-                <b>{post.username}</b>
-              </Text>
-            </Link>
+            <Stack spacing={0}>
+              <Link to={`/?user=${post.username}`} className='link'>
+                <Text size={14} sx={{ textTransform: 'capitalize' }}>
+                  <b>{post.username}</b>
+                </Text>
+              </Link>
+              <Text size={12}>{new Date(post.createdAt).toDateString()}</Text>
+            </Stack>
           </Group>
           <Text size={12} component='a' href={`/post/${post._id}`}>
-            Read more...
+            Read More...
           </Text>
         </Group>
         {/* </Skeleton> */}

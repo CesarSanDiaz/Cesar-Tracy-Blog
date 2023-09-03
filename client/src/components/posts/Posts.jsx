@@ -2,28 +2,11 @@ import { Divider, Grid, Paper, Title, createStyles } from '@mantine/core';
 import Post from '../../components/post/Post';
 
 const useStyles = createStyles((theme) => ({
-  number0: {
-    order: 3,
+  posts: {
     transition: 'box-shadow 150ms ease, transform 100ms ease',
     '&:hover': {
       // boxShadow: theme.shadows.lg,
       transform: 'scale(1.015)',
-    },
-  },
-  number1: {
-    order: 2,
-    transition: 'box-shadow 150ms ease, transform 100ms ease',
-    '&:hover': {
-      // boxShadow: theme.shadows.lg,
-      transform: 'scale(1.025)',
-    },
-  },
-  number2: {
-    order: 1,
-    transition: 'box-shadow 150ms ease, transform 100ms ease',
-    '&:hover': {
-      // boxShadow: theme.shadows.lg,
-      transform: 'scale(1.025)',
     },
   },
   postsDivider: {
@@ -63,7 +46,7 @@ export default function Posts({ posts }) {
               md={6}
               lg={6}
               key={p.title}
-              className={classes[`number${index}`]}
+              className={classes.posts}
             >
               <Post post={p} />
             </Grid.Col>

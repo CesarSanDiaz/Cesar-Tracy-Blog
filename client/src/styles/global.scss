@@ -1,13 +1,6 @@
-@import './variables.scss';
-
-.main {
-  background-color: $main-bg;
-  color: $main-color;
-  font-family: $main-font;
-}
-
 .parent {
-  position: relative;
   min-height: 100svh;
   overflow: hidden;
+  max-width: 1500px;
+  margin: auto;
 }

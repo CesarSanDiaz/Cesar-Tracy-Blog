@@ -39,10 +39,10 @@ export default function Home() {
           theme.colorScheme === 'dark' ? theme.colors.myPurple[7] : theme.white,
       })}
     >
+      <Header />
       <div>
-        <Header />
-        <Grid grow m={0}>
-          <Grid.Col span={8} xs={12} sm={6} md={8}>
+        <Grid grow>
+          <Grid.Col span={9}>
             <Posts posts={posts} />
           </Grid.Col>
           <MediaQuery
@@ -50,23 +50,23 @@ export default function Home() {
             styles={{ display: 'none' }}
             className={classes.sidebar}
           >
-            <Grid.Col span={4} xs={0} sm={6} md={4}>
+            <Grid.Col span={3}>
               <Sidebar posts={posts} />
             </Grid.Col>
           </MediaQuery>
         </Grid>
-        <Button
-          style={{ display: 'block' }}
-          variant='filled'
-          m='auto'
-          my='sm'
-          size='md'
-        >
-          <Link to='/blog' className='link'>
-            All Posts
-          </Link>
-        </Button>
       </div>
+      <Button
+        style={{ display: 'block' }}
+        variant='filled'
+        m='auto'
+        my='sm'
+        size='md'
+      >
+        <Link to='/blog' className='link'>
+          All Posts
+        </Link>
+      </Button>
     </Paper>
   );
 }
