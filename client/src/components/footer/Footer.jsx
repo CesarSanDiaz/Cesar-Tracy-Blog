@@ -1,13 +1,11 @@
-import { Button, Group, Paper, Stack, Text, createStyles } from '@mantine/core';
+import { Group, Paper, Stack, Text, createStyles } from '@mantine/core';
 import {
   IconBrandInstagram,
   IconBrandPinterest,
   IconBrandTwitter,
   IconBrandYoutube,
 } from '@tabler/icons-react';
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { Context } from '../../context/Context';
+import React from 'react';
 
 const useStyles = createStyles((theme) => ({
   footerPaper: {
@@ -17,6 +15,8 @@ const useStyles = createStyles((theme) => ({
       theme.colorScheme === 'dark'
         ? '0.0625rem solid #373A40'
         : '0.0625rem solid #dee2e6',
+    boxShadow:
+      'rgba(67, 71, 85, 0.3) 0px 0px 0.25em, rgba(90, 125, 188, 0.1) 0px 0.25em 1em',
   },
   youtubeIcon: {
     ':hover': {
@@ -42,39 +42,14 @@ const useStyles = createStyles((theme) => ({
       cursor: 'pointer',
     },
   },
-  center: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  bottomList: {
-    display: 'flex',
-  },
-  text: {
-    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-  },
-  footerButton: {
-    color:
-      theme.colorScheme === 'dark'
-        ? theme.colors.myPurple[6]
-        : theme.colors.white,
-  },
 }));
 
 export default function Footer() {
-  const { user, dispatch } = useContext(Context);
   // const PF = 'http://localhost:5000/images/';
-  const PF = 'https://cesar-tracy-blog.vercel.app/images/';
   const { classes } = useStyles();
 
-  const handleLogout = () => {
-    dispatch({ type: 'LOGOUT' });
-    window.location.reload();
-  };
-
   return (
-    <Paper p='xs' radius={0} shadow='xl' className={classes.footerPaper}>
+    <Paper p='xs' radius={0} className={classes.footerPaper}>
       <Stack spacing={1} align='center'>
         <Text>2023 &copy; Copyright SanDiazDesigns</Text>
         <Group position='center'>
@@ -92,47 +67,7 @@ export default function Footer() {
             />
           </Group>
         </Group>
-        <div>
-          {user ? (
-            <Group position='center'>
-              <Link className='link' to='/settings'>
-                <img
-                  src={PF + user.profilePic}
-                  alt='Avatar'
-                  style={{
-                    width: '25px',
-                    borderRadius: '50%',
-                    height: '25px',
-                  }}
-                />
-              </Link>
-              <Button
-                variant='filled'
-                onClick={handleLogout}
-                className={classes.footerButton}
-              >
-                Logout
-              </Button>
-            </Group>
-          ) : (
-            <div className={classes.bottomList}>
-              <Text className={classes.text}>
-                <Link className='link' to='/login'>
-                  Member Login
-                </Link>
-              </Text>
-              &nbsp;|&nbsp;
-              <Text className={classes.text}>
-                <Link className='link' to='/register'>
-                  Register
-                </Link>
-              </Text>
-            </div>
-          )}
-        </div>
-        <Text size={10} className={classes.text}>
-          Made with &#128153;
-        </Text>
+        <Text size={10}>Made with &#128153;</Text>
       </Stack>
     </Paper>
   );

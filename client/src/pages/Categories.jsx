@@ -1,6 +1,7 @@
 import { Divider, Title, createStyles } from '@mantine/core';
 import { IconTag } from '@tabler/icons-react';
 import RtfMantine from '../components/tiptap/RtfMantine';
+import { usePostContext } from '../context/PostsContext';
 
 const useStyles = createStyles((theme) => ({
   catDivider: {
@@ -21,6 +22,9 @@ const useStyles = createStyles((theme) => ({
 
 export default function Categories() {
   const { classes } = useStyles();
+
+  const data = usePostContext();
+  console.log(data);
 
   return (
     <div style={{ padding: '12px' }}>

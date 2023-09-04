@@ -1,6 +1,5 @@
 import {
   Burger,
-  Button,
   Divider,
   Drawer,
   Group,
@@ -17,14 +16,16 @@ import {
   IconBrandTwitter,
   IconBrandYoutube,
   IconHome,
+  IconLogin,
   IconMail,
-  IconPencil,
   IconTrees,
+  IconUserPlus,
   IconUsers,
 } from '@tabler/icons-react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Context } from '../../context/Context';
+import MenuNavbarUser from './MenuNavbarUser';
 
 const useStyles = createStyles((theme) => ({
   nav: {
@@ -37,16 +38,15 @@ const useStyles = createStyles((theme) => ({
       theme.colorScheme === 'dark' ? theme.colors.myPurple[7] : theme.white,
   },
   icons: {
+    width: '1.25rem',
     color:
       theme.colorScheme === 'dark'
         ? theme.colors.myYellow[7]
         : theme.colors.blue[6],
   },
   divider: {
-    backgroundColor:
-      theme.colorScheme === 'dark'
-        ? theme.colors.myYellow[7]
-        : theme.colors.blue[6],
+    borderTopColor:
+      theme.colorScheme === 'dark' ? theme.colors.myYellow[7] : theme.blue,
   },
   header: {
     padding: '12px',
@@ -58,17 +58,13 @@ const useStyles = createStyles((theme) => ({
   body: {
     padding: '12px',
   },
-  loginBtn: {
-    color:
-      theme.colorScheme === 'dark' ? theme.colors.myPurple[7] : theme.white,
-  },
 }));
 
 export default function MenuNavbar() {
   const [opened, { toggle }] = useDisclosure(false);
   const label = opened ? 'Close navigation' : 'Open navigation';
   const { classes } = useStyles();
-  const user = useContext(Context);
+  const { user } = useContext(Context);
 
   return (
     <>
@@ -94,7 +90,7 @@ export default function MenuNavbar() {
           timingFunction: 'linear',
         }}
       >
-        <Divider size='xs' p='1.5px' mb='sm' className={classes.divider} />
+        <Divider mb='sm' className={classes.divider} />
         <Navbar.Section>
           <Stack pb='sm'>
             <Link className='link' to='/' onClick={toggle}>
@@ -103,45 +99,54 @@ export default function MenuNavbar() {
                 <Text>Home</Text>
               </Group>
             </Link>
+
             <Link className='link' to='/blog' onClick={toggle}>
               <Group spacing='sm'>
                 <IconTrees className={classes.icons} />
                 <Text>Blog</Text>
               </Group>
             </Link>
+
             <Link className='link' to='/about' onClick={toggle}>
               <Group spacing='sm'>
                 <IconUsers className={classes.icons} />
                 <Text>About</Text>
               </Group>
             </Link>
+
             <Link className='link' to='/contact' onClick={toggle}>
               <Group spacing='sm'>
                 <IconMail className={classes.icons} />
                 <Text>Contact</Text>
               </Group>
             </Link>
-            {user && (
-              <Link className='link' to='/write' onClick={toggle}>
-                <Button
-                  variant='filled'
-                  fullWidth
-                  leftIcon={<IconPencil size='1rem' />}
-                  className={classes.loginBtn}
-                >
-                  Create Post
-                </Button>
-              </Link>
+
+            <Divider className={classes.divider} />
+
+            {user ? (
+              <MenuNavbarUser toggle={toggle} />
+            ) : (
+              <Stack>
+                <Link className='link' to='/login' onClick={toggle}>
+                  <Group spacing='sm'>
+                    <IconLogin className={classes.icons} />
+                    <Text>Login</Text>
+                  </Group>
+                </Link>
+
+                <Link className='link' to='/register' onClick={toggle}>
+                  <Group spacing='sm'>
+                    <IconUserPlus className={classes.icons} />
+                    <Text>Register</Text>
+                  </Group>
+                </Link>
+              </Stack>
             )}
+
+            <Divider className={classes.divider} />
           </Stack>
-          <Divider
-            size='xs'
-            p='1.5px'
-            mb='sm'
-            className={classes.divider}
-            style={user ? { display: 'none' } : { display: 'block' }}
-          />
         </Navbar.Section>
+
         <Navbar.Section className='navIconSection'>
           <Group position='left'>
             <IconBrandYoutube size={24} />

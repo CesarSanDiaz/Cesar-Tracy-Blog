@@ -201,10 +201,9 @@ export default function SinglePost() {
             </Stack>
           </Group>
           <Group>
-            <Text>Categories:</Text>
             {category.map((cat) => (
               <Link key={cat} to={`/?cat=${cat}`} className='link'>
-                <Badge size='xs' className={classes.singlePostBadge}>
+                <Badge size='md' className={classes.singlePostBadge}>
                   {cat}
                 </Badge>
               </Link>

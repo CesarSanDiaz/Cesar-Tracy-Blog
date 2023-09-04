@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 import { Context } from '../../context/Context';
 import LightDark from '../lightDarkMode/LightDark';
 import MenuNavbar from '../menuNavbar/MenuNavbar';
+import AvatarMenu from './AvatarMenu';
 
 const useStyles = createStyles((theme) => ({
   paperMain: {
@@ -56,11 +57,18 @@ const useStyles = createStyles((theme) => ({
         ? theme.colors.myPurple[6]
         : theme.colors.white,
   },
+  button: {
+    color:
+      theme.colorScheme === 'dark'
+        ? theme.colors.myPurple[6]
+        : theme.colors.white,
+  },
 }));
 
 export default function Topbar() {
   const { classes } = useStyles();
   const { user } = useContext(Context);
+
   // const PF = 'http://localhost:5000/images/';
 
   // const handleLogout = () => {
@@ -68,14 +76,7 @@ export default function Topbar() {
   // };
   return (
     <>
-      <Paper
-        className={classes.paperMain}
-        classNames='paperMain'
-        h={50}
-        p='sm'
-        radius={0}
-        shadow='sm'
-      >
+      <Paper className={classes.paperMain} h={50} p='sm' radius={0} shadow='sm'>
         <MediaQuery
           className={classes.media}
           query='(max-width: 30em)'
@@ -102,24 +103,15 @@ export default function Topbar() {
                 Contact
               </Link>
             </Title>
-            <Title
-              style={user ? { display: 'block' } : { display: 'none' }}
-              order={5}
-              className={classes.navLinks}
-            >
-              <Link className='link' to='/write'>
-                <Button variant='filled' className={classes.topbarButton}>
-                  Create Post
+            {user ? (
+              <AvatarMenu />
+            ) : (
+              <Link className='link' to='/login'>
+                <Button variant='filled' className={classes.button}>
+                  Login
                 </Button>
               </Link>
-            </Title>
-            {/* <Title order={5}
-              style={user ? { display: 'block' } : { display: 'none' }}
-              className={classes.navLinks}
-              onClick={handleLogout}
-              >
-              {user && 'LOGOUT'}
-            </Title> */}
+            )}
           </Group>
         </MediaQuery>
         <MediaQuery query='(min-width: 30em)' styles={{ display: 'none' }}>
