@@ -8,11 +8,9 @@ import {
   createStyles,
 } from '@mantine/core';
 import { IconSearch, IconTrees } from '@tabler/icons-react';
-// import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router';
+import { useState } from 'react';
 import Post from '../../components/post/Post';
-import { axiosInstance } from '../../config';
+import { usePostContext } from '../../context/PostsContext';
 
 const useStyles = createStyles((theme) => ({
   blogPagePaper: {
@@ -46,21 +44,9 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export default function BlogPage() {
-  const { search } = useLocation();
-  const [posts, setPosts] = useState([]);
   const [filter, setFilter] = useState('');
   const { classes } = useStyles();
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const res = await axiosInstance.get('/posts' + search);
-
-      // fetching from local host if its up and running
-      // const res = await axios.get('http://localhost:5000/api/posts' + search);
-      setPosts(res.data);
-    };
-    fetchPosts();
-  }, [search]);
+  const { posts } = usePostContext();
 
   return (
     <Paper radius={0} p='sm' className={classes.blogPagePaper}>
@@ -96,7 +82,6 @@ export default function BlogPage() {
           { maxWidth: 'lg', cols: '3' },
           { maxWidth: 'xl', cols: '4' },
         ]}
-        className=''
       >
         {posts
           .filter((p) => p.title.toLowerCase().includes(filter.toLowerCase()))

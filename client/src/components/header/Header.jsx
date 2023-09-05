@@ -41,7 +41,7 @@ export default function Header() {
     <>
       <div className={classes.wrapper}>
         <Box h='65vh'>
-          <Text className={classes.text}>Cesar & Tracy's</Text>
+          <Text className={classes.text}>Living for Experiences</Text>
           <Title className={classes.title} order={1}>
             Blog
           </Title>

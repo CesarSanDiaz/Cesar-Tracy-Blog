@@ -13,8 +13,8 @@ import {
   createStyles,
 } from '@mantine/core';
 import { IconCamera } from '@tabler/icons-react';
+import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
-// import TipTap from '../../components/tiptap/TipTap';
 import RtfMantine from '../../components/tiptap/RtfMantine';
 import { axiosInstance } from '../../config';
 import { Context } from '../../context/Context';
@@ -93,7 +93,8 @@ export default function Write() {
       data.append('file', file);
       newPost.photo = filename;
       try {
-        await axiosInstance.post('/upload', data);
+        // cannot send image files to vercel. Have to send to local host first, run the build (or git push) for the files to reflect on site.
+        await axios.post('http://localhost:5000/api/upload', data);
       } catch (err) {
         console.log(err.message);
       }

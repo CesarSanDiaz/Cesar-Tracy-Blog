@@ -1,6 +1,6 @@
 import { Divider, Title, createStyles } from '@mantine/core';
 import { IconTag } from '@tabler/icons-react';
-import RtfMantine from '../components/tiptap/RtfMantine';
+// import RtfMantine from '../components/tiptap/RtfMantine';
 import { usePostContext } from '../context/PostsContext';
 
 const useStyles = createStyles((theme) => ({
@@ -22,9 +22,7 @@ const useStyles = createStyles((theme) => ({
 
 export default function Categories() {
   const { classes } = useStyles();
-
-  const data = usePostContext();
-  console.log(data);
+  const { posts } = usePostContext();
 
   return (
     <div style={{ padding: '12px' }}>
@@ -40,7 +38,10 @@ export default function Categories() {
         m='auto'
         w='25%'
       />
-      <RtfMantine />
+      {/* <RtfMantine /> */}
+      {posts.map((post) => {
+        return <li>{post.title}</li>;
+      })}
     </div>
   );
 }

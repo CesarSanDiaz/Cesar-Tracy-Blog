@@ -69,10 +69,8 @@ export default function AvatarMenu() {
           </Group>
         </Menu.Item>
 
-        <Menu.Item icon={<IconLogout size='1rem' />}>
-          <UnstyledButton onClick={handleLogout}>
-            <Text size='md'>Logout</Text>
-          </UnstyledButton>
+        <Menu.Item icon={<IconLogout size='1rem' />} onClick={handleLogout}>
+          <Text size='md'>Logout</Text>
         </Menu.Item>
       </Menu.Dropdown>
     </Menu>

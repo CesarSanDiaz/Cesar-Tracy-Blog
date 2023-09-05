@@ -1,10 +1,20 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import { axiosInstance } from '../config';
 
-export const PostsContext = createContext('test');
+export const PostsContext = createContext();
 
 export const PostsProvider = ({ children }) => {
+  const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const res = await axiosInstance.get('/posts');
+      setPosts(res.data);
+    };
+    fetchPosts();
+  }, []);
+
   return (
-    <PostsContext.Provider value={{ id: 1 }}>{children}</PostsContext.Provider>
+    <PostsContext.Provider value={{ posts }}>{children}</PostsContext.Provider>
   );
 };
 

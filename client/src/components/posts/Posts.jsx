@@ -24,35 +24,37 @@ export default function Posts({ posts }) {
   const { classes } = useStyles();
 
   return (
-    <Paper radius={0} p='sm' className={classes.postsPaper}>
-      <Title order={2} align='center' p='xs'>
-        Posts
-      </Title>
-      <Divider
-        size={0}
-        p='1.5px'
-        mb='md'
-        className={classes.postsDivider}
-        m='auto'
-        w='25%'
-      />
-      <Grid grow gutter='sm'>
-        {posts.slice(0, 3).map((p, index) => {
-          return (
-            <Grid.Col
-              span={12}
-              xs={6}
-              sm={12}
-              md={6}
-              lg={6}
-              key={p.title}
-              className={classes.posts}
-            >
-              <Post post={p} />
-            </Grid.Col>
-          );
-        })}
-      </Grid>
-    </Paper>
+    <>
+      <Paper radius={0} p='sm' className={classes.postsPaper}>
+        <Title order={2} align='center' p='xs'>
+          Posts
+        </Title>
+        <Divider
+          size={0}
+          p='1.5px'
+          mb='md'
+          className={classes.postsDivider}
+          m='auto'
+          w='25%'
+        />
+        <Grid grow gutter='sm'>
+          {posts.slice(0, 3).map((p, index) => {
+            return (
+              <Grid.Col
+                span={12}
+                xs={6}
+                sm={12}
+                md={6}
+                lg={6}
+                key={p.title}
+                className={classes.posts}
+              >
+                <Post post={p} />
+              </Grid.Col>
+            );
+          })}
+        </Grid>
+      </Paper>
+    </>
   );
 }
