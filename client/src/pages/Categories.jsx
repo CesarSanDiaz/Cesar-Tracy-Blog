@@ -1,5 +1,6 @@
 import { Divider, Title, createStyles } from '@mantine/core';
 import { IconTag } from '@tabler/icons-react';
+// import FeaturedSection from '../components/posts/FeaturedSection';
 // import RtfMantine from '../components/tiptap/RtfMantine';
 
 const useStyles = createStyles((theme) => ({
@@ -37,6 +38,7 @@ export default function Categories() {
         w='25%'
       />
       {/* <RtfMantine /> */}
+      {/* <FeaturedSection /> */}
     </div>
   );
 }

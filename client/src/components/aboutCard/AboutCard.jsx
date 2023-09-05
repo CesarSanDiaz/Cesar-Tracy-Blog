@@ -1,4 +1,4 @@
-import { Card, Paper, Text, Title } from '@mantine/core';
+import { Card, Text, Title } from '@mantine/core';
 import './aboutCard.scss';
 
 export default function AboutSection({ card }) {
