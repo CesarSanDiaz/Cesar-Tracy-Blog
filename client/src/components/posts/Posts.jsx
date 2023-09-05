@@ -1,5 +1,6 @@
 import { Divider, Grid, Paper, Title, createStyles } from '@mantine/core';
 import Post from '../../components/post/Post';
+import FeaturedSection from './FeaturedSection';
 
 const useStyles = createStyles((theme) => ({
   posts: {
@@ -25,8 +26,10 @@ export default function Posts({ posts }) {
 
   return (
     <>
+      {}
+      <FeaturedSection posts={posts} />
       <Paper radius={0} p='sm' className={classes.postsPaper}>
-        <Title order={2} align='center' p='xs'>
+        <Title order={2} align='left' p='xs'>
           Posts
         </Title>
         <Divider
@@ -34,11 +37,11 @@ export default function Posts({ posts }) {
           p='1.5px'
           mb='md'
           className={classes.postsDivider}
-          m='auto'
-          w='25%'
+          // m='auto'
+          w='15%'
         />
         <Grid grow gutter='sm'>
-          {posts.slice(0, 3).map((p, index) => {
+          {posts.slice(1, 4).map((p, index) => {
             return (
               <Grid.Col
                 span={12}

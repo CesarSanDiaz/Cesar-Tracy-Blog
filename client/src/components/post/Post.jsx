@@ -124,7 +124,14 @@ export default function Post({ post }) {
                 <Text size={12}>{new Date(post.createdAt).toDateString()}</Text>
               </Stack>
             </Group>
-            <Text size={12} component='a' href={`/post/${post._id}`}>
+            <Text
+              size={12}
+              component='a'
+              href={`/post/${post._id}`}
+              underline
+              weight='bold'
+              lts={2}
+            >
               Read More...
             </Text>
           </Group>
