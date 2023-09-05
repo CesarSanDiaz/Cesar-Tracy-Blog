@@ -56,7 +56,6 @@ const FeaturedSection = () => {
   // destructuring from posts but only from first element
   // const [{ title, desc, photo, _id }] = posts.slice(0, 1);
   const { classes } = useStyles();
-  const PF = 'https://cesar-tracy-blog.vercel.app/images/';
 
   const { posts } = usePostContext();
   const firstPost = posts[0];
@@ -76,18 +75,18 @@ const FeaturedSection = () => {
       />
       <Card className={classes.card} p={0} shadow='md' withBorder>
         <div className={classes.image}>
-          <Image src={PF + firstPost.photo} alt='image' height={350} />
+          <Image src='https://placehold.co/350' alt='image' height={350} />
         </div>
         <div className={classes.body}>
           <Title order={2} ta='left' className={classes.title} mb='lg'>
-            {firstPost.title}
+            {'Title' || firstPost.title}
           </Title>
           <Text fz='sm' c='dimmed' lineClamp={3} ta='left' mb='lg'>
-            {parser(firstPost.desc)}
+            {'Description' || parser(firstPost.desc)}
           </Text>
           <Button
             component='a'
-            href={`/post/${firstPost._id}`}
+            href={'' || `/post/${firstPost._id}`}
             variant='filled'
           >
             Read More
