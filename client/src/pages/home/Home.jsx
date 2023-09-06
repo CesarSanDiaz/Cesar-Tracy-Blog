@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import Header from '../../components/header/Header';
+import FeaturedSection from '../../components/posts/FeaturedSection';
 import Posts from '../../components/posts/Posts';
 import Sidebar from '../../components/sidebar/Sidebar';
 import { axiosInstance } from '../../config';
@@ -54,6 +55,14 @@ export default function Home() {
     >
       <Header />
       <div>
+        {isLoading ? (
+          <Title order={4} align='center' my={50}>
+            Loading Posts....
+            <Loader size='xl' variant='dots' my={12} />
+          </Title>
+        ) : (
+          <FeaturedSection posts={posts} />
+        )}
         <Grid grow>
           <Grid.Col span={9}>
             {isLoading ? (

@@ -3,13 +3,14 @@ import {
   Card,
   Divider,
   Image,
+  Stack,
   Text,
   Title,
   createStyles,
 } from '@mantine/core';
 import parser from 'html-react-parser';
 import React from 'react';
-import { usePostContext } from '../../context/PostsContext';
+// import { usePostContext } from '../../context/PostsContext';
 
 const useStyles = createStyles((theme) => ({
   container: {
@@ -34,7 +35,8 @@ const useStyles = createStyles((theme) => ({
     },
   },
   body: {
-    padding: theme.spacing.lg,
+    // margin: 'auto',
+    padding: `calc(${theme.spacing.xl} * 2)`,
     width: '100%',
 
     [theme.fn.smallerThan('xs')]: {
@@ -50,15 +52,20 @@ const useStyles = createStyles((theme) => ({
         ? theme.colors.myYellow[7]
         : theme.colors.blue[6],
   },
+  button: {
+    display: 'block',
+    marginRight: 'auto',
+    color:
+      theme.colorScheme === 'dark' ? theme.colors.myPurple[7] : theme.white,
+  },
 }));
 
-const FeaturedSection = () => {
+const FeaturedSection = ({ posts }) => {
+  const { classes } = useStyles();
+  const PF = 'https://cesar-tracy-blog.vercel.app/images/';
+
   // destructuring from posts but only from first element
   // const [{ title, desc, photo, _id }] = posts.slice(0, 1);
-  const { classes } = useStyles();
-
-  const { posts } = usePostContext();
-  const firstPost = posts[0];
 
   return (
     <div className={classes.container}>
@@ -73,26 +80,31 @@ const FeaturedSection = () => {
         // m='auto'
         w='15%'
       />
-      <Card className={classes.card} p={0} shadow='md' withBorder>
-        <div className={classes.image}>
-          <Image src='https://placehold.co/350' alt='image' height={350} />
-        </div>
-        <div className={classes.body}>
-          <Title order={2} ta='left' className={classes.title} mb='lg'>
-            {'Title' || firstPost.title}
-          </Title>
-          <Text fz='sm' c='dimmed' lineClamp={3} ta='left' mb='lg'>
-            {'Description' || parser(firstPost.desc)}
-          </Text>
-          <Button
-            component='a'
-            href={'' || `/post/${firstPost._id}`}
-            variant='filled'
-          >
-            Read More
-          </Button>
-        </div>
-      </Card>
+      {posts.slice(0, 1).map((post, index) => {
+        return (
+          <div className={classes.card} key={index}>
+            <div className={classes.image}>
+              <Image src={PF + post.photo} alt='image' height={300} />
+            </div>
+            <Stack className={classes.body}>
+              <Title order={2} ta='left' className={classes.title} mb='lg'>
+                {post.title}
+              </Title>
+              <Text fz='sm' c='dimmed' lineClamp={4} ta='left' mb='lg'>
+                {parser(post.desc)}
+              </Text>
+              <Button
+                component='a'
+                href={`/post/${post._id}`}
+                variant='filled'
+                className={classes.button}
+              >
+                Read More
+              </Button>
+            </Stack>
+          </div>
+        );
+      })}
     </div>
   );
 };
