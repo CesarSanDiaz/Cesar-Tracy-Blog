@@ -1,10 +1,9 @@
 import {
-  Badge,
   Divider,
   Group,
-  Loader,
+  // Loader,
   Paper,
-  SimpleGrid,
+  // SimpleGrid,
   Text,
   Title,
   createStyles,
@@ -16,9 +15,9 @@ import {
   IconBrandTwitter,
   IconBrandYoutube,
 } from '@tabler/icons-react';
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { axiosInstance } from '../../config';
+// import { useEffect, useState } from 'react';
+// import { Link } from 'react-router-dom';
+// import { axiosInstance } from '../../config';
 // import axios from 'axios';
 
 const useStyles = createStyles((theme) => ({
@@ -74,25 +73,25 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export default function Sidebar() {
-  const [categories, setCategories] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [categories, setCategories] = useState(null);
+  // const [isLoading, setIsLoading] = useState(false);
 
   const { classes } = useStyles();
 
-  useEffect(() => {
-    setIsLoading(true);
-    const getCategories = async () => {
-      try {
-        // const res = await axios.get('http://localhost:5000/api/categories');
-        const res = await axiosInstance.get('/categories');
-        setCategories(res.data);
-        setIsLoading(false);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getCategories();
-  }, []);
+  // useEffect(() => {
+  //   setIsLoading(true);
+  //   const getCategories = async () => {
+  //     try {
+  //       // const res = await axios.get('http://localhost:5000/api/categories');
+  //       const res = await axiosInstance.get('/categories');
+  //       setCategories(res.data);
+  //       setIsLoading(false);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   getCategories();
+  // }, []);
 
   return (
     <Paper radius={0} p='sm' className={classes.paper}>
@@ -100,7 +99,7 @@ export default function Sidebar() {
         Categories
       </Title>
       <Divider size={0} p='1.5px' mb='md' m='auto' w='25%' />
-      <div>
+      {/* <div>
         <SimpleGrid cols={2}>
           {categories &&
             categories.map((cat, i) => (
@@ -109,24 +108,24 @@ export default function Sidebar() {
               </Link>
             ))}
         </SimpleGrid>
-      </div>
+      </div> */}
       <Title order={2} align='left' py='sm' className={classes.sidebarTitle}>
         About Us
       </Title>
-      {isLoading ? (
+      {/* {isLoading ? (
         <Title order={4} align='center' my={12}>
           Loading...
           <Loader size='xl' variant='dots' my={12} />
         </Title>
-      ) : (
-        <Text size='lg'>
-          Welcome to our blog! We are excited to share our traveling experiences
-          with you. We love to explore new places and experience different
-          landscapes. Our passion for traveling has taken us to some incredible
-          destinations around the United States. Join us to experience all these
-          wonderful locations!
-        </Text>
-      )}
+      ) : ( */}
+      <Text size='lg'>
+        Welcome to our blog! We are excited to share our traveling experiences
+        with you. We love to explore new places and experience different
+        landscapes. Our passion for traveling has taken us to some incredible
+        destinations around the United States. Join us to experience all these
+        wonderful locations!
+      </Text>
+      {/* )} */}
 
       <Title order={2} align='left' py='sm' className={classes.sidebarTitle}>
         Follow Us!

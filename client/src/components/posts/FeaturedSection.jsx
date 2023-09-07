@@ -1,5 +1,6 @@
 import {
   Button,
+  Card,
   Image,
   Stack,
   Text,
@@ -13,12 +14,11 @@ import React from 'react';
 
 const useStyles = createStyles((theme) => ({
   container: {
-    padding: theme.spacing.sm,
+    margin: theme.spacing.lg,
   },
   card: {
     display: 'flex',
     alignItems: 'center',
-    borderRadius: theme.radius.lg,
     backgroundColor:
       theme.colorScheme === 'dark' ? theme.colors.myPurple[8] : theme.white,
 
@@ -80,9 +80,17 @@ const FeaturedSection = ({ posts }) => {
       </Title>
       {posts.slice(0, 1).map((post, index) => {
         return (
-          <div className={classes.card} key={index}>
+          <Card
+            className={classes.card}
+            key={index}
+            shadow='sm'
+            radius='lg'
+            withBorder
+            p={0}
+            my='lg'
+          >
             <div className={classes.image}>
-              <Image src={PF + post.photo} alt='image' height={300} />
+              <Image src={PF + post.photo} alt='image' height={350} />
             </div>
             <Stack className={classes.body}>
               <Title order={2} ta='left' className={classes.title} mb='lg'>
@@ -100,7 +108,7 @@ const FeaturedSection = ({ posts }) => {
                 Read More
               </Button>
             </Stack>
-          </div>
+          </Card>
         );
       })}
     </div>

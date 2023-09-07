@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import Header from '../../components/header/Header';
-// import CategoriesSection from '../../components/posts/CategoriesSection';
+import CategoriesSection from '../../components/posts/CategoriesSection';
 import FeaturedSection from '../../components/posts/FeaturedSection';
 import Posts from '../../components/posts/Posts';
 import Sidebar from '../../components/sidebar/Sidebar';
@@ -66,15 +66,14 @@ export default function Home() {
         )}
 
         {/******* Category section *******/}
-        {/* {isLoading ? (
+        {isLoading ? (
           <Title order={4} align='center' my={50}>
             Loading Categories....
             <Loader size='xl' variant='dots' my={12} />
           </Title>
         ) : (
-          // <CategoriesSection posts={posts} />
-          <Sidebar />
-        )} */}
+          <CategoriesSection posts={posts} />
+        )}
 
         <Grid grow>
           <Grid.Col span={9}>
