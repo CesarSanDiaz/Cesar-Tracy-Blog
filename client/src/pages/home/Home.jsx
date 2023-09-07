@@ -5,13 +5,13 @@ import {
   MediaQuery,
   Paper,
   Title,
-  // Skeleton,
   createStyles,
 } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import Header from '../../components/header/Header';
+// import CategoriesSection from '../../components/posts/CategoriesSection';
 import FeaturedSection from '../../components/posts/FeaturedSection';
 import Posts from '../../components/posts/Posts';
 import Sidebar from '../../components/sidebar/Sidebar';
@@ -55,14 +55,27 @@ export default function Home() {
     >
       <Header />
       <div>
+        {/******* Featured section  *******/}
         {isLoading ? (
           <Title order={4} align='center' my={50}>
-            Loading Posts....
+            Loading Section....
             <Loader size='xl' variant='dots' my={12} />
           </Title>
         ) : (
           <FeaturedSection posts={posts} />
         )}
+
+        {/******* Category section *******/}
+        {/* {isLoading ? (
+          <Title order={4} align='center' my={50}>
+            Loading Categories....
+            <Loader size='xl' variant='dots' my={12} />
+          </Title>
+        ) : (
+          // <CategoriesSection posts={posts} />
+          <Sidebar />
+        )} */}
+
         <Grid grow>
           <Grid.Col span={9}>
             {isLoading ? (

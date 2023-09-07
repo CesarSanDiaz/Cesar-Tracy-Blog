@@ -1,4 +1,4 @@
-import { Divider, Grid, Paper, Title, createStyles } from '@mantine/core';
+import { Grid, Paper, Title, createStyles, rem } from '@mantine/core';
 import Post from '../../components/post/Post';
 
 const useStyles = createStyles((theme) => ({
@@ -9,11 +9,18 @@ const useStyles = createStyles((theme) => ({
       transform: 'scale(1.015)',
     },
   },
-  postsDivider: {
-    backgroundColor:
-      theme.colorScheme === 'dark'
-        ? theme.colors.myYellow[7]
-        : theme.colors.blue[6],
+  postsTitle: {
+    '&::after': {
+      content: '""',
+      display: 'block',
+      backgroundColor:
+        theme.colorScheme === 'dark'
+          ? theme.colors.myYellow[7]
+          : theme.colors.blue[6],
+      width: rem(45),
+      height: rem(2),
+      marginTop: theme.spacing.sm,
+    },
   },
   postsPaper: {
     backgroundColor: 'transparent',
@@ -25,20 +32,10 @@ export default function Posts({ posts }) {
 
   return (
     <>
-      {}
-
       <Paper radius={0} p='sm' className={classes.postsPaper}>
-        <Title order={2} align='left' p='xs'>
+        <Title order={2} align='left' py='sm' className={classes.postsTitle}>
           Posts
         </Title>
-        <Divider
-          size={0}
-          p='1.5px'
-          mb='md'
-          className={classes.postsDivider}
-          // m='auto'
-          w='15%'
-        />
         <Grid grow gutter='sm'>
           {posts.slice(1, 4).map((p) => {
             return (

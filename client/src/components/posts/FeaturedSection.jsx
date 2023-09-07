@@ -1,12 +1,11 @@
 import {
   Button,
-  Card,
-  Divider,
   Image,
   Stack,
   Text,
   Title,
   createStyles,
+  rem,
 } from '@mantine/core';
 import parser from 'html-react-parser';
 import React from 'react';
@@ -46,17 +45,24 @@ const useStyles = createStyles((theme) => ({
   title: {
     lineHeight: 1,
   },
-  postsDivider: {
-    backgroundColor:
-      theme.colorScheme === 'dark'
-        ? theme.colors.myYellow[7]
-        : theme.colors.blue[6],
-  },
   button: {
     display: 'block',
     marginRight: 'auto',
     color:
       theme.colorScheme === 'dark' ? theme.colors.myPurple[7] : theme.white,
+  },
+  featuredTitle: {
+    '&::after': {
+      content: '""',
+      display: 'block',
+      backgroundColor:
+        theme.colorScheme === 'dark'
+          ? theme.colors.myYellow[7]
+          : theme.colors.blue[6],
+      width: rem(45),
+      height: rem(2),
+      marginTop: theme.spacing.sm,
+    },
   },
 }));
 
@@ -69,17 +75,9 @@ const FeaturedSection = ({ posts }) => {
 
   return (
     <div className={classes.container}>
-      <Title order={2} align='left' p='xs'>
+      <Title order={2} align='left' py='sm' className={classes.featuredTitle}>
         Featured Post
       </Title>
-      <Divider
-        size={0}
-        p='1.5px'
-        mb='md'
-        className={classes.postsDivider}
-        // m='auto'
-        w='15%'
-      />
       {posts.slice(0, 1).map((post, index) => {
         return (
           <div className={classes.card} key={index}>

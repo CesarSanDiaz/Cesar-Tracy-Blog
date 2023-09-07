@@ -8,6 +8,7 @@ import {
   Text,
   Title,
   createStyles,
+  rem,
 } from '@mantine/core';
 import {
   IconBrandInstagram,
@@ -21,6 +22,19 @@ import { axiosInstance } from '../../config';
 // import axios from 'axios';
 
 const useStyles = createStyles((theme) => ({
+  sidebarTitle: {
+    '&::after': {
+      content: '""',
+      display: 'block',
+      backgroundColor:
+        theme.colorScheme === 'dark'
+          ? theme.colors.myYellow[7]
+          : theme.colors.blue[6],
+      width: rem(45),
+      height: rem(2),
+      marginTop: theme.spacing.sm,
+    },
+  },
   paper: {
     backgroundColor: 'transparent',
   },
@@ -57,12 +71,6 @@ const useStyles = createStyles((theme) => ({
       cursor: 'pointer',
     },
   },
-  sidebarDivider: {
-    backgroundColor:
-      theme.colorScheme === 'dark'
-        ? theme.colors.myYellow[7]
-        : theme.colors.blue[6],
-  },
 }));
 
 export default function Sidebar() {
@@ -88,19 +96,10 @@ export default function Sidebar() {
 
   return (
     <Paper radius={0} p='sm' className={classes.paper}>
-      <Link to='/categories' className='link'>
-        <Title order={2} align='center' p='xs'>
-          Categories
-        </Title>
-      </Link>
-      <Divider
-        size={0}
-        p='1.5px'
-        mb='md'
-        className={classes.sidebarDivider}
-        m='auto'
-        w='25%'
-      />
+      <Title order={2} align='left' py='sm' className={classes.sidebarTitle}>
+        Categories
+      </Title>
+      <Divider size={0} p='1.5px' mb='md' m='auto' w='25%' />
       <div>
         <SimpleGrid cols={2}>
           {categories &&
@@ -111,18 +110,9 @@ export default function Sidebar() {
             ))}
         </SimpleGrid>
       </div>
-      <br />
-      <Title order={2} align='center' p='xs' pt='md'>
+      <Title order={2} align='left' py='sm' className={classes.sidebarTitle}>
         About Us
       </Title>
-      <Divider
-        size={0}
-        p='1.5px'
-        mb='md'
-        className={classes.sidebarDivider}
-        m='auto'
-        w='25%'
-      />
       {isLoading ? (
         <Title order={4} align='center' my={12}>
           Loading...
@@ -138,18 +128,9 @@ export default function Sidebar() {
         </Text>
       )}
 
-      <br />
-      <Title order={2} align='center' p='xs' pt='md'>
+      <Title order={2} align='left' py='sm' className={classes.sidebarTitle}>
         Follow Us!
       </Title>
-      <Divider
-        size={0}
-        p='1.5px'
-        mb='md'
-        className={classes.sidebarDivider}
-        m='auto'
-        w='25%'
-      />
       <Group position='apart'>
         <IconBrandYoutube className={classes.youtubeIcon} size={28} />
         <IconBrandInstagram className={classes.instagramIcon} size={28} />

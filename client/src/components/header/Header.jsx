@@ -17,15 +17,9 @@ const useStyles = createStyles((theme) => ({
       },
     },
   },
-  text: {
-    position: 'relative',
-    top: '20%',
-    color: theme.black,
-    textAlign: 'center',
-  },
   title: {
     position: 'relative',
-    top: '20%',
+    top: '15%',
     fontWeight: 800,
     fontSize: '50px',
     letterSpacing: rem(2),
