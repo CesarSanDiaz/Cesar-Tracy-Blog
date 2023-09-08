@@ -40,15 +40,18 @@ const useStyles = createStyles((theme) => ({
     height: '85px',
     margin: 'auto',
 
-    [theme.fn.smallerThan('xs')]: {
-      width: '100px',
-      height: '55px',
-    },
+    // [theme.fn.smallerThan('xs')]: {
+    //   width: '100px',
+    //   height: '55px',
+    // },
   },
   text: {
     [theme.fn.smallerThan('xs')]: {
       fontSize: '12px',
     },
+  },
+  image: {
+    width: '25px',
   },
 }));
 
