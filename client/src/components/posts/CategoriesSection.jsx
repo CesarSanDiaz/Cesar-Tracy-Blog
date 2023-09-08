@@ -9,7 +9,7 @@ import {
   rem,
 } from '@mantine/core';
 import { useEffect, useState } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { axiosInstance } from '../../config';
 import '../../styles/global.scss';
 
@@ -50,15 +50,13 @@ const useStyles = createStyles((theme) => ({
       fontSize: '12px',
     },
   },
-  image: {
-    width: '50px',
-  },
 }));
 
 export default function Categories() {
   const [categories, setCategories] = useState([]);
   const { classes } = useStyles();
-  const assetFolder = 'https://cesar-tracy-blog.vercel.app/images/';
+  // const assetFolder = 'https://cesar-tracy-blog.vercel.app/images/';
+  const assetFolder = 'http://localhost:5000/images/';
   useEffect(() => {
     const getCategories = async () => {
       try {
@@ -78,32 +76,34 @@ export default function Categories() {
       </Title>
       <Group spacing='lg' position='apart' my='lg'>
         {categories.map((cat, index) => (
-          // <Link to={`/?cat=${cat.name}`} className='link' >
-          <Paper
-            key={index}
-            className={classes.featuredPaper}
-            // className={`badge${cat.name}`}
-            radius='md'
-          >
-            <Stack align='center'>
-              <Image
-                src={assetFolder + cat.svg}
-                className={classes.image}
-              ></Image>
-              <Text
-                sx={(theme) => ({
-                  color:
-                    theme.colorScheme === 'dark'
-                      ? theme.colors.myPurple[7]
-                      : theme.dark,
-                })}
-                className={classes.text}
-              >
-                {cat.name}
-              </Text>
-            </Stack>
-          </Paper>
-          // </Link>
+          <Link to={`/?cat=${cat.name}`} className='link'>
+            <Paper
+              key={index}
+              className={classes.featuredPaper}
+              // className={`badge${cat.name}`}
+              radius='md'
+            >
+              <Stack align='center' spacing={0} m='xs'>
+                <Image
+                  width={50}
+                  height={50}
+                  src={assetFolder + cat.svg}
+                  className={classes.image}
+                ></Image>
+                <Text
+                  sx={(theme) => ({
+                    color:
+                      theme.colorScheme === 'dark'
+                        ? theme.colors.myPurple[7]
+                        : theme.dark,
+                  })}
+                  className={classes.text}
+                >
+                  {cat.name}
+                </Text>
+              </Stack>
+            </Paper>
+          </Link>
         ))}
       </Group>
     </div>
