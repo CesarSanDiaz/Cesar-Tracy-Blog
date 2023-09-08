@@ -58,8 +58,8 @@ const useStyles = createStyles((theme) => ({
 export default function Categories() {
   const [categories, setCategories] = useState([]);
   const { classes } = useStyles();
-  // const assetFolder = 'https://cesar-tracy-blog.vercel.app/images/';
-  const assetFolder = 'http://localhost:5000/images/';
+  const assetFolder = 'https://cesar-tracy-blog.vercel.app/images/';
+  // const assetFolder = 'http://localhost:5000/images/';
   useEffect(() => {
     const getCategories = async () => {
       try {
