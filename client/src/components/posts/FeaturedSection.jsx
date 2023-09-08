@@ -89,9 +89,9 @@ const FeaturedSection = ({ posts }) => {
             p={0}
             my='lg'
           >
-            <div className={classes.image}>
+            <Card.Section className={classes.image}>
               <Image src={PF + post.photo} alt='image' height={350} />
-            </div>
+            </Card.Section>
             <Stack className={classes.body}>
               <Title order={2} ta='left' className={classes.title} mb='lg'>
                 {post.title}

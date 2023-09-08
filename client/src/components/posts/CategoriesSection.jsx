@@ -1,7 +1,17 @@
-import { Badge, Group, Title, createStyles, rem } from '@mantine/core';
+import {
+  Group,
+  Image,
+  Paper,
+  Stack,
+  Text,
+  Title,
+  createStyles,
+  rem,
+} from '@mantine/core';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { axiosInstance } from '../../config';
+import '../../styles/global.scss';
 
 const useStyles = createStyles((theme) => ({
   container: {
@@ -20,31 +30,38 @@ const useStyles = createStyles((theme) => ({
       marginTop: theme.spacing.sm,
     },
   },
-  featuredBadge: {
-    variant: 'light',
+  featuredPaper: {
     textTransform: 'capitalize',
     backgroundColor:
       theme.colorScheme === 'dark'
         ? theme.colors.myYellow[7]
         : theme.colors.blue[1],
-    color: theme.colorScheme === 'dark' ? theme.colors.myPurple[7] : theme.blue,
     width: '150px',
     height: '85px',
+    margin: 'auto',
 
     [theme.fn.smallerThan('xs')]: {
       width: '100px',
       height: '55px',
     },
   },
+  text: {
+    [theme.fn.smallerThan('xs')]: {
+      fontSize: '12px',
+    },
+  },
+  image: {
+    width: '50px',
+  },
 }));
 
 export default function Categories() {
   const [categories, setCategories] = useState([]);
   const { classes } = useStyles();
+  const assetFolder = 'https://cesar-tracy-blog.vercel.app/images/';
   useEffect(() => {
     const getCategories = async () => {
       try {
-        // const res = await axios.get('http://localhost:5000/api/categories');
         const res = await axiosInstance.get('/categories');
         setCategories(res.data);
       } catch (error) {
@@ -60,12 +77,33 @@ export default function Categories() {
         Popular Categories
       </Title>
       <Group spacing='lg' position='apart' my='lg'>
-        {categories.map((cat, i) => (
-          <Link to={`/?cat=${cat.name}`} className='link' key={i}>
-            <Badge className={classes.featuredBadge} radius='md'>
-              {cat.name}
-            </Badge>
-          </Link>
+        {categories.map((cat, index) => (
+          // <Link to={`/?cat=${cat.name}`} className='link' >
+          <Paper
+            key={index}
+            className={classes.featuredPaper}
+            // className={`badge${cat.name}`}
+            radius='md'
+          >
+            <Stack align='center'>
+              <Image
+                src={assetFolder + cat.svg}
+                className={classes.image}
+              ></Image>
+              <Text
+                sx={(theme) => ({
+                  color:
+                    theme.colorScheme === 'dark'
+                      ? theme.colors.myPurple[7]
+                      : theme.dark,
+                })}
+                className={classes.text}
+              >
+                {cat.name}
+              </Text>
+            </Stack>
+          </Paper>
+          // </Link>
         ))}
       </Group>
     </div>
